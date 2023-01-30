@@ -4,7 +4,7 @@ import Home from "../pages/home/Home";
 import ProductDetail from "../pages/product_detail/ProductDetail";
 import ProductList from "../pages/product_list/ProductList";
 import Cart from "../pages/cart/Cart";
-import Checkout from "../pages/Payment/Checkout";
+import Checkout from "../pages/payment/Checkout";
 const Main = () => {
   return (
     <main>
