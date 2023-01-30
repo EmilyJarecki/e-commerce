@@ -10,18 +10,21 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 export default function Checkout() {
 	return (
-		// The Elements provider allows you to use Element components and access the Stripe object in any nested component.
-		// Element components include:
-		// LinkAuthenticationElement
-		// PaymentElement
-		// TODO: work on splitting this up
-		// CardNumberElement
-		// CardExpiryElement
-		// CardCvcElement 
-		// CardElement: A flexible single-line input that collects all necessary card details.
-		<Elements stripe={stripePromise} >
+        <div>
+		{/* The Elements provider allows you to use Element components and access the Stripe object in any nested component. */}
+		{/* Element components include: */}
+		{/* LinkAuthenticationElement */}
+		{/* PaymentElement */}
+		{/* TODO: work on splitting this up */}
+		{/* CardNumberElement */}
+		{/* CardExpiryElement */}
+		{/* CardCvcElement  */}
+		{/* CardElement: A flexible single-line input that collects all necessary card details. */}
+		<h1>The Checkout Form</h1>
+        <Elements stripe={stripePromise} >
 			{/* our form that we are passing in */}
 			<PaymentForm />
 		</Elements>
+        </div>
 	)
 }
