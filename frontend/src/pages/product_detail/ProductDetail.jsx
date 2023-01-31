@@ -30,8 +30,9 @@ const ProductDetail = (props) => {
         <img width="50px" src={product.image} alt={product.name} />
         <p>{product.name}</p>
         <p>${product.price}</p>
-        <p>Cateegory: {product.category}</p>
+        <p>Category: {product.category}</p>
         <p>{product.description}</p>
+        <button>Add to Cart</button>
       </div>
     );
   };
