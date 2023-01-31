@@ -27,13 +27,11 @@ const ProductList = () => {
               <Link key={product._id} to={`/shop/${product._id}`}>
                 <p>Name: {product.name}</p>
               </Link>
-              <p>Description: {product.description}</p>
               <p style={{ color: "red" }}>Price: ${product.price}</p>
               ///////////////////////////////////////////
             </div>
           );
         })}
-        hello
       </div>
     );
   };

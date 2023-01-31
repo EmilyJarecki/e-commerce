@@ -5,10 +5,10 @@ import ProductDetail from "../pages/product_detail/ProductDetail";
 import ProductList from "../pages/product_list/ProductList";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/payment/Checkout";
+import Header from "./Header/Header";
 const Main = () => {
   return (
     <main>
-      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<ProductList />} />
@@ -16,7 +16,6 @@ const Main = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-      </BrowserRouter>
     </main>
   );
 };

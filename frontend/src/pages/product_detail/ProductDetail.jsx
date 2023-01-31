@@ -22,14 +22,15 @@ const ProductDetail = (props) => {
     return (
       <div>
         <h4>
-        <Link to={`/shop`}>
-                <p>Return to Product Page</p>
-        </Link>
+          <Link to={`/shop`}>
+            <p>Return to Product Page</p>
+          </Link>
         </h4>
         <p>Add to Cart button which isn't working rn.</p>
         <img width="50px" src={product.image} alt={product.name} />
         <p>{product.name}</p>
         <p>${product.price}</p>
+        <p>Cateegory: {product.category}</p>
         <p>{product.description}</p>
       </div>
     );
