@@ -6,6 +6,7 @@ import Category from "../Category";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const coffee = []
+  const bowl = []
 
   const URL = "http://localhost:4000/products";
 
@@ -24,10 +25,12 @@ const ProductList = () => {
       if (products[i].category == "coffee"){
         coffee.push(products[i].name)
       }
-      else{
-        console.log("there are none.")
-      }console.log(products[i].category)
+      if (products[i].category == "bowl"){
+        bowl.push(products[i].name)
+      }
+      // console.log(products[i].category)
       console.log(coffee)
+      console.log(bowl)
     }
   }
   
