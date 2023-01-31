@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -7,7 +8,6 @@ const ProductList = () => {
   const URL = "http://localhost:4000/products";
 
   const getProducts = async () => {
-
     try {
       const res = await fetch(URL);
       const allProducts = await res.json();
@@ -20,15 +20,18 @@ const ProductList = () => {
   const loaded = () => {
     return (
       <div>
-        {products?.map((product)=>{
+        {products?.map((product) => {
           return (
             <div>
-              <p>Name: {product.name}</p>
+              <img width="50px" src={product.image} alt={product.name} />
+              <Link key={product._id} to={`/shop/${product._id}`}>
+                <p>Name: {product.name}</p>
+              </Link>
               <p>Description: {product.description}</p>
-              <p>Price: {product.price}</p>
-              <img width="50px" src={product.image} alt={product.name}/>
+              <p style={{ color: "red" }}>Price: ${product.price}</p>
+              ///////////////////////////////////////////
             </div>
-          )
+          );
         })}
         hello
       </div>
@@ -55,7 +58,7 @@ const ProductList = () => {
 
   return (
     <div>
-      The page where all the products will be shown.
+      <h2>The page where all the products will be shown.</h2>
       {products ? loaded() : loading()}
     </div>
   );
