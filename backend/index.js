@@ -2,12 +2,13 @@
 const express = require("express");
 const app = express();
 
+
 //APP DEPENDENCIES
 const cors = require('cors')
 const morgan = require('morgan')
 
 // INITIALIZE .ENV VARIABLES
-require("dotenv").config("MONGODB_URI");
+require("dotenv").config();
 require("./config/db.connection")
 
 const { PORT, MONGODB_URI } = process.env;
@@ -23,9 +24,7 @@ app.use(express.json());
 app.use('/products', productController)
 app.use('/cart', cartController)
 
-app.get("/", (req, res) => {
-    res.redirect('/product');
-});
+
 
 // LISTENER
 app.listen(process.env.PORT || 4000, () => console.log(`listening on PORT ${PORT}`));
