@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductDetail = (props) => {
   const [product, setProduct] = useState(null);
@@ -21,9 +22,9 @@ const ProductDetail = (props) => {
     return (
       <div>
         <h4>
-          You click on the product and you are redirected to this page which
-          will show the product name, price, image, and description of item.
-          There will also be a button to add to cart.
+        <Link to={`/shop`}>
+                <p>Return to Product Page</p>
+        </Link>
         </h4>
         <p>Add to Cart button which isn't working rn.</p>
         <img width="50px" src={product.image} alt={product.name} />
