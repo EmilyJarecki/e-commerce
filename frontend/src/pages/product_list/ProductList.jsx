@@ -23,10 +23,10 @@ const ProductList = () => {
   const select = () => {
     for (let i=0; i<products.length; i++){
       if (products[i].category == "coffee"){
-        coffee.push(products[i].name)
+        coffee.push(products[i])
       }
       if (products[i].category == "bowl"){
-        bowl.push(products[i].name)
+        bowl.push(products[i])
       }
       // console.log(products[i].category)
       console.log(coffee)
@@ -38,9 +38,18 @@ const ProductList = () => {
     return (
       <div>
         <section className="sort-by">
+          <h2>Sort By:</h2>
           <h4>Coffee</h4>
-          <h4>Bowl</h4>
+          <h4>Bowl</h4>              
         </section>
+        {coffee.map((coff)=>{
+          return(
+            <div>
+              <h1>{coff.name}</h1>
+            </div>
+          )
+        })}
+
         {products?.map((product) => {
           return (
             <div>
@@ -81,7 +90,6 @@ const ProductList = () => {
 
   return (
     <div>
-      <h2>The page where all the products will be shown.</h2>
       {products ? loaded() : loading()}
     </div>
   );

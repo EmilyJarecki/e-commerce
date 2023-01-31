@@ -7,7 +7,7 @@ const Category = (props) => {
 
   return (
     <div>
-        
+        I am the category
 
     </div>
   )

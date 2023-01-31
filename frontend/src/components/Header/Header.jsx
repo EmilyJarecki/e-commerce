@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <div style={{"backgroundColor":"beige"}}>
       <Link to={"/"}>
         <h4>The Store</h4>
       </Link>
