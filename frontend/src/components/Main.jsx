@@ -6,6 +6,8 @@ import ProductList from "../pages/product_list/ProductList";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/payment/Checkout";
 import Header from "./Header/Header";
+import Category from "../pages/Category";
+
 const Main = () => {
   return (
     <main>
@@ -15,6 +17,7 @@ const Main = () => {
           <Route path="/shop/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/category/:category" element={<Category />} />
         </Routes>
     </main>
   );

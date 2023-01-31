@@ -19,9 +19,7 @@ router.get("/:id", async (req, res, next) => {
 	try {	
 		const singleProduct = await Product.findById(req.params.id)
 		res.status(200).json(singleProduct)
-		console.log("below is the id")
-		console.log(singleProduct._id)
-		console.log("above if the product id")
+
 	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)
