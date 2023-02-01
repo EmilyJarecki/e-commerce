@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const ProductDetail = ({ handleClick }) => {
+
+const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [cart, setCart] = useState([]);
+  const [inputText, setInputText] = useState("");
   const { id } = useParams();
 
   const URL = `http://localhost:4000/products/${id}`;
@@ -22,7 +24,7 @@ const ProductDetail = ({ handleClick }) => {
       console.log(err);
     }
   };
-// add to cart function 
+
 
 
   // console.log(product._id)
@@ -46,6 +48,7 @@ const ProductDetail = ({ handleClick }) => {
         <p>Product ID: {product._id}</p>
         {/* TODO: add to cart */}
         {/* <button onClick={()=> handleClick(product)}>Add to Cart</button> */}
+  
       </div>
     );
   };

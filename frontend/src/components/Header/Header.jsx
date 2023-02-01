@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 
+
 const Header = () => {
   return (
     <div className="top-header container">
@@ -13,6 +14,7 @@ const Header = () => {
           <p className="right-icon-words">Cart</p>
         </Link>
       </div>
+    
     </div>
   );
 };
