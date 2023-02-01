@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const Cart = require("../models/Cart");
-const Product = require('../models/Product');
+const { Product } = require('../models/Index')
+const { Cart } = require('../models/Index')
+const { Review } = require('../models/Index')
 
 // INDEX ROUTE
 router.get("/:id", async (req, res, next) => {
 	try {
-		const cart = await Cart.findById("63d9bfa9d0e8c157ee3cff51").populate("products")
+		const cart = await Cart.findById("63d9bfdac7a5ef4263ae20f2").populate("products")
 		// const Cart = await Cart.findById("63d9bfa9d0e8c157ee3cff51")
 		res.send(cart)
 		// console.log(Cart)
@@ -39,6 +40,7 @@ router.post("/:id", async (req, res, next) =>  {
 		return next(err)
 	}
 });
+
 
 
 
