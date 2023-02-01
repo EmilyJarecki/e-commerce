@@ -6,7 +6,7 @@ import ProductList from "../pages/product_list/ProductList";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/payment/Checkout";
 import Header from "./Header/Header";
-import Category from "../pages/Category";
+import Category from "./Category";
 
 const Main = () => {
   return (

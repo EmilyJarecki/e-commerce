@@ -14,6 +14,9 @@ const Cart = (props) => {
         <Link to="/checkout">
                 <h5>Go to Checkout</h5>
         </Link>
+        <Link to={`/shop`}>
+            <p>Back to Shopping</p>
+        </Link>
     </div>
   )
 

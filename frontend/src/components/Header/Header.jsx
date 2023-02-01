@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./header.css";
 
 const Header = () => {
   return (
-    <div style={{"backgroundColor":"beige"}}>
-      <Link to={"/"}>
-        <h4>The Store</h4>
+    <div className="top-header container">
+      <Link className="link" to={"/"}>
+        <h4 className="AVIATO ">AVIATO</h4>
       </Link>
-      <Link to={"/cart"}>
-        <h6>Cart</h6>
-      </Link>
-      <h6>Search</h6>
+      <div className="top-menu text-right list-inline">
+        <Link className="link" to={"/cart"}>
+          <p className="right-icon-words">Cart</p>
+        </Link>
+        <div>
+            <p>Search</p>
+        </div>
+      </div>
     </div>
   );
 };

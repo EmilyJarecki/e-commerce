@@ -1,0 +1,29 @@
+.top-header,
+.container {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #dedede;
+  display: flex;
+}
+
+.AVIATO {
+  text-align: center;
+  font-size: 40px;
+}
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    margin: 0;
+    padding: 0;
+}
+.text-right {
+    text-align: right;    
+
+}
+.right-icon-words{
+    font-size: 15px;
+}
+.link{
+    text-decoration: none;
+    color: black;
+}

@@ -8,6 +8,8 @@ router.get("/", async (req, res, next) => {
 		const allProducts = await Product.find({})
 		res.status(200).json(allProducts)
 		console.log(allProducts[0].name)
+		console.log(allProducts[0].id)
+
 	}catch(err){
 		res.status(400).json({error: "error"})
         return next(err)
@@ -19,7 +21,7 @@ router.get("/:id", async (req, res, next) => {
 	try {	
 		const singleProduct = await Product.findById(req.params.id)
 		res.status(200).json(singleProduct)
-
+		console.log(Product)
 	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)

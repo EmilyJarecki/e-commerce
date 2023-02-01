@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const ProductDetail = ({handleClick}) => {
+const ProductDetail = ({ handleClick }) => {
   const [product, setProduct] = useState(null);
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
   const { id } = useParams();
 
   const URL = `http://localhost:4000/products/${id}`;
@@ -22,6 +22,8 @@ const ProductDetail = ({handleClick}) => {
       console.log(err);
     }
   };
+// add to cart function 
+
 
   // console.log(product._id)
   const loaded = () => {
@@ -32,14 +34,17 @@ const ProductDetail = ({handleClick}) => {
             <p>Return to Product Page</p>
           </Link>
         </h4>
-        <p>Add to Cart button which isn't working rn.</p>
+        <button>Add to Cart</button>
+        <Link to={`/cart`}>
+            <p>View Cart</p>
+          </Link>
         <img width="50px" src={product.image} alt={product.name} />
         <p>{product.name}</p>
         <p>${product.price}</p>
         <p>Category: {product.category}</p>
         <p>{product.description}</p>
         <p>Product ID: {product._id}</p>
-{/* TODO: add to cart */}
+        {/* TODO: add to cart */}
         {/* <button onClick={()=> handleClick(product)}>Add to Cart</button> */}
       </div>
     );

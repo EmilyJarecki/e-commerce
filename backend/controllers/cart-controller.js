@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Cart = require("../models/Cart")
+const Cart = require("../models/Cart");
+const Product = require('../models/Product');
 
 // INDEX ROUTE
 router.get("/", async (req, res, next) => {
@@ -23,6 +24,30 @@ router.post("/", async (req, res, next) =>  {
         return next(err)
     }
 });
+
+// ADD ITEMS TO CART ROUTE
+router.post("/:id", async (req, res, next) =>  {
+    try {
+        const cart = await Cart.findById("63d984e71a12693f1c123e9c")
+		const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
+		// console.log(allProducts[0].id)
+		console.log(req.params.id)
+		console.log(allProducts)
+		console.log(cart)
+        // const productToAdd = {
+		// 	id: allProducts
+		// }
+		cart.products.push(allProducts)
+		await cart.save()
+    } catch(err){
+		res.status(400).json({error: "error"})
+        return next(err)
+    }
+});
+
+
+
+
 
 // SHOW ROUTE
 // router.get("/:id", async (req, res, next) => {
