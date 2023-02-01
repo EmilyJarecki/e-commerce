@@ -6,11 +6,12 @@ const Product = require('../models/Product');
 // INDEX ROUTE
 router.get("/:id", async (req, res, next) => {
 	try {
-		// const allItems = await Cart.find({})
-		const cart = await Cart.findById("63d984e71a12693f1c123e9c").populate("products")
+		const cart = await Cart.findById("63d9bfa9d0e8c157ee3cff51").populate("products")
+		// const Cart = await Cart.findById("63d9bfa9d0e8c157ee3cff51")
 		res.send(cart)
-		console.log(cart)
-		// res.status(200).json(cart)
+		// console.log(Cart)
+		// the line below when included just throws a "ErrorCaptureStackTrace(err)"
+		// res.status(201).json(await Cart.populate("products"))
 	}catch(err){
 		res.status(400).json({error: "error"})
         return next(err)

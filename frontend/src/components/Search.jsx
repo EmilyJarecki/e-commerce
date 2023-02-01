@@ -22,7 +22,7 @@ const Search = () => {
     getProducts();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   const onChange = (event) => {
     setValue(event.target.value);
