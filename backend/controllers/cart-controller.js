@@ -18,6 +18,31 @@ router.get("/:id", async (req, res, next) => {
 	}
 });
 
+// ADD ITEMS TO CART ROUTE
+router.post("/:id", async (req, res, next) =>  {
+	try {
+		const cart = await Cart.findById(req.params.id)
+		// const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
+		// console.log(allProducts[0].id)
+
+		const productToAdd = new Product({
+			products : req.body
+		})
+
+		console.log("below if the cart")
+		console.log(cart.products[0])
+		cart.products.push(productToAdd)
+		await cart.save()
+		res.status(201).json(await cart.populate("products"))
+	} catch(err){
+		res.status(400).json({error: "error"})
+		return next(err)
+	}
+});
+
+
+
+
 // CREATE ROUTE
 router.post("/", async (req, res, next) =>  {
     try {
@@ -29,24 +54,7 @@ router.post("/", async (req, res, next) =>  {
     }
 });
 
-// ADD ITEMS TO CART ROUTE
-router.post("/:id", async (req, res, next) =>  {
-	try {
-		const cart = await Cart.findById("63d984e71a12693f1c123e9c")
-		const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
-		// console.log(allProducts[0].id)
 
-		// const productToAdd = {
-		// 	id: allProducts
-		// }
-		cart.products.push(allProducts)
-		await cart.save()
-		res.status(201).json(await cart.populate("products"))
-	} catch(err){
-		res.status(400).json({error: "error"})
-		return next(err)
-	}
-});
 
 
 
@@ -64,12 +72,11 @@ router.post("/:id", async (req, res, next) =>  {
 // 	}
 // });
 
-// TWEET UPDATE ROUTE
 router.put("/:id", async (req, res, next) => {
 	try{
 		const updatedItem = await Cart.findByIdAndUpdate(req.params.id, req.body)
 		console.log(updatedItem)
-		res.status(200).json({message: "Successfully updated tweet", updatedItem})
+		res.status(200).json({message: "Successfully updated cart", updatedItem})
 	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)
