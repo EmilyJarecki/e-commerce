@@ -27,22 +27,22 @@ router.post("/", async (req, res, next) =>  {
 
 // ADD ITEMS TO CART ROUTE
 router.post("/:id", async (req, res, next) =>  {
-    try {
-        const cart = await Cart.findById("63d984e71a12693f1c123e9c")
+	try {
+		const cart = await Cart.findById("63d984e71a12693f1c123e9c")
 		const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
 		// console.log(allProducts[0].id)
 		console.log(req.params.id)
 		console.log(allProducts)
 		console.log(cart)
-        // const productToAdd = {
+		// const productToAdd = {
 		// 	id: allProducts
 		// }
 		cart.products.push(allProducts)
 		await cart.save()
-    } catch(err){
+	} catch(err){
 		res.status(400).json({error: "error"})
-        return next(err)
-    }
+		return next(err)
+	}
 });
 
 
