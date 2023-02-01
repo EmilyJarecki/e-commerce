@@ -4,10 +4,13 @@ const Cart = require("../models/Cart");
 const Product = require('../models/Product');
 
 // INDEX ROUTE
-router.get("/", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
 	try {
-		const allItems = await Cart.find({})
-		res.status(200).json(allItems)
+		// const allItems = await Cart.find({})
+		const cart = await Cart.findById("63d984e71a12693f1c123e9c").populate("products")
+		res.send(cart)
+		console.log(cart)
+		// res.status(200).json(cart)
 	}catch(err){
 		res.status(400).json({error: "error"})
         return next(err)
@@ -31,14 +34,13 @@ router.post("/:id", async (req, res, next) =>  {
 		const cart = await Cart.findById("63d984e71a12693f1c123e9c")
 		const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
 		// console.log(allProducts[0].id)
-		console.log(req.params.id)
-		console.log(allProducts)
-		console.log(cart)
+
 		// const productToAdd = {
 		// 	id: allProducts
 		// }
 		cart.products.push(allProducts)
 		await cart.save()
+		res.status(201).json(await cart.populate("products"))
 	} catch(err){
 		res.status(400).json({error: "error"})
 		return next(err)

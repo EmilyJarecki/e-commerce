@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
-import Search from "../../components/Search";
 const Home = () => {
   return (
     <div className="home">
@@ -14,8 +13,7 @@ const Home = () => {
           Coffee
         </Link> */}
       </div>
-      <Search />
-    </div>
+          </div>
   );
 };
 
