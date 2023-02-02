@@ -17,6 +17,8 @@ const { PORT, MONGODB_URI } = process.env;
 const productController = require('./controllers/product-controller')
 const cartController = require('./controllers/cart-controller')
 const reviewController = require('./controllers/review-controller')
+const blogController = require('./controllers/blog-controller')
+const commentController = require('./controllers/comment-controller')
 
 //MIDDLEWARE
 app.use(cors())
@@ -25,6 +27,9 @@ app.use(express.json());
 app.use('/products', productController)
 app.use('/cart', cartController)
 app.use('/review', reviewController)
+app.use('/blogs', blogController)
+app.use('/comments', commentController)
+
 
 
 

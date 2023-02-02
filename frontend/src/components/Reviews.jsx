@@ -85,7 +85,7 @@ const Reviews = () => {
               <p>
                 {reviews.name} says: {reviews.body}
               </p>
-              <form className="updateForm" onSubmit={updatedReview}>
+              {/* <form className="updateForm" onSubmit={updatedReview}>
                 <label>
                   <textarea
                     autoComplete="off"
@@ -97,7 +97,7 @@ const Reviews = () => {
                   />
                 </label>
                 <input className="updateButton" type="submit" value="Update" />
-              </form>
+              </form> */}
             </div>
           );
         })}

@@ -11,7 +11,7 @@ router.get("/:id", async (req, res, next) => {
         const singleProduct = await Product.findById(req.params.id)
 		res.status(200).json(singleProduct.reviews)
         console.log("You're coming from me.")
-        console.log(singleProduct.reviews[0].id)
+        console.log(singleProduct.reviews)
         // res.status(200).json(allReviews)
     }catch(error){
         res.status(400).json({error: "error"})
@@ -19,17 +19,17 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.get("/single/:id", async (req, res, next) => {
-    try {
-        const singleReview = await Product.findById(req.params.id)
-		res.status(200).json(singleProduct.reviews.id)
-        console.log("t's here")
-        // res.status(200).json(allReviews)
-    }catch(error){
-        res.status(400).json({error: "error"})
-        return next(err)
-    }
-});
+// router.get("/:id", async (req, res, next) => {
+//     try {
+//         const singleReview = await Product.findById(req.params.id)
+// 		res.status(200).json(singleProduct.reviews.id)
+//         console.log("t's here")
+//         // res.status(200).json(allReviews)
+//     }catch(error){
+//         res.status(400).json({error: "error"})
+//         return next(err)
+//     }
+// });
 
 
 // POST ROUTE
@@ -52,17 +52,16 @@ router.post('/:id', async (req, res, next) => {
 })
 
 // SHOW ROUTE 
-router.get('/', async (req, res, next) =>{
-    try{
-        const singleProduct = await Review.findById(req.params.id)
-        console.log(singleProduct)
-        console.log("I'm a GET in the review controller.")
-        res.status(200).json(singleProduct)
-    }catch(error){
-        res.status(400).json({error: "error"})
-        return next(err)
-    }
-});
+// router.get('/:id', async (req, res, next) =>{
+//     try {
+// 		const allProducts = await Product.find({})
+// 		res.status(200).json(allProducts[0])
+// 		console.log(allProducts[0].name)
+// 	}catch(err){
+// 		res.status(400).json({error: "error"})
+//         return next(err)
+// 	}
+// });
 
 // REVIEW DELETE ROUTE
 router.delete("/:id", async (req, res, next) => {
