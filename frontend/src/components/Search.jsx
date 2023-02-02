@@ -33,9 +33,10 @@ const Search = () => {
   return (
     <div className="App">
       <div className="search-container">
-        <div className="search-inner">
+        <div>
           <input
             type="text"
+            className="search-inner"
             value={value}
             onChange={onChange}
             placeholder="Search"
@@ -56,21 +57,17 @@ const Search = () => {
             //amount of rows that appear
             .slice(0, 10)
             .map((item, index) => (
-              <div
-                onClick={() => onSearch(item.name)}
-                key={index}
-                className="dropdown-row"
-              >
-                {item.name}
-                <Link to={`/shop/${item._id}`}>
-                  <button
-                    onClick={() => <Link to={`/shop/${item._id}`}></Link>}
+              <>
+                <Link to={`/shop/${item._id}`} className="link">
+                  <div
+                    onClick={() => onSearch(item.name)}
+                    key={index}
+                    className="dropdown-row"
                   >
-                    {" "}
-                    Go{" "}
-                  </button>
+                    {item.name}
+                  </div>
                 </Link>
-              </div>
+              </>
             ))}
         </div>
       </div>

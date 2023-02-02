@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
+import ProductList from "../product_list/ProductList";
 const Home = () => {
   return (
     <div className="home">
@@ -13,7 +14,7 @@ const Home = () => {
           Coffee
         </Link> */}
       </div>
-          </div>
+    </div>
   );
 };
 

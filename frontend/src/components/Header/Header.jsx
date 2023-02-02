@@ -10,9 +10,9 @@ const Header = () => {
         <h4 className="AVIATO ">AVIATO</h4>
       </Link>
       <div className="top-menu text-right list-inline">
-        <Link className="link right-icon-words" to={"/cart"}>
+        {/* <Link className="link right-icon-words" to={"/cart"}>
           <p className="right-icon-words">Cart</p>
-        </Link>
+        </Link> */}
         <Search />
       </div>
     

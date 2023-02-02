@@ -6,8 +6,7 @@ import "./productlist.css"
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const coffee = [];
-  const bowl = [];
+
 
   const URL = "http://localhost:4000/products";
 
@@ -21,43 +20,9 @@ const ProductList = () => {
     }
   };
 
-  const select = () => {
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].category == "coffee") {
-        coffee.push(products[i]);
-      }
-      if (products[i].category == "bowl") {
-        bowl.push(products[i]);
-      }
-      // console.log(products[i].category)
-      console.log(coffee);
-      console.log(bowl);
-    }
-  };
-
   const loaded = () => {
     return (
       <div>
-        <section className="sort-by">
-          <h2>View by Category:</h2>
-          <h4>Coffee</h4>
-          {coffee.map((coff, index) => {
-            return (
-              <div key={index}>
-                <h5>----{coff.name}</h5>
-              </div>
-            );
-          })}
-          <h4>Bowl</h4>
-          {bowl.map((bowl, index) => {
-            return (
-              <div key={index}>
-                <h5>----{bowl.name}</h5>
-              </div>
-            );
-          })}
-        </section>
-
         {products?.map((product, index) => {
           return (
 
@@ -78,7 +43,7 @@ const ProductList = () => {
                   <p style={{ color: "red" }}>Price: ${product.price}</p>
                 </div>
               </div>
-            </div>            
+            </div> 
           );
         })}
       </div>
@@ -99,7 +64,6 @@ const ProductList = () => {
     </section>
   );
 
-  select();
 
   useEffect(() => {
     getProducts();

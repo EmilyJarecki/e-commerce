@@ -11,13 +11,26 @@ router.get("/:id", async (req, res, next) => {
         const singleProduct = await Product.findById(req.params.id)
 		res.status(200).json(singleProduct.reviews)
         console.log("You're coming from me.")
-        console.log(allReviews)
+        console.log(singleProduct.reviews[0].id)
         // res.status(200).json(allReviews)
     }catch(error){
         res.status(400).json({error: "error"})
         return next(err)
     }
 });
+
+router.get("/single/:id", async (req, res, next) => {
+    try {
+        const singleReview = await Product.findById(req.params.id)
+		res.status(200).json(singleProduct.reviews.id)
+        console.log("t's here")
+        // res.status(200).json(allReviews)
+    }catch(error){
+        res.status(400).json({error: "error"})
+        return next(err)
+    }
+});
+
 
 // POST ROUTE
 router.post('/:id', async (req, res, next) => {
