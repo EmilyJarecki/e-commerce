@@ -7,12 +7,13 @@ import Reviews from "../../components/Reviews";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [review, setReview] = useState([])
   const [inputText, setInputText] = useState("");
   
   const { id } = useParams();
 
   const URL = `http://localhost:4000/products/${id}`;
+  const reviewsURL = `http://localhost:4000/review/${id}`
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -26,7 +27,19 @@ const ProductDetail = () => {
       console.log(err);
     }
   };
-
+  const getReviews = async() =>{
+    try {
+      const res = await fetch(URL);
+      const foundReview = await res.json();
+      // console.log(foundProduct._id)
+      setReview(foundReview);
+      console.log("helo")
+      console.log(review)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
 
 
   // console.log(product._id)
@@ -38,19 +51,11 @@ const ProductDetail = () => {
             <p>Return to Product Page</p>
           </Link>
         </h4>
-        <button>Add to Cart</button>
-        <Link to={`/cart`}>
-            <p>View Cart</p>
-          </Link>
         <img width="50px" src={product.image} alt={product.name} />
         <p>{product.name}</p>
         <p>${product.price}</p>
-        <p>Category: {product.category}</p>
         <p>{product.description}</p>
-        <p>Product ID: {product._id}</p>
-        {/* <Reviews /> */}
-        {/* TODO: add to cart */}
-        {/* <button onClick={()=> handleClick(product)}>Add to Cart</button> */}
+        {/* <p>{review}</p> */}
   
       </div>
     );
@@ -73,6 +78,7 @@ const ProductDetail = () => {
   };
   useEffect(() => {
     getDetails();
+    getReviews()
   }, []);
 
   return product ? loaded() : loading();

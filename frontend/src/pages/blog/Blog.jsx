@@ -90,31 +90,20 @@ const Blog = () => {
                 maxLength="300"
               />
             </label>
-            <label>
-              <input
-                className="image"
-                autoComplete="off"
-                type="text"
-                value={newForm.image}
-                name="image"
-                placeholder="URL"
-                onChange={handleChange}
-              />
-            </label>
             <div className="buttonDiv">
-              <input className="TweetButton" type="submit" value="Tweet" />
+              <input type="submit" value="Create Blog" />
             </div>
           </form>
         </section>
-        <section className="tweetCardList">
+        <section className="blogList">
           {blog?.map((article) => {
             return (
               <Link key={article._id} to={`/blogs/${article._id}`}>
-                <div className="tweet-card">
-                  <div className="tweet">
-                    <h1 className="tweetCardPerson">{article.name}</h1>
+                <div className="blog-card">
+                  <div className="blog">
+                    <h1>{article.name}</h1>
                   </div>
-                  <h3 className="tweetCardTitle">{article.title}</h3>
+                  <h3>{article.title}</h3>
                   <img
                     className="tweetImage"
                     src={article.image}

@@ -19,7 +19,7 @@ router.get("/", async (req, res, next) => {
 // SHOW INDEX ROUTE
 router.get("/:id", async (req, res, next) => {
 	try {	
-		const singleProduct = await Product.findById(req.params.id)
+		const singleProduct = await Product.findById(req.params.id).populate('reviews')
 		res.status(200).json(singleProduct)
 		console.log("show index")
 		console.log(singleProduct.reviews)

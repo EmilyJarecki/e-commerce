@@ -32,9 +32,6 @@ const ProductList = () => {
                 style={{ border: "3px solid black" }}
               >
                 <img className="product-image" src={product.image} alt={product.name} />
-                <Link to={`/category/${product.category}`}>
-                  Category: {product.category}
-                </Link>
                 <div className="product-content">
                   <Link key={product._id} to={`/shop/${product._id}`}>
                     <p>Name: {product.name}</p>
