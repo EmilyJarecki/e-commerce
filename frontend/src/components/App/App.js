@@ -8,7 +8,6 @@ import Main from "../Main";
 function App() {
   return (
     <div className="App">
-      {/* wrap in context */}
       <Header />
       <Main />
     </div>

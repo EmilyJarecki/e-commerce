@@ -10,9 +10,6 @@ const Home = () => {
           SHOP NOW
         </Link>
         <br></br>
-        {/* <Link className="link" to={"/category/coffee"}>
-          Coffee
-        </Link> */}
       </div>
     </div>
   );
