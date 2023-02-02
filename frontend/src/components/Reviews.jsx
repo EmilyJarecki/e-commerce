@@ -17,8 +17,6 @@ const Reviews = () => {
       const res = await fetch(URL);
       const product = await res.json();
       setReview(product.reviews);
-      console.log("The reviews: " + review);
-      console.log(product.reviews);
     } catch (err) {
       console.log(err);
     }
@@ -30,30 +28,30 @@ const Reviews = () => {
   };
 
   // POST
-  // const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     const currentState = { ...newComment };
-  //     try {
-  //       const requestOptions = {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(currentState),
-  //       };
-
-  //       const commentURL = `https://backend-twitter2.herokuapp.com/comments/${id}`;
-  //       const response = await fetch(commentURL, requestOptions);
-  //       const createdComment = await response.json();
-  //       setComment([...comment, createdComment]);
-  //       setNewComment({
-  //         name: "",
-  //         body: "",
-  //       });
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const currentState = { ...newReview };
+      try {
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(currentState),
+        };
+// TODO this needs to be the URL which gets the reviews
+        const reviewURL = `http://localhost:4000/products/${id}`;
+        const response = await fetch(reviewURL, requestOptions);
+        const createdReview = await response.json();
+        setReview([...review, createdReview]);
+        setNewReview({
+          name: "",
+          body: "",
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
   const loaded = () => {
     return (
@@ -64,6 +62,33 @@ const Reviews = () => {
             </div>
             )
         })}
+        <form onSubmit={handleSubmit} height={300}>
+            <div>
+              <label>
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={newReview.name}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                <textarea
+                  autoComplete="off"
+                  type="text"
+                  value={newReview.reviewbody}
+                  name="title"
+                  placeholder="Create Review"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="commentButtonDiv">
+              <input className="CommentButton" type="submit" value="Reply" />
+            </div>
+          </form>
       </div>
     );
   };
