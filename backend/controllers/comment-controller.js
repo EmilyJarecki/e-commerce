@@ -17,15 +17,15 @@ router.get("/", async (req, res, next) => {
 // POST ROUTE
 router.post('/:id', async (req, res, next) => {
 	try {
-	const tweet = await Blog.findById(req.params.id)
-    console.log(tweet)
+	const blog = await Blog.findById(req.params.id)
+    console.log(blog)
     console.log(req.body.name)
 	const commentToCreate = {
 		name: req.body.name,
 		title: req.body.title,
 	}
-	tweet.comments.push(commentToCreate)
-	await tweet.save()
+	blog.comments.push(commentToCreate)
+	await blog.save()
     res.status(200).json({message:"success"})
 	} catch(err) {
 		next(err)
