@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Reviews from "../../components/Reviews";
 
 
 const ProductDetail = () => {
@@ -46,6 +47,7 @@ const ProductDetail = () => {
         <p>Category: {product.category}</p>
         <p>{product.description}</p>
         <p>Product ID: {product._id}</p>
+        <Reviews />
         {/* TODO: add to cart */}
         {/* <button onClick={()=> handleClick(product)}>Add to Cart</button> */}
   

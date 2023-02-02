@@ -35,7 +35,7 @@ router.post('/:id', async (req, res, next) => {
 })
 
 //SHOW ROUTE 
-router.get('/:id', async (req, res, next) =>{
+router.get('/:id/:id', async (req, res, next) =>{
     try{
         const singleProduct = await Review.findById(req.params.id)
         console.log(singleProduct)
@@ -45,5 +45,23 @@ router.get('/:id', async (req, res, next) =>{
         return next(err)
     }
 });
+
+// REVIEW DELETE ROUTE
+router.delete("/:id", async (req, res, next) => {
+	try{
+		const deletedReview = await Product.findByIdAndDelete(req.params.id)
+		console.log(deletedTweet)
+		res.status(200).json({message: "Deleted Review", deletedReview })	
+	}catch(err){
+		res.status(400).json({error: "error"})
+        return next(err)
+	}
+});
+
+
+
+
+
+
 
 module.exports = router 

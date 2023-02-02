@@ -30,7 +30,6 @@ const Search = () => {
   const onSearch = (searchItem) => {
     setValue(searchItem);
   };
-  console.log(value);
   return (
     <div className="App">
       <div className="search-container">
