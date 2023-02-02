@@ -16,6 +16,7 @@ const { PORT, MONGODB_URI } = process.env;
 //CONTROLLER IMPORT
 const productController = require('./controllers/product-controller')
 const cartController = require('./controllers/cart-controller')
+const reviewController = require('./controllers/review-controller')
 
 //MIDDLEWARE
 app.use(cors())
@@ -23,6 +24,7 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use('/products', productController)
 app.use('/cart', cartController)
+app.use('/reviews', reviewController)
 
 
 
