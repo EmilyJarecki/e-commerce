@@ -32,14 +32,13 @@ const ProductDetail = () => {
       const res = await fetch(URL);
       const foundReview = await res.json();
       // console.log(foundProduct._id)
-      setReview(foundReview);
-      console.log("helo")
-      console.log(review)
+      setReview(foundReview.reviews);
+      console.log("hello")
+      console.log(foundReview.reviews)
     } catch (err) {
       console.log(err);
     }
   };
-  
 
 
   // console.log(product._id)
@@ -56,7 +55,15 @@ const ProductDetail = () => {
         <p>${product.price}</p>
         <p>{product.description}</p>
         {/* <p>{review}</p> */}
-  
+        {review?.map((comments, index)=>{
+          return(
+          <div>
+            {comments.name} SAYS: {comments.body}
+          </div>
+
+          )
+
+        })}
       </div>
     );
   };

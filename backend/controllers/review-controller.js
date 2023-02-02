@@ -5,10 +5,13 @@ const { Review } = require('../models/Index')
 
 // REVIEW INDEX ROUTE
 // when inputted in postman as /review/id , you get an array of reviews from that id object
-router.get("/product/:productid", async (req, res, next) => {
+
+// how to get: http://localhost:4000/review/63db06578afff9d94a178ab5
+router.get("/:productid", async (req, res, next) => {
     try {
-        const singleProduct = await Review.findById(req.params.id)
-		res.status(200).json(singleProduct)
+        const singleProduct = await Product.findById(req.params.productid)
+		console.log("hello")
+		res.status(200).json(singleProduct.reviews)
     }catch(error){
         res.status(400).json({error: "error"})
         return next(err)
