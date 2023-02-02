@@ -24,7 +24,7 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use('/products', productController)
 app.use('/cart', cartController)
-app.use('/reviews', reviewController)
+app.use('/review', reviewController)
 
 
 

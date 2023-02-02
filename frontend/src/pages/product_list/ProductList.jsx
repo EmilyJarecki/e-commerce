@@ -41,28 +41,28 @@ const ProductList = () => {
         <section className="sort-by">
           <h2>View by Category:</h2>
           <h4>Coffee</h4>
-          {coffee.map((coff) => {
+          {coffee.map((coff, index) => {
             return (
-              <div>
+              <div key={index}>
                 <h5>----{coff.name}</h5>
               </div>
             );
           })}
           <h4>Bowl</h4>
-          {bowl.map((bowl) => {
+          {bowl.map((bowl, index) => {
             return (
-              <div>
+              <div key={index}>
                 <h5>----{bowl.name}</h5>
               </div>
             );
           })}
         </section>
 
-        {products?.map((product) => {
+        {products?.map((product, index) => {
           return (
 
 
-            <div className="product-container">
+            <div key={index} className="product-container">
               <div
                 className="product-item"
                 style={{ border: "3px solid black" }}

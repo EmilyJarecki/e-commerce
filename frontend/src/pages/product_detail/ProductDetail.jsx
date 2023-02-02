@@ -9,6 +9,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [cart, setCart] = useState([]);
   const [inputText, setInputText] = useState("");
+  
   const { id } = useParams();
 
   const URL = `http://localhost:4000/products/${id}`;

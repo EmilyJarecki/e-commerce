@@ -34,7 +34,12 @@ const Search = () => {
     <div className="App">
       <div className="search-container">
         <div className="search-inner">
-          <input type="text" value={value} onChange={onChange} placeholder="Search"/>
+          <input
+            type="text"
+            value={value}
+            onChange={onChange}
+            placeholder="Search"
+          />
         </div>
         <div className="dropdown">
           {Object.values(data)
@@ -50,10 +55,10 @@ const Search = () => {
             })
             //amount of rows that appear
             .slice(0, 10)
-            .map((item, idx) => (
+            .map((item, index) => (
               <div
                 onClick={() => onSearch(item.name)}
-                key={idx}
+                key={index}
                 className="dropdown-row"
               >
                 {item.name}

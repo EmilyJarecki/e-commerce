@@ -7,11 +7,11 @@ const { Review } = require('../models/Index')
 // INDEX ROUTE
 router.get("/:id", async (req, res, next) => {
 	try {
-		const cart = await Cart.findById("63d9bfdac7a5ef4263ae20f2").populate("products")
+		const cart = await Cart.findById("63db33ad1f8a69eb32780c0f").populate("products").exec()
 		// const Cart = await Cart.findById("63d9bfa9d0e8c157ee3cff51")
+		console.log(cart.products)
 		res.send(cart)
-		// console.log(Cart)
-		// the line below when included just throws a "ErrorCaptureStackTrace(err)"
+		// console.log(cart)
 		// res.status(201).json(await Cart.populate("products"))
 	}catch(err){
 		res.status(400).json({error: "error"})
@@ -19,20 +19,26 @@ router.get("/:id", async (req, res, next) => {
 	}
 });
 
+
 // ADD ITEMS TO CART ROUTE
 router.post("/:id", async (req, res, next) =>  {
 	try {
-		const cart = await Cart.findById(req.params.id)
+		const cart = await Cart.findById("63db33ad1f8a69eb32780c0f").populate("products").exec()
 		// const allProducts = await Product.findById("63d87e23efdc9b59b557082b")
 		// console.log(allProducts[0].id)
-
+		console.log(cart)
+		res.status(201).json()
 		const productToAdd = new Product({
-			products : req.body
+			name : req.body.name,
+			image: req.body.image,
+			description: req.body.description,
+			price: req.body.description,
+			category: req.body.description
 		})
 
 		console.log("below if the cart")
 		console.log(cart.products[0])
-		cart.products.push(productToAdd)
+		res.send(cart.products.push(productToAdd))
 		await cart.save()
 		res.status(201).json(await cart.populate("products"))
 	} catch(err){
@@ -40,9 +46,6 @@ router.post("/:id", async (req, res, next) =>  {
 		return next(err)
 	}
 });
-
-
-
 
 
 // CREATE ROUTE
@@ -55,24 +58,18 @@ router.post("/", async (req, res, next) =>  {
         return next(err)
     }
 });
-
-
-
-
-
-
-
 // SHOW ROUTE
-// router.get("/:id", async (req, res, next) => {
-// 	try {	
-// 		const singleTweet = await Tweet.findById(req.params.id)
-// 		console.log(singleTweet, "the single tweet")
-// 		res.status(200).json(singleTweet)
-// 	}catch(error){
-// 		res.status(400).json({error: "error"})
-//         return next(err)
-// 	}
-// });
+router.get("/", async (req, res, next) => {
+	try {
+		const allProducts = await Product.find({})
+		res.status(200).json(allProducts)
+		console.log(allProducts[0].name)
+	}catch(err){
+		res.status(400).json({error: "error"})
+        return next(err)
+	}
+});
+
 
 router.put("/:id", async (req, res, next) => {
 	try{
@@ -98,3 +95,5 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 module.exports = router
+
+

@@ -21,8 +21,8 @@ router.get("/:id", async (req, res, next) => {
 	try {	
 		const singleProduct = await Product.findById(req.params.id)
 		res.status(200).json(singleProduct)
-		console.log(Product)
-		console.log(Product[0])
+		console.log("show index")
+		console.log(singleProduct.reviews)
 	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)
