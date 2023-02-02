@@ -2,11 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./productlist.css"
+import Reviews from "../../components/Reviews";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-
-
+  
   const URL = "http://localhost:4000/products";
 
   const getProducts = async () => {
@@ -19,13 +19,12 @@ const ProductList = () => {
     }
   };
 
+
   const loaded = () => {
     return (
       <div>
         {products?.map((product, index) => {
           return (
-
-
             <div key={index} className="product-container">
               <div
                 className="product-item"
@@ -39,9 +38,11 @@ const ProductList = () => {
                   <p style={{ color: "red" }}>Price: ${product.price}</p>
                 </div>
               </div>
-            </div> 
+<Reviews />
+            </div>               
+
           );
-        })}
+        })}            
       </div>
     );
   };

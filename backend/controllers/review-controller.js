@@ -10,8 +10,19 @@ const { Review } = require('../models/Index')
 router.get("/:productid", async (req, res, next) => {
     try {
         const singleProduct = await Product.findById(req.params.productid)
-		console.log("hello")
+		console.log("hello. I am the product id route")
 		res.status(200).json(singleProduct.reviews)
+    }catch(error){
+        res.status(400).json({error: "error"})
+        return next(err)
+    }
+});
+
+router.delete("/:reviewid", async (req, res, next) => {
+    try {
+		const deletedReview = await Review.findByIdAndDelete(req.params.reviewid)
+		console.log(deletedReview)
+		res.status(200).json({message: "Deleted Review", deletedReview })
     }catch(error){
         res.status(400).json({error: "error"})
         return next(err)
@@ -40,30 +51,17 @@ router.post('/product/:productid', async (req, res, next) => {
 	} 
 })
 
-// SHOW ROUTE 
-// router.get('/:id', async (req, res, next) =>{
-//     try {
-// 		const allProducts = await Product.find({})
-// 		res.status(200).json(allProducts[0])
-// 		console.log(allProducts[0].name)
-// 	}catch(err){
-// 		res.status(400).json({error: "error"})
-//         return next(err)
-// 	}
-// });
-
-// REVIEW DELETE ROUTE
-router.delete("/:id", async (req, res, next) => {
+// REVIEW UPDATE ROUTE
+router.put("/:id", async (req, res, next) => {
 	try{
-		const deletedReview = await Review.findByIdAndDelete(req.params.id)
-		// console.log(deletedTweet)
-		res.status(200).json({message: "Deleted Review", deletedReview })	
-	}catch(err){
+		const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body)
+		console.log(updatedReview)
+		res.status(200).json({message: "Successfully updated tweet", updatedReview})
+	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)
 	}
 });
-
 
 
 

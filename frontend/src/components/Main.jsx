@@ -14,8 +14,8 @@ const Main = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<ProductList />} />
           <Route path="/shop/:id" element={<ProductDetail />} />
-          {/* <Route path="/blogs" element={<Blog />} />
-          <Route path="/blogs/:id" element={<BlogDetail />} /> */}
+          {/* <Route path="/blogs" element={<Blog />} /> */}
+          {/* <Route path="/blogs/:id" element={<BlogDetail />} /> */}
 
         </Routes>
     </main>
