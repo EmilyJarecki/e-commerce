@@ -14,7 +14,6 @@ const ProductDetail = () => {
 
   const URL = `http://localhost:4000/products/${id}`;
   const reviewsURL = `http://localhost:4000/review/${id}`
-
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
     try {
@@ -27,18 +26,18 @@ const ProductDetail = () => {
       console.log(err);
     }
   };
-  const getReviews = async() =>{
-    try {
-      const res = await fetch(URL);
-      const foundReview = await res.json();
-      // console.log(foundProduct._id)
-      setReview(foundReview.reviews);
-      console.log("hello")
-      console.log(foundReview.reviews)
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getReviews = async() =>{
+  //   try {
+  //     const res = await fetch(reviewsURL);
+  //     const foundReview = await res.json();
+  //     // console.log(foundProduct._id)
+  //     setReview(foundReview.reviews);
+  //     console.log("hello")
+  //     console.log(foundReview.reviews)
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
 
   // console.log(product._id)
@@ -54,8 +53,7 @@ const ProductDetail = () => {
         <p>{product.name}</p>
         <p>${product.price}</p>
         <p>{product.description}</p>
-        {/* <p>{review}</p> */}
-        {review?.map((comments, index)=>{
+        {/* {review?.map((comments, index)=>{
           return(
           <div>
             {comments.name} SAYS: {comments.body}
@@ -63,7 +61,7 @@ const ProductDetail = () => {
 
           )
 
-        })}
+        })} */}
       </div>
     );
   };
@@ -85,7 +83,7 @@ const ProductDetail = () => {
   };
   useEffect(() => {
     getDetails();
-    getReviews()
+    // getReviews()
   }, []);
 
   return product ? loaded() : loading();

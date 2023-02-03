@@ -13,7 +13,7 @@ const Header = () => {
         {/* <Link className="link right-icon-words" to={"/cart"}>
           <p className="right-icon-words">Cart</p>
         </Link> */}
-        <Search />
+        {/* <Search /> */}
       </div>
     
     </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./productlist.css"
+import "./productlist.css";
 import Reviews from "../../components/Reviews";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  
-  const URL = "http://localhost:4000/products";
+  const [product, setProducts] = useState([]);
+
+  const URL = "http://localhost:4000/products"
 
   const getProducts = async () => {
     try {
@@ -19,18 +19,21 @@ const ProductList = () => {
     }
   };
 
-
   const loaded = () => {
     return (
       <div>
-        {products?.map((product, index) => {
+        {product?.map((product, index) => {
           return (
             <div key={index} className="product-container">
               <div
                 className="product-item"
                 style={{ border: "3px solid black" }}
               >
-                <img className="product-image" src={product.image} alt={product.name} />
+                <img
+                  className="product-image"
+                  src={product.image}
+                  alt={product.name}
+                />
                 <div className="product-content">
                   <Link key={product._id} to={`/shop/${product._id}`}>
                     <p>Name: {product.name}</p>
@@ -38,11 +41,10 @@ const ProductList = () => {
                   <p style={{ color: "red" }}>Price: ${product.price}</p>
                 </div>
               </div>
-<Reviews />
-            </div>               
-
+              {/* <Reviews /> */}
+            </div>
           );
-        })}            
+        })}
       </div>
     );
   };
@@ -61,12 +63,11 @@ const ProductList = () => {
     </section>
   );
 
-
   useEffect(() => {
     getProducts();
   }, []);
 
-  return <div>{products ? loaded() : loading()}</div>;
+  return <div>{product ? loaded() : loading()}</div>;
 };
 
 export default ProductList;
