@@ -1,0 +1,56 @@
+.return-to-product-page{
+    margin-left: 100px;
+}
+.shop-product{
+    align-items: center;
+    margin-top: 10%;
+    border-left: 2px solid black;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.508);
+}
+.detail-card {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+}
+.detail-description-card{
+    width: 400px;
+    margin-left: 3%
+}
+.detail-image{
+    width: 400px;
+}
+.detail-name{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+.detail-price{
+margin-top: -15px;
+}
+
+
+
+
+
+/* REVIEWS */
+.review-container{
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+
+}
+.review-section{
+    border-left: 3px solid black;
+    padding-left: 15px;
+    margin: 15px;
+}
+.delete-div{
+display:flex;
+justify-content: flex-end;
+}
+.delete-icon{
+    width: 20px;
+}

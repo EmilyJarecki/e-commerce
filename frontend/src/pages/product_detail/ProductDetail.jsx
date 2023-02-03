@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Reviews from "../../components/Reviews";
+import "./productdetail.css";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
@@ -26,20 +27,30 @@ const ProductDetail = () => {
     }
   };
 
-
   const loaded = () => {
     return (
       <div>
         <h4>
-          <Link to={`/shop`}>
-            <p>Return to Product Page</p>
+          <Link className="link return-to-product-page" to={`/shop`}>
+            Return to Product Page
           </Link>
         </h4>
-        <img width="50px" src={product.image} alt={product.name} />
-        <p>{product.name}</p>
-        <p>${product.price}</p>
-        <p>{product.description}</p>
-        
+        <section className="detail-card">
+          <img className="detail-image" src={product.image} alt={product.name} />
+          <div className="detail-description-card">
+
+
+          <h1 className="detail-name">{product.name}</h1>
+          <p className="detail-price">${product.price}</p>
+          <h4 className="detail-description">{product.description}</h4>
+          <p>
+            <a className="link shop-product" href="{product.shopping}">
+              SHOP NOW
+            </a>
+          </p>
+          </div>          
+        </section>
+
         <Reviews />
       </div>
     );

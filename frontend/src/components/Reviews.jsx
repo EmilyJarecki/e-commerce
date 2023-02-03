@@ -14,7 +14,7 @@ const Reviews = () => {
 
   const URL = `http://localhost:4000/products/${id}`;
   const reviewURL = `http://localhost:4000/review/product/${id}`;
-  const deleteReviewURL = `http://localhost:4000/review/${id}`
+  const deleteReviewURL = `http://localhost:4000/review/${id}`;
 
   const getReview = async () => {
     try {
@@ -68,7 +68,10 @@ const Reviews = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editForm),
       };
-      const response = await fetch(`http://localhost:4000/review/${id}`, options);
+      const response = await fetch(
+        `http://localhost:4000/review/${id}`,
+        options
+      );
       const updatedReview = await response.json();
       setReview(updatedReview);
       // REFRESH PAGE
@@ -77,7 +80,7 @@ const Reviews = () => {
       console.log(err);
       navigate(URL);
     }
-  }
+  };
 
   // REMOVE
   const removeReview = async (index) => {
@@ -85,10 +88,13 @@ const Reviews = () => {
       const options = {
         method: "DELETE",
       };
-      const response = await fetch(`http://localhost:4000/review/${id}`, options);
-      const deletedReview = await response.json()
-      console.log(response)
-      console.log("I'm hitting the delete route.")
+      const response = await fetch(
+        `http://localhost:4000/review/${id}`,
+        options
+      );
+      const deletedReview = await response.json();
+      console.log(response);
+      console.log("I'm hitting the delete route.");
       // navigate("/shop")
     } catch (err) {
       console.log(err);
@@ -96,51 +102,54 @@ const Reviews = () => {
     }
   };
   const deletePost = async (id) => {
-    let response = await fetch(
-      `http://localhost:4000/review/${id}`,
-       {
-          method: 'DELETE',
-       }
-    );
+    let response = await fetch(`http://localhost:4000/review/${id}`, {
+      method: "DELETE",
+    });
     if (response.status === 200) {
-       setReview(
-          review.filter((post) => {
-            navigate(0);
-             return post.id !== id;
-          })
-          
-       );
+      setReview(
+        review.filter((post) => {
+          navigate(0);
+          return post.id !== id;
+        })
+      );
     } else {
       navigate(0);
-       return;
+      return;
     }
- };
-
+  };
 
   const loaded = () => {
     return (
-      <div >
+      <div>
         {review?.map((reviews, index) => {
           return (
-            <div style={{border: "1px solid red"}} key={reviews._id}>
-              <p>
-                {reviews.name} says: {reviews.body} with an id of {reviews._id}
-              </p>
-              <div className="delete-btn" onClick={() => deletePost(reviews._id)}>
-                     Delete
-                  </div>
-              <form className="UPDATE" onSubmit={updatedReview}>
-                <label>
+            <div className="review-container" key={reviews._id}>
+              <section className="review-section">
+                <h4 className="reviews-name">{reviews.name}: </h4>
+                <p className="reviews-body">{reviews.body}</p>
+                <div
+                  className="delete-div"
+                  onClick={() => deletePost(reviews._id)}
+                >
+                  <img className="delete-icon" src="https://img.icons8.com/windows/512/delete-forever.png"/>
+                </div>
+                <form className="update-form" onSubmit={updatedReview}>
+                  <label>
+                    <input
+                      type="text"
+                      value={newReview.body}
+                      name="body"
+                      placeholder="Update Review"
+                      onChange={handleUpdateChange}
+                    />
+                  </label>
                   <input
-                    type="text"
-                    value={newReview.body}
-                    name="body"
-                    placeholder="Update Review"
-                    onChange={handleUpdateChange}
+                    className="updateButton"
+                    type="submit"
+                    value="Update"
                   />
-                </label>
-                <input className="updateButton" type="submit" value="Update" />
-              </form>
+                </form>{" "}
+              </section>
             </div>
           );
         })}
@@ -171,7 +180,6 @@ const Reviews = () => {
             <input className="CommentButton" type="submit" value="Reply" />
           </div>
         </form>
-
       </div>
     );
   };
