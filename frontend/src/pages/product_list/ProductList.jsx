@@ -20,10 +20,10 @@ const ProductList = () => {
 
   const loaded = () => {
     return (
-      <div>
+      <div className="product-container">
         {product?.map((product, index) => {
           return (
-            <div key={index} className="product-container">
+            <div key={index}>
               <div
                 className="product-item"
                 style={{ border: "3px solid black" }}
@@ -34,10 +34,10 @@ const ProductList = () => {
                   alt={product.name}
                 />
                 <div className="product-content">
-                  <Link key={product._id} to={`/shop/${product._id}`}>
-                    <p>Name: {product.name}</p>
+                  <Link className="link" key={product._id} to={`/shop/${product._id}`}>
+                    <p>{product.name}</p>
                   </Link>
-                  <p style={{ color: "red" }}>Price: ${product.price}</p>
+                  <p className="price">${product.price}</p>
                 </div>
               </div>
             </div>
