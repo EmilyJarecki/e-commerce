@@ -52,6 +52,7 @@ const Reviews = () => {
         name: "",
         body: "",
       });
+      navigate(0);
     } catch (err) {
       console.log(err);
     }
@@ -78,7 +79,6 @@ const Reviews = () => {
     }
   }
 
-  // TODO
   // REMOVE
   const removeReview = async (index) => {
     try {
