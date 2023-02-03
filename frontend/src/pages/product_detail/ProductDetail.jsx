@@ -39,6 +39,7 @@ const ProductDetail = () => {
         <p>{product.name}</p>
         <p>${product.price}</p>
         <p>{product.description}</p>
+        
         <Reviews />
       </div>
     );

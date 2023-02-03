@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./productlist.css";
-import Reviews from "../../components/Reviews";
 
 const ProductList = () => {
   const [product, setProducts] = useState([]);
@@ -41,7 +40,6 @@ const ProductList = () => {
                   <p style={{ color: "red" }}>Price: ${product.price}</p>
                 </div>
               </div>
-              {/* <Reviews /> */}
             </div>
           );
         })}

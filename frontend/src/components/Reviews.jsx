@@ -14,25 +14,24 @@ const Reviews = () => {
 
   const URL = `http://localhost:4000/products/${id}`;
   const reviewURL = `http://localhost:4000/review/product/${id}`;
+  const deleteReviewURL = `http://localhost:4000/review/${id}`
 
   const getReview = async () => {
     try {
       const res = await fetch(URL);
       const product = await res.json();
       setReview(product.reviews);
-      console.log(product.reviews)
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(review);
 
   const handleChange = (e) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
-  // const handleUpdateChange = (e) => {
-  //   setEditForm({ ...editForm, [e.target.name]: e.target.value });
-  // };
+  const handleUpdateChange = (e) => {
+    setEditForm({ ...editForm, [e.target.name]: e.target.value });
+  };
 
   // POST
   const handleSubmit = async (e) => {
@@ -57,6 +56,8 @@ const Reviews = () => {
       console.log(err);
     }
   };
+
+  // TODO
   // UPDATE
   const updatedReview = async (e) => {
     e.preventDefault();
@@ -66,30 +67,55 @@ const Reviews = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editForm),
       };
-      const response = await fetch(reviewURL, options);
+      const response = await fetch(deleteReviewURL, options);
       const updatedReview = await response.json();
       setReview(updatedReview);
-
       // REFRESH PAGE
       navigate(0);
     } catch (err) {
       console.log(err);
       navigate(URL);
     }
+  }
+
+  // TODO
+  // REMOVE
+  const removeReview = async (index) => {
+    try {
+      const options = {
+        method: "DELETE",
+      };
+      const response = await fetch(`http://localhost:4000/review/${index}`, options);
+      const deletedReview = await response.json()
+      console.log(response)
+      console.log("I'm hitting the delete route.")
+      // navigate("/")
+    } catch (err) {
+      console.log(err);
+      navigate(URL);
+    }
   };
+
+
   const loaded = () => {
     return (
-      <div>
+      <div >
         {review?.map((reviews, index) => {
           return (
-            <div key={index}>
+            <div style={{border: "1px solid red"}} key={index}>
               <p>
-                {reviews.name} says: {reviews.body}
+                {reviews.name} says: {reviews.body} with an id of {reviews._id}
               </p>
-              {/* <form className="updateForm" onSubmit={updatedReview}>
+              <img
+                    className="delete"
+                    src="https://img.icons8.com/ios/512/delete-sign.png"
+                    alt="delete"
+                    onClick={()=>removeReview(index)}
+                    style={{width: "50px"}}
+                  />
+              <form className="UPDATE" onSubmit={updatedReview}>
                 <label>
-                  <textarea
-                    autoComplete="off"
+                  <input
                     type="text"
                     value={newReview.body}
                     name="body"
@@ -98,11 +124,11 @@ const Reviews = () => {
                   />
                 </label>
                 <input className="updateButton" type="submit" value="Update" />
-              </form> */}
+              </form>
             </div>
           );
         })}
-        <form onSubmit={handleSubmit} height={300}>
+        <form onSubmit={handleSubmit}>
           <div>
             <label>
               <input
@@ -129,19 +155,7 @@ const Reviews = () => {
             <input className="CommentButton" type="submit" value="Reply" />
           </div>
         </form>
-        {/* <form className="updateForm" onSubmit={updatedReview}>
-          <label>
-            <textarea
-              autoComplete="off"
-              type="text"
-              value={newReview.body}
-              name="body"
-              placeholder="Update Review"
-              onChange={handleChange}
-            />
-          </label>
-          <input className="updateButton" type="submit" value="Update" />
-        </form> */}
+
       </div>
     );
   };
