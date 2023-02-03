@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { Product } = require('../models/index')
-const { Review } = require('../models/index')
+const { Product } = require('../models/lib')
+const { Review } = require('../models/lib')
 
 // REVIEW INDEX ROUTE
 // when inputted in postman as /review/id , you get an array of reviews from that id object
