@@ -12,7 +12,7 @@ const ProductDetail = () => {
 
   const { id } = useParams();
 
-  const URL = `http://localhost:4000/products/${id}`;
+  const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {

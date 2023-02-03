@@ -13,7 +13,7 @@ const Reviews = () => {
   const navigate = useNavigate();
 
   const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
-  const reviewpostURL = `https://capstone-commerce.herokuapp.com/review/product/${id}`;
+  const reviewpostURL = `https://capstone-commerce.herokuapp.com/review/${id}`;
 
   const getReview = async () => {
     try {
@@ -68,7 +68,7 @@ const Reviews = () => {
         body: JSON.stringify(editForm),
       };
       const response = await fetch(
-        `http://localhost:4000/review/${id}`,
+        `https://capstone-commerce.herokuapp.com/review/${id}`,
         options
       );
       const updatedReview = await response.json();
@@ -84,7 +84,7 @@ const Reviews = () => {
 
   // REMOVE
   const deletePost = async (id) => {
-    let response = await fetch(`http://localhost:4000/review/${id}`, {
+    let response = await fetch(`https://capstone-commerce.herokuapp.com/review/${id}`, {
       method: "DELETE",
     });
     if (response.status === 200) {
