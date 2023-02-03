@@ -12,8 +12,8 @@ const Reviews = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const URL = `http://localhost:4000/products/${id}`;
-  const reviewpostURL = `http://localhost:4000/review/product/${id}`;
+  const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
+  const reviewpostURL = `https://capstone-commerce.herokuapp.com/review/product/${id}`;
 
   const getReview = async () => {
     try {
