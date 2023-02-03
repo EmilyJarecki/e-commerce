@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { Product } = require('../models/Index')
-const { Review } = require('../models/Index')
+const { Product } = require('../models/index')
+const { Review } = require('../models/index')
 
 // SHOW ROUTE
 router.get("/", async (req, res, next) => {
