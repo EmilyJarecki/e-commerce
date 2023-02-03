@@ -4,16 +4,15 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Reviews from "../../components/Reviews";
 
-
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
-  const [review, setReview] = useState([])
+  const [review, setReview] = useState("");
   const [inputText, setInputText] = useState("");
-  
+
   const { id } = useParams();
 
   const URL = `http://localhost:4000/products/${id}`;
-  const reviewsURL = `http://localhost:4000/review/${id}`
+
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
     try {
@@ -26,21 +25,8 @@ const ProductDetail = () => {
       console.log(err);
     }
   };
-  // const getReviews = async() =>{
-  //   try {
-  //     const res = await fetch(reviewsURL);
-  //     const foundReview = await res.json();
-  //     // console.log(foundProduct._id)
-  //     setReview(foundReview.reviews);
-  //     console.log("hello")
-  //     console.log(foundReview.reviews)
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
 
-  // console.log(product._id)
   const loaded = () => {
     return (
       <div>
@@ -53,15 +39,7 @@ const ProductDetail = () => {
         <p>{product.name}</p>
         <p>${product.price}</p>
         <p>{product.description}</p>
-        {/* {review?.map((comments, index)=>{
-          return(
-          <div>
-            {comments.name} SAYS: {comments.body}
-          </div>
-
-          )
-
-        })} */}
+        <Reviews />
       </div>
     );
   };
@@ -81,9 +59,10 @@ const ProductDetail = () => {
       </section>
     );
   };
+
   useEffect(() => {
     getDetails();
-    // getReviews()
+    // getReviews();
   }, []);
 
   return product ? loaded() : loading();

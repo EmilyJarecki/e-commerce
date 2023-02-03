@@ -13,13 +13,14 @@ const Reviews = () => {
   const navigate = useNavigate();
 
   const URL = `http://localhost:4000/products/${id}`;
-  const reviewURL = `http://localhost:4000/review/${id}`;
+  const reviewURL = `http://localhost:4000/review/product/${id}`;
 
   const getReview = async () => {
     try {
       const res = await fetch(URL);
       const product = await res.json();
       setReview(product.reviews);
+      console.log(product.reviews)
     } catch (err) {
       console.log(err);
     }
@@ -29,9 +30,9 @@ const Reviews = () => {
   const handleChange = (e) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
-  const handleUpdateChange = (e) => {
-    setEditForm({ ...editForm, [e.target.name]: e.target.value });
-  };
+  // const handleUpdateChange = (e) => {
+  //   setEditForm({ ...editForm, [e.target.name]: e.target.value });
+  // };
 
   // POST
   const handleSubmit = async (e) => {
@@ -128,7 +129,7 @@ const Reviews = () => {
             <input className="CommentButton" type="submit" value="Reply" />
           </div>
         </form>
-        <form className="updateForm" onSubmit={updatedReview}>
+        {/* <form className="updateForm" onSubmit={updatedReview}>
           <label>
             <textarea
               autoComplete="off"
@@ -140,21 +141,21 @@ const Reviews = () => {
             />
           </label>
           <input className="updateButton" type="submit" value="Update" />
-        </form>
+        </form> */}
       </div>
     );
   };
 
   const loading = () => (
     <div>
-      <p>Loading...</p>
+      <p>No Reviews</p>
     </div>
   );
 
   // INITIATES UPON MOUNT IF THERE IS A COMMENT
   useEffect(() => {
     getReview();
-  }, [review.length]);
+  }, []);
 
   return (
     <div>
