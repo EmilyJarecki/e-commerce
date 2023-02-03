@@ -85,16 +85,36 @@ const Reviews = () => {
       const options = {
         method: "DELETE",
       };
-      const response = await fetch(`http://localhost:4000/review/${index}`, options);
+      const response = await fetch(`http://localhost:4000/review/${id}`, options);
       const deletedReview = await response.json()
       console.log(response)
       console.log("I'm hitting the delete route.")
-      // navigate("/")
+      // navigate("/shop")
     } catch (err) {
       console.log(err);
       navigate(URL);
     }
   };
+  const deletePost = async (id) => {
+    let response = await fetch(
+      `http://localhost:4000/review/${id}`,
+       {
+          method: 'DELETE',
+       }
+    );
+    if (response.status === 200) {
+       setReview(
+          review.filter((post) => {
+            navigate(0);
+             return post.id !== id;
+          })
+          
+       );
+    } else {
+      navigate(0);
+       return;
+    }
+ };
 
 
   const loaded = () => {
@@ -102,17 +122,13 @@ const Reviews = () => {
       <div >
         {review?.map((reviews, index) => {
           return (
-            <div style={{border: "1px solid red"}} key={index}>
+            <div style={{border: "1px solid red"}} key={reviews._id}>
               <p>
                 {reviews.name} says: {reviews.body} with an id of {reviews._id}
               </p>
-              <img
-                    className="delete"
-                    src="https://img.icons8.com/ios/512/delete-sign.png"
-                    alt="delete"
-                    onClick={()=>removeReview(index)}
-                    style={{width: "50px"}}
-                  />
+              <div className="delete-btn" onClick={() => deletePost(reviews._id)}>
+                     Delete
+                  </div>
               <form className="UPDATE" onSubmit={updatedReview}>
                 <label>
                   <input
