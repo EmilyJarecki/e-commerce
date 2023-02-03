@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { Product } = require('../models/Index')
-const { Cart } = require('../models/Index')
 const { Review } = require('../models/Index')
 
 // SHOW ROUTE

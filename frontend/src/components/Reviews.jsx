@@ -13,8 +13,7 @@ const Reviews = () => {
   const navigate = useNavigate();
 
   const URL = `http://localhost:4000/products/${id}`;
-  const reviewURL = `http://localhost:4000/review/product/${id}`;
-  const deleteReviewURL = `http://localhost:4000/review/${id}`;
+  const reviewpostURL = `http://localhost:4000/review/product/${id}`;
 
   const getReview = async () => {
     try {
@@ -29,8 +28,8 @@ const Reviews = () => {
   const handleChange = (e) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
-  const handleUpdateChange = (e) => {
-    setEditForm({ ...editForm, [e.target.name]: e.target.value });
+  const handleUpdateChange = (id) => {
+    setEditForm({ ...editForm, [id.target.name]: id.target.value });
   };
 
   // POST
@@ -45,7 +44,7 @@ const Reviews = () => {
         },
         body: JSON.stringify(currentState),
       };
-      const response = await fetch(reviewURL, requestOptions);
+      const response = await fetch(reviewpostURL, requestOptions);
       const createdReview = await response.json();
       setReview([...review, createdReview]);
       setNewReview({
@@ -60,8 +59,8 @@ const Reviews = () => {
 
   // TODO
   // UPDATE
-  const updatedReview = async (e) => {
-    e.preventDefault();
+  const updatedReview = async (id) => {
+    id.preventDefault();
     try {
       const options = {
         method: "PUT",
@@ -82,25 +81,8 @@ const Reviews = () => {
     }
   };
 
+
   // REMOVE
-  const removeReview = async (index) => {
-    try {
-      const options = {
-        method: "DELETE",
-      };
-      const response = await fetch(
-        `http://localhost:4000/review/${id}`,
-        options
-      );
-      const deletedReview = await response.json();
-      console.log(response);
-      console.log("I'm hitting the delete route.");
-      // navigate("/shop")
-    } catch (err) {
-      console.log(err);
-      navigate(URL);
-    }
-  };
   const deletePost = async (id) => {
     let response = await fetch(`http://localhost:4000/review/${id}`, {
       method: "DELETE",
@@ -131,16 +113,16 @@ const Reviews = () => {
                   className="delete-div"
                   onClick={() => deletePost(reviews._id)}
                 >
-                  <img className="delete-icon" src="https://img.icons8.com/windows/512/delete-forever.png"/>
+                  DELETE
                 </div>
-                <form className="update-form" onSubmit={updatedReview}>
+                {/* <form className="update-form" onSubmit={() => updatedReview(reviews._id)}>
                   <label>
                     <input
                       type="text"
                       value={newReview.body}
                       name="body"
-                      placeholder="Update Review"
-                      onChange={handleUpdateChange}
+                      placeholder="Update Review Body"
+                      onChange={() => handleUpdateChange(reviews._id)}
                     />
                   </label>
                   <input
@@ -148,12 +130,12 @@ const Reviews = () => {
                     type="submit"
                     value="Update"
                   />
-                </form>{" "}
+                </form> */}
               </section>
             </div>
           );
         })}
-        <form onSubmit={handleSubmit}>
+        <form className="newReview"onSubmit={handleSubmit}>
           <div>
             <label>
               <input
