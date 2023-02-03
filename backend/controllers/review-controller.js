@@ -31,7 +31,7 @@ router.delete("/:reviewid", async (req, res, next) => {
 
 // how to post: review/product/productid
 // POST ROUTE
-router.post('/product/:productid', async (req, res, next) => {
+router.post('/:productid', async (req, res, next) => {
 	try {
 	const product = await Product.findById(req.params.productid)
 	const reviewToCreate = {
