@@ -68,7 +68,7 @@ const Reviews = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editForm),
       };
-      const response = await fetch(deleteReviewURL, options);
+      const response = await fetch(`http://localhost:4000/review/${id}`, options);
       const updatedReview = await response.json();
       setReview(updatedReview);
       // REFRESH PAGE
