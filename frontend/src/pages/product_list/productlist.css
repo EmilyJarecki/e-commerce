@@ -10,10 +10,13 @@
 }
 
 .product-image{
-    width:  200px;
-    height: 200px;
-    object-fit: cover
-}
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+  }
 .product-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));    
@@ -22,8 +25,7 @@
   margin: 0 auto;
   max-width: 1200px;
   padding: 1rem;
-
 }
 .product-item{
-
+  background-color: rgba(255, 255, 255, 0.469);
 }
