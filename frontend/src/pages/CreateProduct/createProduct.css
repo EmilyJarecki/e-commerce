@@ -1,0 +1,38 @@
+.add-product{
+    display: flex;
+   justify-content: center; 
+}
+.CreateProuct{
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+}
+.create-product-container{
+display: flex;
+justify-content: center
+}
+.create-form{
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 800px
+}
+.create-input{
+    border: none;
+    border-left: 1px solid black;
+    margin-left: 15px;
+}
+.create-input::placeholder{
+    padding-left: 10px;
+    color: black
+}
+.input-div{
+    display: flex;
+   justify-content: center; 
+}
+input {
+    outline:none;
+   }
+input:focus{
+    border-bottom: 1px solid black;
+}

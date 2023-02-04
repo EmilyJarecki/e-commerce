@@ -27,7 +27,6 @@
 .right-icon-words{
     font-size: 15px;
     justify-content: flex-end;
-
 }
 .link{
     text-decoration: none;
@@ -40,10 +39,15 @@
   outline: none;
   width: 100px;
   padding: 10px 15px;
-  
 }
-
+.add-a-product{
+  font-size: 15px
+}
 .search-inner::placeholder{
   font-size: 15px;
   color: black
+}
+.create-product-link{
+  display: flex;
+  align-items: center
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import "./createProduct.css"
 
 const CreateProduct = () => {
     // state to hold formData
@@ -9,7 +10,6 @@ const CreateProduct = () => {
         description: "",
         price: 0,
         shopping: "",
-        category: ""
     });
 
     // handleChange function for form
@@ -43,53 +43,64 @@ const CreateProduct = () => {
     }
 
     return (
-        <div className="CreateProduct">
-            <h1>Add a Product</h1>
-            <form onSubmit={handleSubmit}>
-                <input
+        <div className="CreateProduct">            
+        <h1 className="add-product">Add a Product</h1>
+
+        <div className="create-product-container">
+            <form className="create-form" onSubmit={handleSubmit}>
+                <p className="input-div">Item: <input
+                    className="create-input"
                     type="text"
                     value={newForm.name}
                     name="name"
                     placeholder="name"
                     onChange={handleChange}
-                />
-                <input
+                    autoComplete="off"
+                /></p>
+                <p className="input-div">
+                Image: <input
+                    className="create-input"
                     type="text"
                     value={newForm.image}
                     name="image"
                     placeholder="image URL"
                     onChange={handleChange}
+                    autoComplete="off"
                 />
-                <input
+                </p>
+                <p className="input-div">
+                Description: <input
+                    className="create-input"
                     type="text"
                     value={newForm.description}
                     name="description"
                     placeholder="Add description"
                     onChange={handleChange}
-                />
-                <input
+                    autoComplete="off"
+                /></p>
+                <p className="input-div">
+                Price: <input
+                    className="create-input"
                     type="text"
                     value={newForm.price}
                     name="price"
                     placeholder=""
                     onChange={handleChange}
-                />
-                <input
+                    autoComplete="off"
+                /></p>
+                <p className="input-div">
+                Store Link: <input
+                    className="create-input"
                     type="text"
                     value={newForm.shopping}
                     name="shopping"
                     placeholder="Add a link"
                     onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={newForm.category}
-                    name="category"
-                    placeholder="Add category"
-                    onChange={handleChange}
-                />
-                <input type="submit" value="Create Product" />
+                    autoComplete="off"
+                /></p>
+                <input type="submit" value="Add Product" />
             </form>
+        </div>
         </div>
     );
 };

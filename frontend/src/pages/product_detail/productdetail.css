@@ -35,12 +35,11 @@ margin-top: -15px;
 
 
 
-/* REVIEWS */
+/* ------------------------------------- REVIEWS ------------------------------------- */
 .review-container{
     display: flex;
     justify-content: center;
     max-width: 1200px;
-
 }
 .review-section{
     border-left: 3px solid black;
@@ -54,3 +53,5 @@ justify-content: flex-end;
 .delete-icon{
     width: 20px;
 }
+
+/* ------------------------------------- UPDATE ------------------------------------- */

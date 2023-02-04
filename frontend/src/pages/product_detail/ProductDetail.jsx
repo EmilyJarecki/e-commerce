@@ -26,7 +26,7 @@ const ProductDetail = () => {
       console.log(err);
     }
   };
-
+// console.log(product.shopping)
   // ------------------------------------- UPDATE -------------------------------------
 
   const [editForm, setEditForm] = useState({
@@ -35,37 +35,44 @@ const ProductDetail = () => {
     description: "",
     price: 0,
     shopping: "",
-    category: ""
-});
+    category: "",
+  });
 
-// handleChange function for form
-const handleChange = (e) => {
+  // handleChange function for form
+  const handleChange = (e) => {
     setEditForm({ ...editForm, [e.target.name]: e.target.value });
-};
+  };
 
-const editProduct = async (productData) => {
+  const editProduct = async (productData) => {
     try {
-        console.log("Here is product data:")
-        console.log(productData)
-        const editedProduct = await fetch(URL, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productData),
-        });
-        console.log("Product UPDATED!")
-        getDetails()
+      console.log("Here is product data:");
+      console.log(productData);
+      const editedProduct = await fetch(URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      });
+      console.log("Product UPDATED!");
+      getDetails();
     } catch (err) {
-        console.log(err)
+      console.log(err);
     }
-};
+  };
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  const editedProduct = await editProduct(editForm)
-  setEditForm({ name: "", image: "", description: "", price: 0, shopping: "", category: ""})
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const editedProduct = await editProduct(editForm);
+    setEditForm({
+      name: "",
+      image: "",
+      description: "",
+      price: 0,
+      shopping: "",
+      category: "",
+    });
+  };
 
   // ------------------------------------- UPDATE -------------------------------------
 
@@ -78,67 +85,75 @@ const handleSubmit = async (e) => {
           </Link>
         </h4>
         <section className="detail-card">
-          <img className="detail-image" src={product.image} alt={product.name} />
+          <img
+            className="detail-image"
+            src={product.image}
+            alt={product.name}
+          />
           <div className="detail-description-card">
-
-
-          <h1 className="detail-name">{product.name}</h1>
-          <p className="detail-price">${product.price}</p>
-          <h4 className="detail-description">{product.description}</h4>
-          <p>
-            <a className="link shop-product" href="{product.shopping}">
-              SHOP NOW
-            </a>
-          </p>
-          </div>          
+            <h1 className="detail-name">{product.name}</h1>
+            <p className="detail-price">${product.price}</p>
+            <h4 className="detail-description">{product.description}</h4>
+            <p>
+              {/* <a className="link shop-product" href="${product.shopping}">
+                SHOP NOW
+              </a> */}
+            </p>
+          </div>
         </section>
 
         <h1>Edit Product</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={editForm.name}
-                    name="name"
-                    placeholder={product.name}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={editForm.image}
-                    name="image"
-                    placeholder={product.image}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={editForm.description}
-                    name="description"
-                    placeholder={product.description}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={editForm.price}
-                    name="price"
-                    placeholder={product.price}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={editForm.shopping}
-                    name="shopping"
-                    placeholder={product.shopping}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    value={editForm.category}
-                    name="category"
-                    placeholder={product.category}
-                    onChange={handleChange}
-                />
-                <input type="submit" value="Update Product" />
-            </form>
+        <form className="update-form" onSubmit={handleSubmit}>
+          {/* Name:<input
+            className="edit-box edit-name"
+            type="text"
+            value={editForm.name}
+            name="name"
+            placeholder={product.name}
+            onChange={handleChange}
+          /> */}
+          {/* Image: <input
+            className="edit-box edit-image"
+            type="text"
+            value={editForm.image}
+            name="image"
+            placeholder={product.image}
+            onChange={handleChange}
+          /> */}
+          Description: <input
+            className="edit-box edit-description"
+            type="text"
+            value={editForm.description}
+            name="description"
+            placeholder={product.description}
+            onChange={handleChange}
+          />
+          {/* Price: <input
+            className="edit-box edit-price"
+            type="text"
+            value={editForm.price}
+            name="price"
+            placeholder={product.price}
+            onChange={handleChange}
+          />
+          Shopping URL: <input
+            className="edit-box edit-shoppingURL"
+            type="text"
+            value={editForm.shopping}
+            name="shopping"
+            placeholder={product.shopping}
+            onChange={handleChange}
+          /> */}
+          {/* Category: <input
+            className="edit-box edit-name"
+            type="text"
+            value={editForm.category}
+            name="category"
+            placeholder={product.category}
+            onChange={handleChange}
+          /> */}
+          <input type="submit" value="Update Product" />
+        </form>
 
         <Reviews />
       </div>
