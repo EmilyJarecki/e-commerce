@@ -92,7 +92,10 @@ const ProductDetail = () => {
             <h1 className="detail-name">{product.name}</h1>
             <p className="detail-price">${product.price}</p>
             <h4 className="detail-description">{product.description}</h4>
-            <a href={product.shopping}>SHOP NOW</a>
+            <div className="p-redirect-div">
+                          <a className="link purchase-redirect" href={product.shopping}>SHOP NOW</a>
+
+            </div>
             <p>
             </p>
           </div>
