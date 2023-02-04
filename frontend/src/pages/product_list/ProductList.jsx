@@ -22,35 +22,36 @@ const ProductList = () => {
     return (
       <div className="product-list">
         <div>
-        <div className="product-container">
-          {product?.map((product, index) => {
-            return (
-              <div key={index}>
-                <div
-                  className="product-item"
-                  style={{ border: "3px solid black" }}
-                >
-                  <img
-                    className="product-image"
-                    src={product.image}
-                    alt={product.name}
-                  />
-                  <div className="product-content">
-                    <Link
-                      className="link"
-                      key={product._id}
-                      to={`/shop/${product._id}`}
+          <div className="product-container">
+            {product?.map((product, index) => {
+              return (
+                <div key={index}>
+                  {" "}
+                  <Link
+                    className="link"
+                    key={product._id}
+                    to={`/shop/${product._id}`}
+                  >
+                    <div
+                      className="product-item"
                     >
-                      <p>{product.name}</p>
-                    </Link>
-                    <p className="price">${product.price}</p>
-                  </div>
+                      <img
+                        className="product-image"
+                        src={product.image}
+                        alt={product.name}
+                      />
+                      <div className="product-content">
+                        <p className="list-prod-name">{product.name}</p>
+
+                        <p className="list-prod-price">${product.price}</p>
+                      </div>
+                    </div>{" "}
+                  </Link>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
       </div>
     );
   };

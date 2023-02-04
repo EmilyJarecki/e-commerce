@@ -1,6 +1,6 @@
 
 .product-list{
-  background-image: url("https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg4Mi1rdWwtMzJfMS5qcGc.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -27,5 +27,11 @@
   padding: 1rem;
 }
 .product-item{
-  background-color: rgba(255, 255, 255, 0.469);
+  background-color: rgb(255, 255, 255);
+}
+.list-prod-name, .list-prod-price{
+  text-align: center;
+}
+.list-prod-price{
+  padding-bottom: 15px
 }

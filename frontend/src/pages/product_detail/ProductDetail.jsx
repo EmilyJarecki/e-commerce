@@ -92,10 +92,8 @@ const ProductDetail = () => {
             <h1 className="detail-name">{product.name}</h1>
             <p className="detail-price">${product.price}</p>
             <h4 className="detail-description">{product.description}</h4>
+            <a href={product.shopping}>SHOP NOW</a>
             <p>
-              {/* <a className="link shop-product" href="${product.shopping}">
-                SHOP NOW
-              </a> */}
             </p>
           </div>
         </section>
@@ -150,7 +148,6 @@ const ProductDetail = () => {
             placeholder={product.category}
             onChange={handleChange}
           />
-          <p><a target="_blank" href="https://www.etsy.com/listing/999819629/amazing-vintage-type-knitted-cardigan?click_key=d452ace7b01b2e83f6091a180d121048b5d6276d%3A999819629&click_sum=a8cfa664&ref=hp_opfy-1&frs=1">Shop Now</a></p>
           <input type="submit" value="Update Product" />
         </form>
 

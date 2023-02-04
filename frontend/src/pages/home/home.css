@@ -1,5 +1,5 @@
 .home {
-  background-image: url("https://img.freepik.com/free-vector/pastel-color-background-with-gold-foil-texture_1017-30093.jpg?w=2000&t=st=1675535144~exp=1675535744~hmac=824d8612cf518dee1dae7283dda64c4c5243fe41eb6b95cc17aa3044b0565d74");
+  background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg4Mi1rdWwtMzJfMS5qcGc.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -16,5 +16,6 @@
     margin-top: 10%;
     border: 2px solid black;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.508);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 10px 5px rgba(255, 255, 255, 0.573)
 }
