@@ -7,8 +7,6 @@ import "./productdetail.css";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
-  const [review, setReview] = useState("");
-  const [inputText, setInputText] = useState("");
 
   const { id } = useParams();
 
@@ -104,22 +102,22 @@ const ProductDetail = () => {
 
         <h1>Edit Product</h1>
         <form className="update-form" onSubmit={handleSubmit}>
-          {/* Name:<input
+          Name:<input
             className="edit-box edit-name"
             type="text"
             value={editForm.name}
             name="name"
             placeholder={product.name}
             onChange={handleChange}
-          /> */}
-          {/* Image: <input
+          />
+          Image: <input
             className="edit-box edit-image"
             type="text"
             value={editForm.image}
             name="image"
             placeholder={product.image}
             onChange={handleChange}
-          /> */}
+          />
           Description: <input
             className="edit-box edit-description"
             type="text"
@@ -128,7 +126,7 @@ const ProductDetail = () => {
             placeholder={product.description}
             onChange={handleChange}
           />
-          {/* Price: <input
+          Price: <input
             className="edit-box edit-price"
             type="text"
             value={editForm.price}
@@ -143,15 +141,16 @@ const ProductDetail = () => {
             name="shopping"
             placeholder={product.shopping}
             onChange={handleChange}
-          /> */}
-          {/* Category: <input
+          />
+          Category: <input
             className="edit-box edit-name"
             type="text"
             value={editForm.category}
             name="category"
             placeholder={product.category}
             onChange={handleChange}
-          /> */}
+          />
+          <p><a target="_blank" href="https://www.etsy.com/listing/999819629/amazing-vintage-type-knitted-cardigan?click_key=d452ace7b01b2e83f6091a180d121048b5d6276d%3A999819629&click_sum=a8cfa664&ref=hp_opfy-1&frs=1">Shop Now</a></p>
           <input type="submit" value="Update Product" />
         </form>
 

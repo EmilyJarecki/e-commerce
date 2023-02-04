@@ -36,3 +36,13 @@ input {
 input:focus{
     border-bottom: 1px solid black;
 }
+
+.create-submit{
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 20px;
+    height: 35px;
+    width: 300px;
+    align-self: center;
+}

@@ -6,7 +6,7 @@ import "./productlist.css";
 const ProductList = () => {
   const [product, setProducts] = useState([]);
 
-  const URL = "https://capstone-commerce.herokuapp.com/products"
+  const URL = "https://capstone-commerce.herokuapp.com/products";
 
   const getProducts = async () => {
     try {
@@ -20,29 +20,37 @@ const ProductList = () => {
 
   const loaded = () => {
     return (
-      <div className="product-container">
-        {product?.map((product, index) => {
-          return (
-            <div key={index}>
-              <div
-                className="product-item"
-                style={{ border: "3px solid black" }}
-              >
-                <img
-                  className="product-image"
-                  src={product.image}
-                  alt={product.name}
-                />
-                <div className="product-content">
-                  <Link className="link" key={product._id} to={`/shop/${product._id}`}>
-                    <p>{product.name}</p>
-                  </Link>
-                  <p className="price">${product.price}</p>
+      <div className="product-list">
+        <div>
+        <div className="product-container">
+          {product?.map((product, index) => {
+            return (
+              <div key={index}>
+                <div
+                  className="product-item"
+                  style={{ border: "3px solid black" }}
+                >
+                  <img
+                    className="product-image"
+                    src={product.image}
+                    alt={product.name}
+                  />
+                  <div className="product-content">
+                    <Link
+                      className="link"
+                      key={product._id}
+                      to={`/shop/${product._id}`}
+                    >
+                      <p>{product.name}</p>
+                    </Link>
+                    <p className="price">${product.price}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </div>
       </div>
     );
   };

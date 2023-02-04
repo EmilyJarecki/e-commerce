@@ -98,7 +98,7 @@ const CreateProduct = () => {
                     onChange={handleChange}
                     autoComplete="off"
                 /></p>
-                <input type="submit" value="Add Product" />
+                <input className="create-submit" type="submit" value="Add Product" />
             </form>
         </div>
         </div>
