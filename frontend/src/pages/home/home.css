@@ -1,5 +1,5 @@
 .home {
-  background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg4Mi1rdWwtMzJfMS5qcGc.jpg");
+  background-image: url("https://images.pexels.com/photos/842963/pexels-photo-842963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -17,5 +17,4 @@
     border: 2px solid black;
     padding: 15px;
     background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 10px 5px rgba(255, 255, 255, 0.573)
 }
