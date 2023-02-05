@@ -81,12 +81,14 @@ const Reviews = () => {
     }
   };
 
-
   // REMOVE
   const deletePost = async (id) => {
-    let response = await fetch(`https://capstone-commerce.herokuapp.com/review/${id}`, {
-      method: "DELETE",
-    });
+    let response = await fetch(
+      `https://capstone-commerce.herokuapp.com/review/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (response.status === 200) {
       setReview(
         review.filter((post) => {
@@ -102,7 +104,39 @@ const Reviews = () => {
 
   const loaded = () => {
     return (
-      <div>
+      <div className="ReviewArea">
+        {" "}
+        <form className="newReview" onSubmit={handleSubmit}>
+          <div className="newReview-w-btn">
+          <div className="newReview-wo-btn">
+            <label>
+              <input
+                className="review-add-area"
+                autoComplete="off"
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={newReview.name}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              <textarea
+                className="review-txt-ar"
+                autoComplete="off"
+                type="text"
+                value={newReview.body}
+                name="body"
+                placeholder="Create Review"
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="commentButtonDiv">
+            <input className="CommentButton" type="submit" value="Reply" />
+          </div>
+          </div>
+        </form>
         {review?.map((reviews, index) => {
           return (
             <div className="review-container" key={reviews._id}>
@@ -113,7 +147,7 @@ const Reviews = () => {
                   className="delete-div"
                   onClick={() => deletePost(reviews._id)}
                 >
-                  DELETE
+                  <img className="delete-icon" src="https://img.icons8.com/glyph-neue/512/delete-property.png" alt="delete-icon" />
                 </div>
                 {/* <form className="update-form" onSubmit={() => updatedReview(reviews._id)}>
                   <label>
@@ -135,33 +169,6 @@ const Reviews = () => {
             </div>
           );
         })}
-        <form className="newReview"onSubmit={handleSubmit}>
-          <div>
-            <label>
-              <input
-                autoComplete="off"
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={newReview.name}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              <textarea
-                autoComplete="off"
-                type="text"
-                value={newReview.body}
-                name="body"
-                placeholder="Create Review"
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="commentButtonDiv">
-            <input className="CommentButton" type="submit" value="Reply" />
-          </div>
-        </form>
       </div>
     );
   };

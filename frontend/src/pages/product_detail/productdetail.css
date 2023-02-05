@@ -43,27 +43,100 @@ margin-top: -15px;
     bottom: 0;
     left: 0;
 }
+/* .extra-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+
 
 
 
 
 /* ------------------------------------- REVIEWS ------------------------------------- */
-.review-container{
+.newReview{
     display: flex;
     justify-content: center;
+}
+
+.review-container{
+    position: relative;
     max-width: 1200px;
+    width: 435px;
+    border-left: 3px solid black
 }
 .review-section{
-    border-left: 3px solid black;
     padding-left: 15px;
-    margin: 15px;
+}
+.reviews-body{
+    margin: -10px 0 35px 0
 }
 .delete-div{
 display:flex;
-justify-content: flex-end;
+justify-content: flex-start;
+position: absolute;
+bottom: 0;
+left: 0;
 }
 .delete-icon{
     width: 20px;
 }
+.newReview-w-btn{
+width: 400px;
+border-left: 2px solid black;
+position: relative;
+height: 115px
+
+}
+.newReview-wo-btn{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.review-add-area{
+    width: 390px;
+    border: none;
+    background-color: transparent;    
+}
+.review-add-area::placeholder{
+    color: black;
+}
+.review-txt-ar{
+    resize: none;
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;    
+}
+.review-txt-ar::placeholder{
+    color: black;
+}
+.CommentButton{
+    border: none;
+    color: white;
+    background-color: black;
+    padding: 8px 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.ReviewArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
 
 /* ------------------------------------- UPDATE ------------------------------------- */
+/* .edit-product{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.update-form{
+    display: flex;
+    flex-direction: column;
+} */

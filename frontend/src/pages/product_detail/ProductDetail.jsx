@@ -24,7 +24,7 @@ const ProductDetail = () => {
       console.log(err);
     }
   };
-// console.log(product.shopping)
+  // console.log(product.shopping)
   // ------------------------------------- UPDATE -------------------------------------
 
   const [editForm, setEditForm] = useState({
@@ -93,68 +93,79 @@ const ProductDetail = () => {
             <p className="detail-price">${product.price}</p>
             <h4 className="detail-description">{product.description}</h4>
             <div className="p-redirect-div">
-                          <a className="link purchase-redirect" href={product.shopping}>SHOP NOW</a>
-
+              <a className="link purchase-redirect" href={product.shopping}>
+                SHOP NOW
+              </a>
             </div>
-            <p>
-            </p>
+            <p></p>
           </div>
         </section>
+        <section className="extra-content">
+          <div className="edit-product">
+                      <div className="reviews-comp">
+            <Reviews />
+          </div>
+            <h1>Edit Product</h1>
+            <form className="update-form" onSubmit={handleSubmit}>
+              Name:
+              <input
+                className="edit-box edit-name"
+                type="text"
+                value={editForm.name}
+                name="name"
+                placeholder={product.name}
+                onChange={handleChange}
+              />
+              Image:{" "}
+              <input
+                className="edit-box edit-image"
+                type="text"
+                value={editForm.image}
+                name="image"
+                placeholder={product.image}
+                onChange={handleChange}
+              />
+              Description:{" "}
+              <input
+                className="edit-box edit-description"
+                type="text"
+                value={editForm.description}
+                name="description"
+                placeholder={product.description}
+                onChange={handleChange}
+              />
+              Price:{" "}
+              <input
+                className="edit-box edit-price"
+                type="text"
+                value={editForm.price}
+                name="price"
+                placeholder={product.price}
+                onChange={handleChange}
+              />
+              Shopping URL:{" "}
+              <input
+                className="edit-box edit-shoppingURL"
+                type="text"
+                value={editForm.shopping}
+                name="shopping"
+                placeholder={product.shopping}
+                onChange={handleChange}
+              />
+              Category:{" "}
+              <input
+                className="edit-box edit-name"
+                type="text"
+                value={editForm.category}
+                name="category"
+                placeholder={product.category}
+                onChange={handleChange}
+              />
+              <input type="submit" value="Update Product" />
+            </form>
+          </div>
 
-        <h1>Edit Product</h1>
-        <form className="update-form" onSubmit={handleSubmit}>
-          Name:<input
-            className="edit-box edit-name"
-            type="text"
-            value={editForm.name}
-            name="name"
-            placeholder={product.name}
-            onChange={handleChange}
-          />
-          Image: <input
-            className="edit-box edit-image"
-            type="text"
-            value={editForm.image}
-            name="image"
-            placeholder={product.image}
-            onChange={handleChange}
-          />
-          Description: <input
-            className="edit-box edit-description"
-            type="text"
-            value={editForm.description}
-            name="description"
-            placeholder={product.description}
-            onChange={handleChange}
-          />
-          Price: <input
-            className="edit-box edit-price"
-            type="text"
-            value={editForm.price}
-            name="price"
-            placeholder={product.price}
-            onChange={handleChange}
-          />
-          Shopping URL: <input
-            className="edit-box edit-shoppingURL"
-            type="text"
-            value={editForm.shopping}
-            name="shopping"
-            placeholder={product.shopping}
-            onChange={handleChange}
-          />
-          Category: <input
-            className="edit-box edit-name"
-            type="text"
-            value={editForm.category}
-            name="category"
-            placeholder={product.category}
-            onChange={handleChange}
-          />
-          <input type="submit" value="Update Product" />
-        </form>
-
-        <Reviews />
+        </section>
       </div>
     );
   };
