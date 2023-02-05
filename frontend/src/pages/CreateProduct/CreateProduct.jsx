@@ -63,7 +63,7 @@ const CreateProduct = () => {
             <div className="add-titles">
               <h3 className="add-pprty">Item</h3>
               <h3 className="add-proprty">Image</h3>
-              <h3 className="add-prrty">Description</h3>
+              <h3 className="add-prrty prrty-desc">Description</h3>
               <h3 className="add-prrty">Price</h3>
               <h3 className="add-prrty">Store Link</h3>
             </div>
@@ -81,7 +81,7 @@ const CreateProduct = () => {
               </p>
               <p className="input-div">
                 <input
-                  className="create-input"
+                  className="create-input img-input"
                   type="text"
                   value={newForm.image}
                   name="image"
@@ -90,9 +90,9 @@ const CreateProduct = () => {
                   autoComplete="off"
                 />
               </p>
-              <p className="input-div">
-                <input
-                  className="create-input"
+              <p className="input-div desc-textarea">
+                <textarea
+                  className="create-input desc-textarea desc-box"
                   type="text"
                   value={newForm.description}
                   name="description"
@@ -101,7 +101,7 @@ const CreateProduct = () => {
                   autoComplete="off"
                 />
               </p>
-              <p className="input-div">
+              <p className="input-div price-input">
                 <input
                   className="create-input"
                   type="text"
