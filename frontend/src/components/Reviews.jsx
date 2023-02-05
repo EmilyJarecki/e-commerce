@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Reviews = () => {
   const [review, setReview] = useState([]);
-  const [editForm, setEditForm] = useState([]);
   const [newReview, setNewReview] = useState({
     name: "",
     body: "",
@@ -28,9 +27,7 @@ const Reviews = () => {
   const handleChange = (e) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
-  const handleUpdateChange = (id) => {
-    setEditForm({ ...editForm, [id.target.name]: id.target.value });
-  };
+
 
   // POST
   const handleSubmit = async (e) => {
@@ -57,30 +54,6 @@ const Reviews = () => {
     }
   };
 
-  // TODO
-  // UPDATE
-  const updatedReview = async (id) => {
-    id.preventDefault();
-    try {
-      const options = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editForm),
-      };
-      const response = await fetch(
-        `https://capstone-commerce.herokuapp.com/review/${id}`,
-        options
-      );
-      const updatedReview = await response.json();
-      setReview(updatedReview);
-      // REFRESH PAGE
-      navigate(0);
-    } catch (err) {
-      console.log(err);
-      navigate(URL);
-    }
-  };
-
   // REMOVE
   const deletePost = async (id) => {
     let response = await fetch(
@@ -104,6 +77,7 @@ const Reviews = () => {
 
   const loaded = () => {
     return (
+      <div>
       <div className="ReviewArea">
         {" "}
         <form className="newReview" onSubmit={handleSubmit}>
@@ -139,6 +113,7 @@ const Reviews = () => {
         </form>
         {review?.map((reviews, index) => {
           return (
+            <div className="review-list">
             <div className="review-container" key={reviews._id}>
               <section className="review-section">
                 <h4 className="reviews-name">{reviews.name}: </h4>
@@ -149,26 +124,12 @@ const Reviews = () => {
                 >
                   <img className="delete-icon" src="https://img.icons8.com/glyph-neue/512/delete-property.png" alt="delete-icon" />
                 </div>
-                {/* <form className="update-form" onSubmit={() => updatedReview(reviews._id)}>
-                  <label>
-                    <input
-                      type="text"
-                      value={newReview.body}
-                      name="body"
-                      placeholder="Update Review Body"
-                      onChange={() => handleUpdateChange(reviews._id)}
-                    />
-                  </label>
-                  <input
-                    className="updateButton"
-                    type="submit"
-                    value="Update"
-                  />
-                </form> */}
               </section>
+            </div>
             </div>
           );
         })}
+      </div>
       </div>
     );
   };

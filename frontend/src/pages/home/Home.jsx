@@ -7,7 +7,7 @@ const Home = () => {
     <div className="home">
       <div className="home-container">
         <Link className="link shop-now " to={"/shop"}>
-          VIEW NOW
+          SHOP HERE
         </Link>
         <br></br>
       </div>

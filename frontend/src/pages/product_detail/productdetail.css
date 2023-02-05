@@ -1,47 +1,46 @@
-.return-to-product-page{
-    margin-left: 100px;
+.return-to-product-page {
+  margin-left: 100px;
 }
-.shop-product{
-    align-items: center;
-    margin-top: 10%;
-    border-left: 2px solid black;
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.508);
+.shop-product {
+  align-items: center;
+  margin-top: 10%;
+  border-left: 2px solid black;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.508);
 }
 .detail-card {
-    margin: 0 auto;
-    max-width: 1200px;
-    display: flex;
-    justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
 }
-.detail-description-card{
-    width: 400px;
-    margin-left: 3%;
-    position: relative;
+.detail-description-card {
+  width: 400px;
+  margin-left: 3%;
+  position: relative;
 }
-.detail-image{
-    width: 400px;
+.detail-image {
+  width: 400px;
 }
-.detail-name{
-    height: 60px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
+.detail-name {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
 }
-.detail-price{
-margin-top: -15px;
+.detail-price {
+  margin-top: -15px;
 }
 
-
-.purchase-redirect{
-    align-items: center;
-    margin-top: 10%;
-    color: white;
-    padding: 15px;
-    background-color: rgb(0, 0, 0);
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.purchase-redirect {
+  align-items: center;
+  margin-top: 10%;
+  color: white;
+  padding: 15px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 /* .extra-content{
     display: flex;
@@ -49,94 +48,126 @@ margin-top: -15px;
     justify-content: center;
 } */
 
-
-
-
-
-
 /* ------------------------------------- REVIEWS ------------------------------------- */
-.newReview{
-    display: flex;
-    justify-content: center;
+.newReview {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.review-container{
-    position: relative;
-    max-width: 1200px;
-    width: 435px;
-    border-left: 3px solid black
+.review-container,
+.newReview-w-btn {
+  position: relative;
+  max-width: 1200px;
+  width: 435px;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  display: flex;
+  align-self: center;
 }
-.review-section{
-    padding-left: 15px;
+.review-section {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
 }
-.reviews-body{
-    margin: -10px 0 35px 0
+.reviews-body {
+  margin: -10px 0 35px 0;
 }
-.delete-div{
-display:flex;
-justify-content: flex-start;
-position: absolute;
-bottom: 0;
-left: 0;
+.delete-div {
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
-.delete-icon{
-    width: 20px;
+.delete-icon {
+  width: 20px;
 }
-.newReview-w-btn{
-width: 400px;
-border-left: 2px solid black;
-position: relative;
-height: 115px
+.newReview-w-btn {
+  width: 435px;
+  border: 3px solid black;
 
+  position: relative;
+  height: 115px;
 }
-.newReview-wo-btn{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
+.newReview-wo-btn {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
-.review-add-area{
-    width: 390px;
-    border: none;
-    background-color: transparent;    
+.review-add-area {
+  width: 390px;
+  border: none;
+  background-color: transparent;
 }
-.review-add-area::placeholder{
-    color: black;
+.review-add-area::placeholder {
+  color: black;
 }
-.review-txt-ar{
-    resize: none;
-    width: 400px;
-    height: 50px;
-    border: none;
-    outline: none;
-    background-color: transparent;    
+.review-txt-ar {
+  resize: none;
+  width: 400px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
-.review-txt-ar::placeholder{
-    color: black;
+.review-txt-ar::placeholder {
+  color: black;
 }
-.CommentButton{
-    border: none;
-    color: white;
-    background-color: black;
-    padding: 8px 15px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.CommentButton {
+  border: none;
+  color: white;
+  background-color: black;
+  padding: 8px 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
-.ReviewArea{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.ReviewArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-
+.review-list {
+  display: flex;
+  flex-direction: column;
+}
 
 /* ------------------------------------- UPDATE ------------------------------------- */
-/* .edit-product{
-    display: flex;
-    flex-direction: column;
-    width: 300px;
+.edit-title{
+    text-align: center;
 }
-.update-form{
+.update-container {
+  display: flex;
+  justify-content: center;
+  border-top: 5px solid black;
+}
+.update-form {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+.edit-box {
+  border: none;
+  width: 400px;
+  padding: 5px;
+  background-color: transparent;
+}
+.edit-box::placeholder {
+}
+.update-property {
+    margin-top: 10px;
+}
+.update-div{
     display: flex;
-    flex-direction: column;
-} */
+    justify-content: flex-end;
+}
+.update-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  background-color: black;
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+}
