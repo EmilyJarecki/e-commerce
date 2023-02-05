@@ -3,22 +3,25 @@
 ### <a href="https://startling-flan-ce4f0b.netlify.app/" target="_blank">Live Site</a>
 
 ## Description:
-
+Aviato is a full-stack e-commerce site which allows users to post products that they are selling. It allows users to post the name, description, image, price, and store link. Shoppers are able to view, write reviews on, and directly purchase from the seller's website, as the provided link provides a direct connection between Aviato and the shop.
+<br>
+<br>
+Aviato leverages the understanding that smaller businesses might not have as big an outreach as large companies. It is a platform which provides the lesser-known seller with more visibility in the vast e-commerce market space. 
 
 
 ## Site Images:
-#### Home Page
+<h3> Home Page
 <img src="https://i.imgur.com/gGYCspG.jpg" alt="Home Page" />
-#### Product Listings
+<h3> Product Listings
 <img src="https://i.imgur.com/EcCbvGz.png" alt="Product Listing" />
-#### Product Detail Page
+<h3> Product Detail Page
 <img src="https://i.imgur.com/Lbi6ezJ.png" alt="Detail Page" />
-#### Add a Product
+<h3> Add a Product
 <img src="https://i.imgur.com/r2Xt1FE.jpg" alt="Add a Product" />
 
-### User Stories: 
-### Wireframes: 
-### Entity Relationship Diagram:
+### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#user-flow">User Stories</a>
+### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#wireframes">Wireframes</a>
+### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#data-models">Entity Relationship Diagram</a>
 
 
 ## Technologies Used: 
