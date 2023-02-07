@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON:{
+        virtuals: true,
+        transform: (_doc, ret) => {
+            // remove password before it's ever sent to db
+            delete ret.password
+            return ret
+        }
+    }
   }
 );
 
