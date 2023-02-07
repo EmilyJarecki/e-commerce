@@ -61,6 +61,7 @@ const CreateProduct = () => {
       <h1 className="add-product">Add a Product</h1>
 
       <div className="create-product-container">
+        {token ?
         <form className="create-form-div" onSubmit={handleSubmit}>
           <div className="create-form">
             <div className="add-titles">
@@ -131,7 +132,8 @@ const CreateProduct = () => {
           <div className="add-btn">
           <input className="create-submit" type="submit" value="Add Product" />
           </div>
-        </form>
+        </form> : null }
+
       </div>
       </div>
     </div>
