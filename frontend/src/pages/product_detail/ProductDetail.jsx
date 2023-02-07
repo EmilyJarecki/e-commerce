@@ -4,10 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Reviews from "../../components/Reviews";
 import "./productdetail.css";
+import { getUserToken } from "../../utils/authToken";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
-
+  const token = getUserToken()
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -78,6 +79,9 @@ const ProductDetail = () => {
     try {
       const options = {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       };
       const response = await fetch(URL, options);
       console.log(response)

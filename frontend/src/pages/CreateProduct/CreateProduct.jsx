@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { getUserToken } from "../../utils/authToken";
 import "./createProduct.css";
 
 const CreateProduct = () => {
   // state to hold formData
+  const token = getUserToken()
   const [newForm, setNewForm] = useState({
     name: "",
     image: "",
@@ -27,6 +29,7 @@ const CreateProduct = () => {
           method: "post",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify(productData),
         }
