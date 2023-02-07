@@ -4,99 +4,103 @@ import { useContext } from "react";
 import { UserContext } from "../data";
 import RegisterForm from "../components/RegisterForm";
 import LoginForm from "../components/LoginForm";
+import { useNavigate } from "react-router-dom";
 
 const Auth = (props) => {
   const { setAuth, setUser } = useContext(UserContext);
-    // import the pieces of context we want 
-    // invoke useContext hook and provide a context object as an argument
-    // react will look at the value property of that context
-    // provide the named keys in the value prop 
+  // import the pieces of context we want
+  // invoke useContext hook and provide a context object as an argument
+  // react will look at the value property of that context
+  // provide the named keys in the value prop
 
-    // console.log(setAuth, setUser)
+  // console.log(setAuth, setUser)
+  const navigate = useNavigate();
+  const token = getUserToken();
 
-    const registerUser = async (data) => {
-        try {
+  const registerUser = async (data) => {
+    try {
+      const configs = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-            const configs = {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
+      const newUser = await fetch(
+        "https://capstone-commerce.herokuapp.com/auth/register",
+        configs
+      );
 
-            const newUser = await fetch(
-                "https://capstone-commerce.herokuapp.com/auth/register",
-                configs
-            )
+      const parsedUser = await newUser.json();
+      console.log(parsedUser);
 
-            const parsedUser = await newUser.json()
-            console.log(parsedUser)
+      // sets local storage
+      setUserToken(parsedUser.token);
+      // put the returned user object in state
+      setUser(parsedUser.user);
+      // adds a boolean cast of the responses isAuthenticated prop
+      setAuth(parsedUser.isLoggedIn);
 
-            // sets local storage
-            setUserToken(parsedUser.token)
-            // put the returned user object in state
-            setUser(parsedUser.user)
-            // adds a boolean cast of the responses isAuthenticated prop
-            setAuth(parsedUser.isLoggedIn)
+      // alternative (safer) implementation would be to use jwt decode library - <https://www.npmjs.com/package/jwt-decode>
+      // this would also require reconfiguring our backend so we only send tokens with a signup
 
-            // alternative (safer) implementation would be to use jwt decode library - <https://www.npmjs.com/package/jwt-decode>
-            // this would also require reconfiguring our backend so we only send tokens with a signup
-
-            return parsedUser
-
-        } catch (err) {
-            console.log(err)
-            clearUserToken();
-            setAuth(false);
-        }
-    }  
-
-    const loginUser = async (data) => {
-        try {
-            const configs = {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-    
-            const response = await fetch(
-                "https://capstone-commerce.herokuapp.com/auth/login",
-                configs
-            )
-    
-            const currentUser = await response.json()
-            //console.log(currentUser)
-    
-            if (currentUser.token) {
-                // sets local storage
-                setUserToken(currentUser.token)
-                // put the returned user object in state
-                setUser(currentUser.user)
-                setAuth(currentUser.isLoggedIn)
-    
-                return currentUser
-            } else {
-                throw `Server Error: ${currentUser.statusText}`
-            }
-        } catch (err) {
-            console.log(err)
-            clearUserToken();
-            setAuth(false);
-        }
+      return parsedUser;
+    } catch (err) {
+      console.log(err);
+      clearUserToken();
+      setAuth(false);
     }
-    
+  };
 
+  const loginUser = async (data) => {
+    try {
+      const configs = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    return (
-        <section>
-            <h1>Login / Register Container</h1>
-            <RegisterForm signUp={registerUser}/>
-            <LoginForm signIn={loginUser}/>
-        </section>
-    )
+      const response = await fetch(
+        "https://capstone-commerce.herokuapp.com/auth/login",
+        configs
+      );
+
+      const currentUser = await response.json();
+      //console.log(currentUser)
+
+      if (currentUser.token) {
+        // sets local storage
+        setUserToken(currentUser.token);
+        // put the returned user object in state
+        setUser(currentUser.user);
+        setAuth(currentUser.isLoggedIn);
+
+        return currentUser;
+      } else {
+        throw `Server Error: ${currentUser.statusText}`;
+      }
+    } catch (err) {
+      console.log(err);
+      clearUserToken();
+      setAuth(false);
+    }
+  };
+
+  function logoutUser() {
+    clearUserToken()
+    navigate(`/`)
 }
 
-export default Auth
+  return (
+    <section>
+      <h1>Login / Register Container</h1>
+      <RegisterForm signUp={registerUser} />
+      <LoginForm signIn={loginUser} />
+      {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}    </section>
+  );
+};
+
+export default Auth;
