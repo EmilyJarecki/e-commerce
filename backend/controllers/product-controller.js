@@ -6,7 +6,7 @@ const { Review } = require('../models/lib')
 // SHOW ROUTE
 router.get("/", async (req, res, next) => {
 	try {
-		const allProducts = await Product.find({})
+		const allProducts = await Product.find({}).populate('owner', 'username -_id').exec()
 		res.status(200).json(allProducts)
 		console.log(allProducts[0].name)
 	}catch(err){
