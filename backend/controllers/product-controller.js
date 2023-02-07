@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const { Product } = require('../models/lib')
 const { Review } = require('../models/lib')
+const { handleValidateOwnership, requireToken } = require("../middleware/auth");
+const db = require('../models/lib') // db.People 
+// const People = require('../models/People')
 
 // SHOW ROUTE
 router.get("/", async (req, res, next) => {
@@ -29,8 +32,11 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // CREATE ROUTE
-router.post("/", async (req, res, next) =>  {
+router.post("/", requireToken, async (req, res, next) =>  {
     try {
+		const owner = req.user._id
+		console.log(owner, req.user)
+		req.body.owner = owner
         const createProduct = await Product.create(req.body)
         res.status(201).json(createProduct)
     } catch(err){
