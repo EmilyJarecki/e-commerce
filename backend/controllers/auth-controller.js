@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {User} = require("../models/lib");
 
+const{createUserToken} = require('../middleware/auth')
 const bcrypt = require("bcrypt");
 
 // SIGN UP
@@ -23,9 +24,24 @@ router.post("/register", async (req, res, next) => {
 
 // SIGN IN
 // POST /auth/login
-router.post("/login", async (req, res, next) => {})
+router.post("/login", async (req, res, next) => {
+    try {
+      const loggingUser = req.body.username;
+      const foundUser = await User.findOne({ username: loggingUser });
+      const token = await createUserToken(req, foundUser);
+      console.log(token)
 // token is required in response to authenticate our current user
 // token will be sent with every request to protected/authoriezed route
+
+      res.status(200).json({
+        user: foundUser,
+        isLoggedIn: true,
+        token,
+      });
+    } catch (err) {
+      res.status(401).json({ error: err.message });
+    }
+  });
 
   
   
