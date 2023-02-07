@@ -3,6 +3,7 @@ import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken";
 import { useContext } from "react";
 import { UserContext } from "../data";
 import RegisterForm from "../components/RegisterForm";
+import LoginForm from "../components/LoginForm";
 
 const Auth = (props) => {
   const { setAuth, setUser } = useContext(UserContext);
@@ -51,41 +52,41 @@ const Auth = (props) => {
         }
     }  
 
-    // const loginUser = async (data) => {
-    //     try {
-    //         const configs = {
-    //             method: "POST",
-    //             body: JSON.stringify(data),
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         }
+    const loginUser = async (data) => {
+        try {
+            const configs = {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
     
-    //         const response = await fetch(
-    //             "http://localhost:4000/auth/login",
-    //             configs
-    //         )
+            const response = await fetch(
+                "http://localhost:4000/auth/login",
+                configs
+            )
     
-    //         const currentUser = await response.json()
-    //         //console.log(currentUser)
+            const currentUser = await response.json()
+            //console.log(currentUser)
     
-    //         if (currentUser.token) {
-    //             // sets local storage
-    //             setUserToken(currentUser.token)
-    //             // put the returned user object in state
-    //             setUser(currentUser.user)
-    //             setAuth(currentUser.isLoggedIn)
+            if (currentUser.token) {
+                // sets local storage
+                setUserToken(currentUser.token)
+                // put the returned user object in state
+                setUser(currentUser.user)
+                setAuth(currentUser.isLoggedIn)
     
-    //             return currentUser
-    //         } else {
-    //             throw `Server Error: ${currentUser.statusText}`
-    //         }
-    //     } catch (err) {
-    //         console.log(err)
-    //         clearUserToken();
-    //         setAuth(false);
-    //     }
-    // }
+                return currentUser
+            } else {
+                throw `Server Error: ${currentUser.statusText}`
+            }
+        } catch (err) {
+            console.log(err)
+            clearUserToken();
+            setAuth(false);
+        }
+    }
     
 
 
@@ -93,7 +94,7 @@ const Auth = (props) => {
         <section>
             <h1>Login / Register Container</h1>
             <RegisterForm signUp={registerUser}/>
-            {/* <LoginForm signIn={loginUser}/> */}
+            <LoginForm signIn={loginUser}/>
         </section>
     )
 }
