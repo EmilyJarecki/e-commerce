@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Reviews from "../../components/Reviews";
 import "./productdetail.css";
@@ -9,6 +9,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
 
@@ -72,6 +73,20 @@ const ProductDetail = () => {
     });
   };
 
+  // DELETE
+  const removeProduct = async (e) => {
+    try {
+      const options = {
+        method: "DELETE",
+      };
+      const response = await fetch(URL, options);
+      navigate("/shop");
+    } catch (err) {
+      console.log(err);
+      navigate(URL);
+    }
+  };
+
   // ------------------------------------- UPDATE -------------------------------------
 
   const loaded = () => {
@@ -97,6 +112,7 @@ const ProductDetail = () => {
                 SHOP NOW
               </a>
             </div>
+            <p className="delete" onClick={removeProduct} >Delete</p>
             <p></p>
           </div>
         </section>
