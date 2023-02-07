@@ -6,7 +6,7 @@ import "./productlist.css";
 const ProductList = () => {
   const [product, setProducts] = useState([]);
 
-  const URL = "https://localhost:4000/products";
+  const URL = "http://localhost:4000/products";
 
   const getProducts = async () => {
     try {

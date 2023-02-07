@@ -7,7 +7,7 @@ const Search = () => {
   const [value, setValue] = useState("");
   const [data, setData] = useState("");
 
-  const URL = "https://localhost:4000/products";
+  const URL = "http://localhost:4000/products";
 
   const getProducts = async () => {
     try {

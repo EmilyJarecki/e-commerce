@@ -45,8 +45,9 @@ router.post("/", requireToken, async (req, res, next) =>  {
     }
 });
 // UPDATE ROUTE
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", requireToken, async (req, res, next) => {
 	try{
+		handleValidateOwnership(req, await Product.findById(req.params.id))
 		const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body)
 		console.log(updatedProduct)
 		res.status(200).json({message: "Successfully updated tweet", updatedProduct})
@@ -56,8 +57,9 @@ router.put("/:id", async (req, res, next) => {
 	}
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", requireToken, async (req, res, next) => {
 	try{
+		handleValidateOwnership(req, await Product.findById(req.params.id))
 		const deletedProduct = await Product.findByIdAndDelete(req.params.id)
 		console.log(deletedProduct)
 		res.status(200).json({message: "Deleted product", deletedProduct })	

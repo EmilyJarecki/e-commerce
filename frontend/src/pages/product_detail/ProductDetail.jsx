@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const URL = `https://localhost:4000/products/${id}`;
+  const URL = `http://localhost:4000/products/${id}`;
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -80,6 +80,7 @@ const ProductDetail = () => {
         method: "DELETE",
       };
       const response = await fetch(URL, options);
+      console.log(response)
       navigate("/shop");
     } catch (err) {
       console.log(err);

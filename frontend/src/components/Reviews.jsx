@@ -11,8 +11,8 @@ const Reviews = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const URL = `https://localhost:4000/products/${id}`;
-  const reviewpostURL = `https://localhost:4000/review/${id}`;
+  const URL = `http://localhost:4000/products/${id}`;
+  const reviewpostURL = `http://localhost:4000/review/${id}`;
 
   const getReview = async () => {
     try {
@@ -57,7 +57,7 @@ const Reviews = () => {
   // REMOVE
   const deletePost = async (id) => {
     let response = await fetch(
-      `https://localhost:4000/review/${id}`,
+      `http://localhost:4000/review/${id}`,
       {
         method: "DELETE",
       }
