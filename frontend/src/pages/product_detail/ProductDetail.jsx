@@ -138,6 +138,7 @@ const ProductDetail = () => {
             </div>
             <h1 className="edit-title">Edit Product</h1>
             <div className="update-container">
+            {token && currentUser?._id === product.owner._id ?
               <form className="update-form" onSubmit={handleSubmit}>
                 <div className="update-property">
                   Name:
@@ -218,7 +219,7 @@ const ProductDetail = () => {
                     value="Update Product"
                   />
                 </div>
-              </form>
+              </form> : null}
             </div>
           </div>
         </section>
