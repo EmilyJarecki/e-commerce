@@ -18,8 +18,8 @@ function App() {
       <UserInfo value={{
         isAuthenticated, 
         currentUser, 
-        setIsAuthenticated, 
-        setCurrentUser
+        setAuth : setIsAuthenticated, 
+        setUser : setCurrentUser
       }}>
         <Header />
         <Main />
