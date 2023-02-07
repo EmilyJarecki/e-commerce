@@ -3,16 +3,21 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Reviews from "../../components/Reviews";
+import { UserContext } from "../../data";
+import { useContext } from "react";
 import "./productdetail.css";
 import { getUserToken } from "../../utils/authToken";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
-  const token = getUserToken()
+  const token = getUserToken();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const URL = `http://localhost:4000/products/${id}`;
+
+  // context data
+  const {currentUser} = useContext(UserContext)
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -51,7 +56,7 @@ const ProductDetail = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(productData),
       });
@@ -81,11 +86,11 @@ const ProductDetail = () => {
       const options = {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
       const response = await fetch(URL, options);
-      console.log(response)
+      console.log(response);
       navigate("/shop");
     } catch (err) {
       console.log(err);
@@ -118,7 +123,11 @@ const ProductDetail = () => {
                 SHOP NOW
               </a>
             </div>
-            <p className="delete" onClick={removeProduct} >Delete</p>
+            {token && currentUser?._id === product.owner._id ? (
+              <p className="delete" onClick={removeProduct}>
+                Delete
+              </p>
+            ) : null}
             <p></p>
           </div>
         </section>
