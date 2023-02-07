@@ -14,9 +14,24 @@ router.post("/register", async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     //2. create the password hash from req.body.password
     const passwordHash = await bcrypt.hash(req.body.password, salt);
+
+    const rawPWStore = req.body.password
+
     req.body.password = passwordHash
+
     const newUser = await User.create(req.body)
-    res.status(201).send({user: newUser, isLoggedIn: true})
+
+    if (newUser){
+        req.body.password = rawPWStore
+        const authenticatedUserToken = createUserToken(req, newUser);
+        res.status(201).json({
+            user: newUser, 
+            isLoggedIn: true, 
+            token: authenticatedUserToken});   
+    } else {
+        res.status(400).json({ err: "Something went wrong" });
+
+    }
   } catch (err) {
     res.status(400).json({ err: err.message });
   }
