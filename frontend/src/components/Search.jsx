@@ -7,7 +7,7 @@ const Search = () => {
   const [value, setValue] = useState("");
   const [data, setData] = useState("");
 
-  const URL = "http://localhost:4000/products";
+  const URL = "https://capstone-commerce.herokuapp.com/products";
 
   const getProducts = async () => {
     try {

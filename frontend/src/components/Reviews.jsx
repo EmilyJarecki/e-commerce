@@ -11,8 +11,8 @@ const Reviews = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const URL = `http://localhost:4000/products/${id}`;
-  const reviewpostURL = `http://localhost:4000/review/${id}`;
+  const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
+  const reviewpostURL = `https://capstone-commerce.herokuapp.com/review/${id}`;
 
   const getReview = async () => {
     try {
@@ -57,7 +57,7 @@ const Reviews = () => {
   // REMOVE
   const deletePost = async (id) => {
     let response = await fetch(
-      `http://localhost:4000/review/${id}`,
+      `https://capstone-commerce.herokuapp.com/review/${id}`,
       {
         method: "DELETE",
       }

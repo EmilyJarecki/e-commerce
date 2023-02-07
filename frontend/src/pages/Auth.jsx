@@ -26,7 +26,7 @@ const Auth = (props) => {
             }
 
             const newUser = await fetch(
-                "http://localhost:4000/auth/register",
+                "https://capstone-commerce.herokuapp.com/auth/register",
                 configs
             )
 
@@ -63,7 +63,7 @@ const Auth = (props) => {
             }
     
             const response = await fetch(
-                "http://localhost:4000/auth/login",
+                "https://capstone-commerce.herokuapp.com/auth/login",
                 configs
             )
     

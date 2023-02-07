@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const URL = `http://localhost:4000/products/${id}`;
+  const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
 
   // context data
   const {currentUser} = useContext(UserContext)

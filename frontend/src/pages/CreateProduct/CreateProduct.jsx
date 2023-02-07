@@ -24,7 +24,7 @@ const CreateProduct = () => {
       console.log("Here is product data:");
       console.log(productData);
       const newProduct = await fetch(
-        "http://localhost:4000/products",
+        "https://capstone-commerce.herokuapp.com/products",
         {
           method: "post",
           headers: {
