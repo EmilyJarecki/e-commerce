@@ -6,7 +6,7 @@ import "./productlist.css";
 const ProductList = () => {
   const [product, setProducts] = useState([]);
 
-  const URL = "https://capstone-commerce.herokuapp.com/products";
+  const URL = "https://localhost:4000/products";
 
   const getProducts = async () => {
     try {
