@@ -30,7 +30,7 @@ const Auth = (props) => {
             )
 
             const parsedUser = await newUser.json()
-            // console.log(parsedUser)
+            console.log(parsedUser)
 
             // sets local storage
             setUserToken(parsedUser.token)
