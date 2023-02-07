@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {User} = require("../models/User");
+const {User} = require("../models/lib");
 
 const bcrypt = require("bcrypt");
 
@@ -13,8 +13,9 @@ router.post("/register", async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     //2. create the password hash from req.body.password
     const passwordHash = await bcrypt.hash(req.body.password, salt);
-    console.log(req.body.password)
-    res.status(200).send(passwordHash)
+    req.body.password = passwordHash
+    const newUser = await User.create(req.body)
+    res.status(201).send({user: newUser, isLoggedIn: true})
   } catch (err) {
     res.status(400).json({ err: err.message });
   }
