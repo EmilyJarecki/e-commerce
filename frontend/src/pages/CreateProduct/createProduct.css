@@ -82,9 +82,6 @@ text-align: right;
     display: flex;
     justify-content: center;
 }
-.img-input{
-  
-}
 .desc-textarea{
   resize: none;
   height: 80px;
@@ -101,7 +98,7 @@ text-align: right;
   margin-top: 50px;
 }
 .input-divs-cont{
-  width: 400px;
+  /* width: 50%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -112,4 +109,23 @@ text-align: right;
 .please-sign{
   color: white;
   font-size: 24px;
+}
+@media only screen and (max-width: 500px){
+.add-prrty, .add-proprty, .add-pprty{
+  font-size: 14px
+}
+.input-divs-cont{
+  font-size: 14px;
+}
+.create-input{
+  width: 200px;
+}
+
+.create-form{
+  display: flex;
+}
+.add-titles{
+  display: flex;
+  justify-content: space-around;
+}
 }
