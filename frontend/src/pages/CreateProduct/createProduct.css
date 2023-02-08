@@ -109,3 +109,7 @@ text-align: right;
 .desc-box{
   border-left: 1px solid black;
 }
+.please-sign{
+  color: white;
+  font-size: 24px;
+}

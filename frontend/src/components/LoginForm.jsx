@@ -25,10 +25,11 @@ const LoginForm = ({ signIn }) => {
 
   return (
     <>
-      <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Name: </label>
         <input
+          autoComplete="off"
+          className="auth-input"
           id="username"
           name="username"
           value={input.username}
@@ -38,6 +39,8 @@ const LoginForm = ({ signIn }) => {
         <br />
         <label htmlFor="password">Password: </label>
         <input
+          autoComplete="off"
+          className="auth-input"
           id="password"
           name="password"
           value={input.password}
@@ -45,10 +48,10 @@ const LoginForm = ({ signIn }) => {
         />
         <br />
         <br />
-        <input type="submit" value="Login User" />
+        <input className="auth-log" type="submit" value="Login User" />
       </form>
     </>
   );
 };
 
-export default LoginForm
+export default LoginForm;

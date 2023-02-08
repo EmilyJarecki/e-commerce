@@ -17,7 +17,7 @@ const ProductDetail = () => {
   const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
 
   // context data
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -136,90 +136,91 @@ const ProductDetail = () => {
             <div className="reviews-comp">
               <Reviews />
             </div>
-            <h1 className="edit-title">Edit Product</h1>
             <div className="update-container">
-            {token && currentUser?._id === product.owner._id ? (
-              <form className="update-form" onSubmit={handleSubmit}>
-                <div className="update-property">
-                  Name:
-                  <input
-                    className="edit-box edit-name"
-                    type="text"
-                    value={editForm.name}
-                    name="name"
-                    placeholder={product.name}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-property">
-                  Image:{" "}
-                  <input
-                    className="edit-box edit-image"
-                    type="text"
-                    value={editForm.image}
-                    name="image"
-                    placeholder={product.image}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-property">
-                  Description:{" "}
-                  <input
-                    className="edit-box edit-description"
-                    type="text"
-                    value={editForm.description}
-                    name="description"
-                    placeholder={product.description}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-property">
-                  Price:{" "}
-                  <input
-                    className="edit-box edit-price"
-                    type="text"
-                    value={editForm.price}
-                    name="price"
-                    placeholder={product.price}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-property">
-                  Shopping URL:{" "}
-                  <input
-                    className="edit-box edit-shoppingURL"
-                    type="text"
-                    value={editForm.shopping}
-                    name="shopping"
-                    placeholder={product.shopping}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-property">
-                  Category:{" "}
-                  <input
-                    className="edit-box edit-name"
-                    type="text"
-                    value={editForm.category}
-                    name="category"
-                    placeholder={product.category}
-                    onChange={handleChange}
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="update-div">
-                  <input
-                    className="update-btn"
-                    type="submit"
-                    value="Update Product"
-                  />
-                </div>
-              </form>) : null}
+              {token && currentUser?._id === product.owner._id ? (
+                <form className="update-form" onSubmit={handleSubmit}>
+                  <h1 className="edit-title">Edit Product</h1>
+                  <div className="update-property">
+                    Name:
+                    <input
+                      className="edit-box edit-name"
+                      type="text"
+                      value={editForm.name}
+                      name="name"
+                      placeholder={product.name}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-property">
+                    Image:{" "}
+                    <input
+                      className="edit-box edit-image"
+                      type="text"
+                      value={editForm.image}
+                      name="image"
+                      placeholder={product.image}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-property">
+                    Description:{" "}
+                    <input
+                      className="edit-box edit-description"
+                      type="text"
+                      value={editForm.description}
+                      name="description"
+                      placeholder={product.description}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-property">
+                    Price:{" "}
+                    <input
+                      className="edit-box edit-price"
+                      type="text"
+                      value={editForm.price}
+                      name="price"
+                      placeholder={product.price}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-property">
+                    Shopping URL:{" "}
+                    <input
+                      className="edit-box edit-shoppingURL"
+                      type="text"
+                      value={editForm.shopping}
+                      name="shopping"
+                      placeholder={product.shopping}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-property">
+                    Category:{" "}
+                    <input
+                      className="edit-box edit-name"
+                      type="text"
+                      value={editForm.category}
+                      name="category"
+                      placeholder={product.category}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="update-div">
+                    <input
+                      className="update-btn"
+                      type="submit"
+                      value="Update Product"
+                    />
+                  </div>
+                </form>
+              ) : null}
             </div>
           </div>
         </section>

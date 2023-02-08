@@ -5,6 +5,8 @@ import { UserContext } from "../data";
 import RegisterForm from "../components/RegisterForm";
 import LoginForm from "../components/LoginForm";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./auth.css";
 
 const Auth = (props) => {
   const { setAuth, setUser } = useContext(UserContext);
@@ -90,16 +92,36 @@ const Auth = (props) => {
   };
 
   function logoutUser() {
-    clearUserToken()
-    navigate(`/`)
-}
+    clearUserToken();
+    navigate(`/`);
+  }
 
   return (
-    <section>
-      <h1>Login / Register Container</h1>
-      <RegisterForm signUp={registerUser} />
-      <LoginForm signIn={loginUser} />
-      {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}    </section>
+    <section className="auth-section">
+      <div className="auth-form">
+        <div className="login-form">
+          <h1>Log In</h1>
+          <LoginForm signIn={loginUser} />
+        </div>
+        <div>
+          <Link className="link create-product-link" to={"/add"}>
+            <h6 className="add-a-product">Add a product</h6>
+          </Link>
+        </div>
+        <div className="register-form">
+          <h3>Not a member? Register here:</h3>
+          <RegisterForm signUp={registerUser} />
+        </div>
+        {token ? (
+          <>
+            <br />
+            <h6 onClick={logoutUser} className="logout-button">
+              Log Out
+            </h6>
+          </>
+        ) : null}{" "}
+      </div>
+    </section>
   );
 };
 

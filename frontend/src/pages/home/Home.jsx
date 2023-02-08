@@ -9,7 +9,6 @@ const Home = () => {
         <Link className="link shop-now " to={"/shop"}>
           SHOP HERE
         </Link>
-        <Link to="/auth">CONNECT</Link>
         <br></br>
       </div>
     </div>
