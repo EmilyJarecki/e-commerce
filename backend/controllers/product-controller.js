@@ -3,8 +3,7 @@ const router = express.Router()
 const { Product } = require('../models/lib')
 const { Review } = require('../models/lib')
 const { handleValidateOwnership, requireToken } = require("../middleware/auth");
-const db = require('../models/lib') // db.People 
-// const People = require('../models/People')
+const db = require('../models/lib') 
 
 // SHOW ROUTE
 router.get("/", async (req, res, next) => {
@@ -50,7 +49,7 @@ router.put("/:id", requireToken, async (req, res, next) => {
 		handleValidateOwnership(req, await Product.findById(req.params.id))
 		const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body)
 		console.log(updatedProduct)
-		res.status(200).json({message: "Successfully updated tweet", updatedProduct})
+		res.status(200).json({message: "Successfully updated product", updatedProduct})
 	}catch(error){
 		res.status(400).json({error: "error"})
         return next(err)
