@@ -1,16 +1,13 @@
 import React from 'react'
-//TODO not working
-const Wishlist = ({wishlist}) => {
-    console.log({wishlist})
+
+
+const Wishlist = (props) => {
+    console.log()
   return (
     <div>
       <h1>Wishlist</h1>
-      <ul>
-        {wishlist.name}
-        {/* {wishlist.map(( name ) => (
-          <li>{name}</li>
-        ))} */}
-      </ul>
+      <h3>{props.cost}</h3>
+      
     </div>
   )
 }

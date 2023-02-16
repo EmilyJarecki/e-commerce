@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import Wishlist from "../../components/Wishlist";
 import "./productlist.css";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
   const addToWishlist = (product) => {
-    setWishlist([...wishlist, product]);
-    console.log(wishlist);
+    setWishlist((prevWishItems) => [...wishlist, product]);
   };
+  const removeFromCart = (wish) => {
+    setWishlist((prevWishItems) =>
+      prevWishItems.filter((wishlist) => wishlist.id !== wish.id)
+    );
+  };
+
+
   const getTotal = () => {
     let total = 0;
     wishlist.forEach((product) => {
@@ -70,7 +76,8 @@ const ProductList = () => {
                   <div key={index}>
                     <div>
                       {wish.name} - ${wish.price}
-                    </div>{" "}
+                    </div>
+                    <button onClick={() => removeFromCart(wish)}>remove from cart</button>
                   </div>
                 );
               })}
