@@ -7,9 +7,24 @@ import { UserContext } from "../../data";
 import { useContext } from "react";
 import "./productdetail.css";
 import { getUserToken } from "../../utils/authToken";
+import Wishlist from "../../components/Wishlist";
 
-const ProductDetail = () => {
+const ProductDetail = (props) => {
   const [product, setProduct] = useState(null);
+
+
+  const [wishlist, setWishlist] = useState([]);
+
+  const handleAddToWishlist = (product) => {
+    setWishlist((prevWishlist) => [...prevWishlist, product]);
+  };
+
+  // const isInWishlist = wishlist.some((item) => item.id === product.id);
+
+
+
+
+
   const token = getUserToken();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,6 +33,7 @@ const ProductDetail = () => {
 
   // context data
   const { currentUser } = useContext(UserContext);
+
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -130,6 +146,17 @@ const ProductDetail = () => {
             ) : null}
             <p></p>
           </div>
+        <div>
+        {token && currentUser?._id ? (
+              <h1 className="wishlist" onClick={handleAddToWishlist}>
+                Add to WishList
+
+                <Wishlist wishlist={wishlist} />
+              </h1>
+            ) : null}
+
+
+        </div>
         </section>
         <section className="extra-content">
           <div className="edit-product">
