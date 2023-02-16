@@ -1,10 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Wishlist from "../../components/Wishlist";
 import "./productlist.css";
 
 const ProductList = () => {
   const [product, setProducts] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+
+  function handleAddToWishlist(id , name) {
+    setWishlist((prevWishlist) => [...prevWishlist, { id, name }]);
+  }
+  console.log(wishlist)
+
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
@@ -25,16 +33,15 @@ const ProductList = () => {
           <div className="product-container">
             {product?.map((product, index) => {
               return (
-                <div key={index}>
+                <div key={index}>                
+                <button onClick={() => handleAddToWishlist(product)}>Add to Wishlist</button>
                   {" "}
                   <Link
                     className="link"
                     key={product._id}
                     to={`/shop/${product._id}`}
                   >
-                    <div
-                      className="product-item"
-                    >
+                    <div className="product-item">
                       <img
                         className="product-image"
                         src={product.image}
@@ -47,10 +54,20 @@ const ProductList = () => {
                       </div>
                     </div>{" "}
                   </Link>
+ 
                 </div>
               );
             })}
           </div>
+          {/* <div>
+            {wishlist?.map((wish, index) => {
+              return(
+                <div key={index}>
+                  {wish}
+                </div>
+              )
+            })}
+          </div> */}
         </div>
       </div>
     );

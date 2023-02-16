@@ -1,19 +1,18 @@
 import React from 'react'
-
+//TODO not working
 const Wishlist = ({wishlist}) => {
+    console.log({wishlist})
   return (
     <div>
-      {wishlist.length > 0 ? (
-        <ul>
-          {wishlist.map((item) => (
-            <li>hello</li>
-          ))}
-        </ul>
-      ) : (
-        <p>Your wishlist is empty.</p>
-      )}
+      <h1>Wishlist</h1>
+      <ul>
+        {wishlist.name}
+        {/* {wishlist.map(( name ) => (
+          <li>{name}</li>
+        ))} */}
+      </ul>
     </div>
-  );
+  )
 }
 
 export default Wishlist
