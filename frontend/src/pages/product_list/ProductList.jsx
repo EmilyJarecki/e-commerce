@@ -8,10 +8,10 @@ const ProductList = () => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
-  function handleAddToWishlist(id , name) {
-    setWishlist((prevWishlist) => [...prevWishlist, { id, name }]);
+  const addToWishlist = (product) => {
+    setWishlist([...wishlist, product]);
+    console.log(wishlist)
   }
-  console.log(wishlist)
 
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
@@ -34,7 +34,7 @@ const ProductList = () => {
             {product?.map((product, index) => {
               return (
                 <div key={index}>                
-                <button onClick={() => handleAddToWishlist(product)}>Add to Wishlist</button>
+                <button onClick={() => addToWishlist(product)}>Add to Wishlist</button>
                   {" "}
                   <Link
                     className="link"
@@ -58,6 +58,15 @@ const ProductList = () => {
                 </div>
               );
             })}
+            <div>
+              {wishlist?.map((wish, index) => {
+                return(
+                  <div key={index}>
+                    {wish.name}
+                  </div>
+                )
+              })}
+            </div>
           </div>
           {/* <div>
             {wishlist?.map((wish, index) => {
