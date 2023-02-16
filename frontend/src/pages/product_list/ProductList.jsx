@@ -10,9 +10,15 @@ const ProductList = () => {
 
   const addToWishlist = (product) => {
     setWishlist([...wishlist, product]);
-    console.log(wishlist)
-  }
-
+    console.log(wishlist);
+  };
+  const getTotal = () => {
+    let total = 0;
+    wishlist.forEach((product) => {
+      total += product.price;
+    });
+    return total.toFixed(2);
+  };
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
@@ -33,9 +39,10 @@ const ProductList = () => {
           <div className="product-container">
             {product?.map((product, index) => {
               return (
-                <div key={index}>                
-                <button onClick={() => addToWishlist(product)}>Add to Wishlist</button>
-                  {" "}
+                <div key={index}>
+                  <button onClick={() => addToWishlist(product)}>
+                    Add to Wishlist
+                  </button>{" "}
                   <Link
                     className="link"
                     key={product._id}
@@ -54,29 +61,22 @@ const ProductList = () => {
                       </div>
                     </div>{" "}
                   </Link>
- 
                 </div>
               );
             })}
             <div>
               {wishlist?.map((wish, index) => {
-                return(
+                return (
                   <div key={index}>
-                    {wish.name}
+                    <div>
+                      {wish.name} - ${wish.price}
+                    </div>{" "}
                   </div>
-                )
+                );
               })}
             </div>
+            <p>Total: {getTotal()}</p>
           </div>
-          {/* <div>
-            {wishlist?.map((wish, index) => {
-              return(
-                <div key={index}>
-                  {wish}
-                </div>
-              )
-            })}
-          </div> */}
         </div>
       </div>
     );
