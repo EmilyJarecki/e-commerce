@@ -7,16 +7,15 @@ import "./productlist.css";
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  console.log(wishlist)
 
   const addToWishlist = (product) => {
     setWishlist((prevWishItems) => [...wishlist, product]);
   };
-  const removeFromCart = (wish) => {
-    setWishlist((prevWishItems) =>
-      prevWishItems.filter((wishlist) => wishlist.id !== wish.id)
-    );
+  const removeFromCart = (id) => {
+    const updatedWishlist = wishlist.filter(wish => wish._id !== id)
+    setWishlist(updatedWishlist)
   };
-
 
   const getTotal = () => {
     let total = 0;
@@ -77,7 +76,7 @@ const ProductList = (props) => {
                     <div>
                       {wish.name} - ${wish.price}
                     </div>
-                    <button onClick={() => removeFromCart(wish)}>remove from cart</button>
+                    <button onClick={() => removeFromCart(wish._id)}>remove from cart</button>
                   </div>
                 );
               })}
