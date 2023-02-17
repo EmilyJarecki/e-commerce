@@ -7,14 +7,19 @@ import "./productlist.css";
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  console.log(wishlist)
+  console.log(wishlist);
 
   const addToWishlist = (product) => {
-    setWishlist((prevWishItems) => [...wishlist, product]);
+    const wishExists = wishlist.some((wish) => wish._id == product._id);
+    if (wishExists) {
+      alert("This item is already in your wishlist");
+    } else {
+      setWishlist((prevWishItems) => [...wishlist, product]);
+    }
   };
   const removeFromCart = (id) => {
-    const updatedWishlist = wishlist.filter(wish => wish._id !== id)
-    setWishlist(updatedWishlist)
+    const updatedWishlist = wishlist.filter((wish) => wish._id !== id);
+    setWishlist(updatedWishlist);
   };
 
   const getTotal = () => {
@@ -76,7 +81,9 @@ const ProductList = (props) => {
                     <div>
                       {wish.name} - ${wish.price}
                     </div>
-                    <button onClick={() => removeFromCart(wish._id)}>remove from cart</button>
+                    <button onClick={() => removeFromCart(wish._id)}>
+                      remove from cart
+                    </button>
                   </div>
                 );
               })}
