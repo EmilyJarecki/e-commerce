@@ -1,13 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Wishlist from "../../components/Wishlist";
 import "./productlist.css";
+import { UserContext } from "../../data";
+import { useContext } from "react";
+import { getUserToken } from "../../utils/authToken";
 
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  console.log(wishlist);
+  const token = getUserToken();
+  // context data
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
 
   const addToWishlist = (product) => {
     const wishExists = wishlist.some((wish) => wish._id == product._id);
@@ -50,9 +57,11 @@ const ProductList = (props) => {
             {product?.map((product, index) => {
               return (
                 <div key={index}>
-                  <button onClick={() => addToWishlist(product)}>
-                    Add to Wishlist
-                  </button>{" "}
+                  {token ? (
+                    <button onClick={() => addToWishlist(product)}>
+                      Add to Wishlist
+                    </button>
+                  ) : null}
                   <Link
                     className="link"
                     key={product._id}
@@ -81,6 +90,7 @@ const ProductList = (props) => {
                     <div>
                       {wish.name} - ${wish.price}
                     </div>
+
                     <button onClick={() => removeFromCart(wish._id)}>
                       remove from cart
                     </button>
