@@ -70,6 +70,7 @@ const CreateProduct = () => {
               <h3 className="add-prrty prrty-desc">Description</h3>
               <h3 className="add-prrty">Price</h3>
               <h3 className="add-prrty">Store Link</h3>
+              <h3 className="add-prrty">Category</h3>
             </div>
             <div className="input-divs-cont">
               <p className="input-div">
@@ -116,6 +117,7 @@ const CreateProduct = () => {
                   autoComplete="off"
                 />
               </p>
+              
               <p className="input-div">
                 <input
                   className="create-input"
@@ -126,6 +128,16 @@ const CreateProduct = () => {
                   onChange={handleChange}
                   autoComplete="off"
                 />
+              </p>
+              <p className="input-div">
+                <select className="create-input">
+                    <option value="Clothes">Clothes</option>                    
+                    <option value="Shoes">Shoes</option>
+                    <option value="">Accessories</option>
+                    <option value="Home & Decor">Home & Decor</option>
+                    <option value="Art">Art</option>
+                    <option value="Other">Other</option>
+                </select>
               </p>
             </div>
           </div>

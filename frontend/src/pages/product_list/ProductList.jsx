@@ -76,7 +76,7 @@ const ProductList = (props) => {
                       <div className="product-content">
                         <p className="list-prod-name">{product.name}</p>
 
-                        <p className="list-prod-price">${product.price}</p>
+                        <p className="list-prod-price">${(product.price).toFixed(2)}</p>
                       </div>
                     </div>{" "}
                   </Link>
@@ -92,13 +92,13 @@ const ProductList = (props) => {
                     </div>
 
                     <button onClick={() => removeFromCart(wish._id)}>
-                      remove from cart
+                      remove from wishlist
                     </button>
                   </div>
                 );
               })}
             </div>
-            <p>Total: {getTotal()}</p>
+            {/* <p>Total: {getTotal()}</p> */}
           </div>
         </div>
       </div>
