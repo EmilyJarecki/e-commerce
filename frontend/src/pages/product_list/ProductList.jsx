@@ -60,58 +60,67 @@ const ProductList = (props) => {
   const loaded = () => {
     return (
       <div className="product-list">
-        <ul>
-          {categories.map((category) => (
-            <li key={category}>
-              <a href="#" onClick={() => setSelectedCategory(category)}>
-                {category}
+        <div className="ulList">
+          <ul>
+            {categories.map((category) => (
+              <li key={category}>
+                <a
+                  className="link view-by"
+                  href="#"
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a className="link view-by" href="" onClick={() => navigate()}>
+                View All
               </a>
             </li>
-          ))}
-          <li>
-            <a href="" onClick={() => navigate()}>
-              View All
-            </a>
-          </li>
-        </ul>
+          </ul>{" "}
+        </div>
         <ul>
-        <div className="product-container">
-          {filteredProducts.map((product, index) => {
-            return (
-              <div key={index}>
-                {token ? (
-                  <button onClick={() => addToWishlist(product)}>
-                    Add to Wishlist
-                  </button>
-                ) : null}
-                <Link
-                  className="link"
-                  key={product._id}
-                  to={`/shop/${product._id}`}
-                >
-                  <div className="product-item">
-                    <img
-                      className="product-image"
-                      src={product.image}
-                      alt={product.name}
-                    />
-                    <div className="product-content">
-                      <p className="list-prod-name">{product.name}</p>
+          <div className="product-container">
+            {filteredProducts.map((product, index) => {
+              return (
+                <div key={index}>
+                  {token ? (
+                    <button
+                      className="wish-button"
+                      onClick={() => addToWishlist(product)}
+                    >
+                      Add to Wishlist
+                    </button>
+                  ) : null}
+                  <Link
+                    className="link"
+                    key={product._id}
+                    to={`/shop/${product._id}`}
+                  >
+                    <div className="product-item">
+                      <img
+                        className="product-image"
+                        src={product.image}
+                        alt={product.name}
+                      />
+                      <div className="product-content">
+                        <p className="list-prod-name">{product.name}</p>
 
-                      <p className="list-prod-price">
-                        ${product.price.toFixed(2)}
-                      </p>
-                    </div>
-                  </div>{" "}
-                </Link>
-              </div>
-            );
-          })}
+                        <p className="list-prod-price">
+                          ${product.price.toFixed(2)}
+                        </p>
+                      </div>
+                    </div>{" "}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </ul>
         {/* <div> */}
-          <div className="product-container">
-            {/* {product?.map((product, index) => {
+        <div className="product-container">
+          {/* {product?.map((product, index) => {
               return (
                 <div key={index}>
                   {token ? (
@@ -142,21 +151,30 @@ const ProductList = (props) => {
                 </div>
               );
             })} */}
-            <div>
-              {wishlist?.map((wish, index) => {
-                return (
-                  <div key={index}>
-                    <div>
-                      {wish.name} - ${wish.price}
-                    </div>
-                    <button onClick={() => removeFromCart(wish._id)}>
-                      remove from wishlist
+          <div className="wishlist">
+            {" "}
+            <h1>Wishlist</h1>
+            {wishlist?.map((wish, index) => {
+              return (
+                <div key={index}>
+                  <div>
+                    {" "}
+                    <button
+                      className="wish-button"
+                      onClick={() => removeFromCart(wish._id)}
+                    >
+                      <img
+                        src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                        className="remove-wish"
+                      />
                     </button>
+                    {wish.name} - ${wish.price}
                   </div>
-                );
-              })}
-            </div>
-            {/* <p>Total: {getTotal()}</p> */}
+                </div>
+              );
+            })}
+          </div>
+          {/* <p>Total: {getTotal()}</p> */}
           {/* </div> */}
         </div>
       </div>
