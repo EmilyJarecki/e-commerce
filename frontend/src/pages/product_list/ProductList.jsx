@@ -24,19 +24,17 @@ const ProductList = (props) => {
     : product;
 
   const addToWishlist = (product) => {
-    const wishExists = wishlist.some((wish) => wish._id == product._id);
-    if (wishExists) {
-      alert("This item is already in your wishlist");
-    } else {
-      setWishlist((prevWishItems) => [...wishlist, product]);
-      console.log(wishlist);
-    }
-  };
-  const removeFromCart = (id) => {
-    const updatedWishlist = wishlist.filter((wish) => wish._id !== id);
-    setWishlist(updatedWishlist);
+    const updatedWishlist = [...wishlist, product]
+    setWishlist(updatedWishlist)
+    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
   };
 
+const removeFromWishlist = (id) => {
+  const updatedWishlist = wishlist.filter((wish) => wish._id !== id)
+  setWishlist(updatedWishlist)
+  localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
+
+}
   const getTotal = () => {
     let total = 0;
     wishlist.forEach((product) => {
@@ -90,7 +88,7 @@ const ProductList = (props) => {
                       className="wish-button"
                       onClick={() => addToWishlist(product)}
                     >
-                      Add to Wishlist
+                      Add to Cart
                     </button>
                   ) : null}
                   <Link
@@ -118,42 +116,10 @@ const ProductList = (props) => {
             })}
           </div>
         </ul>
-        {/* <div> */}
         <div className="product-container">
-          {/* {product?.map((product, index) => {
-              return (
-                <div key={index}>
-                  {token ? (
-                    <button onClick={() => addToWishlist(product)}>
-                      Add to Wishlist
-                    </button>
-                  ) : null}
-                  <Link
-                    className="link"
-                    key={product._id}
-                    to={`/shop/${product._id}`}
-                  >
-                    <div className="product-item">
-                      <img
-                        className="product-image"
-                        src={product.image}
-                        alt={product.name}
-                      />
-                      <div className="product-content">
-                        <p className="list-prod-name">{product.name}</p>
-
-                        <p className="list-prod-price">
-                          ${product.price.toFixed(2)}
-                        </p>
-                      </div>
-                    </div>{" "}
-                  </Link>
-                </div>
-              );
-            })} */}
           <div className="wishlist">
             {" "}
-            <h1>Wishlist</h1>
+            <h1>Cart</h1>
             {wishlist?.map((wish, index) => {
               return (
                 <div key={index}>
@@ -161,7 +127,7 @@ const ProductList = (props) => {
                     {" "}
                     <button
                       className="wish-button"
-                      onClick={() => removeFromCart(wish._id)}
+                        onClick={() => removeFromWishlist(wish._id)}
                     >
                       <img
                         src="https://img.icons8.com/material-sharp/512/delete-sign.png"
@@ -175,7 +141,6 @@ const ProductList = (props) => {
             })}
           </div>
           {/* <p>Total: {getTotal()}</p> */}
-          {/* </div> */}
         </div>
       </div>
     );
@@ -196,7 +161,11 @@ const ProductList = (props) => {
   );
 
   useEffect(() => {
-    getProducts();
+    getProducts()
+    const storedWishlistItems = JSON.parse(localStorage.getItem('wishlist'))
+    if (storedWishlistItems){
+      setWishlist(storedWishlistItems)
+    }
   }, []);
 
   return <div>{product ? loaded() : loading()}</div>;
