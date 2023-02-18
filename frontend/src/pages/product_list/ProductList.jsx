@@ -29,6 +29,7 @@ const ProductList = (props) => {
       alert("This item is already in your wishlist");
     } else {
       setWishlist((prevWishItems) => [...wishlist, product]);
+      console.log(wishlist);
     }
   };
   const removeFromCart = (id) => {
@@ -68,21 +69,47 @@ const ProductList = (props) => {
             </li>
           ))}
           <li>
-          <a href="#" onClick={() => navigate(0)}>
-                View All
-              </a>
+            <a href="#" onClick={() => navigate()}>
+              View All
+            </a>
           </li>
         </ul>
         <ul>
-          {filteredProducts.map((items) => (
-            <li key={items.id}>
-              {items.name} ${items.price}
-            </li>
-          ))}
+          {filteredProducts.map((product, index) => {
+            return (
+              <div key={index}>
+                {token ? (
+                  <button onClick={() => addToWishlist(product)}>
+                    Add to Wishlist
+                  </button>
+                ) : null}
+                <Link
+                  className="link"
+                  key={product._id}
+                  to={`/shop/${product._id}`}
+                >
+                  <div className="product-item">
+                    <img
+                      className="product-image"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                    <div className="product-content">
+                      <p className="list-prod-name">{product.name}</p>
+
+                      <p className="list-prod-price">
+                        ${product.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>{" "}
+                </Link>
+              </div>
+            );
+          })}
         </ul>
-        <div>
+        {/* <div> */}
           <div className="product-container">
-            {product?.map((product, index) => {
+            {/* {product?.map((product, index) => {
               return (
                 <div key={index}>
                   {token ? (
@@ -112,7 +139,7 @@ const ProductList = (props) => {
                   </Link>
                 </div>
               );
-            })}
+            })} */}
             <div>
               {wishlist?.map((wish, index) => {
                 return (
@@ -128,7 +155,7 @@ const ProductList = (props) => {
               })}
             </div>
             {/* <p>Total: {getTotal()}</p> */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     );
