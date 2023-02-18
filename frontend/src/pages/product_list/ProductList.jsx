@@ -69,12 +69,13 @@ const ProductList = (props) => {
             </li>
           ))}
           <li>
-            <a href="#" onClick={() => navigate()}>
+            <a href="" onClick={() => navigate()}>
               View All
             </a>
           </li>
         </ul>
         <ul>
+        <div className="product-container">
           {filteredProducts.map((product, index) => {
             return (
               <div key={index}>
@@ -106,6 +107,7 @@ const ProductList = (props) => {
               </div>
             );
           })}
+          </div>
         </ul>
         {/* <div> */}
           <div className="product-container">
