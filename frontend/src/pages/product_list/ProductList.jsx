@@ -16,6 +16,13 @@ const ProductList = (props) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const categories = Array.from(new Set(product.map((p) => p.category)));
+
+  const filteredProducts = selectedCategory
+    ? product.filter((p) => p.category === selectedCategory)
+    : product;
+
   const addToWishlist = (product) => {
     const wishExists = wishlist.some((wish) => wish._id == product._id);
     if (wishExists) {
@@ -76,13 +83,29 @@ const ProductList = (props) => {
                       <div className="product-content">
                         <p className="list-prod-name">{product.name}</p>
 
-                        <p className="list-prod-price">${(product.price).toFixed(2)}</p>
+                        <p className="list-prod-price">
+                          ${product.price.toFixed(2)}
+                        </p>
                       </div>
                     </div>{" "}
                   </Link>
                 </div>
               );
             })}
+            <ul>
+              {categories.map((category) => (
+                <li key={category}>
+                  <a href="#" onClick={() => setSelectedCategory(category)}>
+                    {category}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ul>
+        {filteredProducts.map((items) => (
+          <li key={items.id}>{items.name} ${items.price}</li>
+        ))}
+      </ul>
             <div>
               {wishlist?.map((wish, index) => {
                 return (
@@ -90,7 +113,6 @@ const ProductList = (props) => {
                     <div>
                       {wish.name} - ${wish.price}
                     </div>
-
                     <button onClick={() => removeFromCart(wish._id)}>
                       remove from wishlist
                     </button>
