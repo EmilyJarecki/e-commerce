@@ -31,6 +31,8 @@ const ProductList = (props) => {
 
 const removeFromWishlist = (id) => {
   const updatedWishlist = wishlist.filter((wish) => wish._id !== id)
+  console.log(id)
+  console.log(wishlist)
   setWishlist(updatedWishlist)
   localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
 
@@ -138,9 +140,9 @@ const removeFromWishlist = (id) => {
                   </div>
                 </div>
               );
-            })}
+            })}<p>Total: {getTotal()}</p>
           </div>
-          {/* <p>Total: {getTotal()}</p> */}
+          
         </div>
       </div>
     );
