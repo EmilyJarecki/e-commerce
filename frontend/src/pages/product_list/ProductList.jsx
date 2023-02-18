@@ -59,6 +59,27 @@ const ProductList = (props) => {
   const loaded = () => {
     return (
       <div className="product-list">
+        <ul>
+          {categories.map((category) => (
+            <li key={category}>
+              <a href="#" onClick={() => setSelectedCategory(category)}>
+                {category}
+              </a>
+            </li>
+          ))}
+          <li>
+          <a href="#" onClick={() => navigate(0)}>
+                View All
+              </a>
+          </li>
+        </ul>
+        <ul>
+          {filteredProducts.map((items) => (
+            <li key={items.id}>
+              {items.name} ${items.price}
+            </li>
+          ))}
+        </ul>
         <div>
           <div className="product-container">
             {product?.map((product, index) => {
@@ -92,20 +113,6 @@ const ProductList = (props) => {
                 </div>
               );
             })}
-            <ul>
-              {categories.map((category) => (
-                <li key={category}>
-                  <a href="#" onClick={() => setSelectedCategory(category)}>
-                    {category}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <ul>
-        {filteredProducts.map((items) => (
-          <li key={items.id}>{items.name} ${items.price}</li>
-        ))}
-      </ul>
             <div>
               {wishlist?.map((wish, index) => {
                 return (
