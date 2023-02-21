@@ -13,8 +13,8 @@ const Header = () => {
       <Link className="link product-list-link" to={"/shop"}>
         <h3 className="view-all">Shop All</h3>
       </Link>
-      <Link className="link product-list-link" to={"/wishlist"}>
-        <h3 className="view-all">Wishlist</h3>
+      <Link className="link product-list-link" to={"/cart"}>
+        <h3 className="view-all">Cart</h3>
       </Link>
 
 

@@ -6,6 +6,7 @@ import ProductList from "../pages/product_list/ProductList";
 import CreateProduct from "../pages/CreateProduct/CreateProduct";
 import Auth from "../pages/Auth";
 import Wishlist from "./Wishlist";
+import Cart from "../pages/Cart/Cart";
 
 const Main = (props) => {
   return (
@@ -17,7 +18,8 @@ const Main = (props) => {
           <Route path="/shop/:id" element={<ProductDetail />} />
           <Route path="/auth" element={<Auth />}/>
           <Route path="/wishlist" element={<Wishlist />} />
-        </Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes> 
     </main>
   );
 };

@@ -6,11 +6,13 @@ import "./productlist.css";
 import { UserContext } from "../../data";
 import { useContext } from "react";
 import { getUserToken } from "../../utils/authToken";
+import Cart from "../Cart/Cart";
 
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const token = getUserToken();
+  console.log(wishlist)
   // context data
   const { id } = useParams();
   const navigate = useNavigate();
@@ -136,13 +138,13 @@ const removeFromWishlist = (id) => {
                         className="remove-wish"
                       />
                     </button>
-                    {wish.name} - ${wish.price}
+                    {wish.name} - ${wish.price}          
                   </div>
                 </div>
               );
             })}<p>Total: {getTotal()}</p>
+            <Cart wishlist={wishlist}/>
           </div>
-          
         </div>
       </div>
     );
