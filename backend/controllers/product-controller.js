@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { Product } = require('../models/lib')
-const { Review } = require('../models/lib')
 const { handleValidateOwnership, requireToken } = require("../middleware/auth");
 const db = require('../models/lib') 
 
