@@ -4,7 +4,7 @@ import { getUserToken } from "../../utils/authToken";
 import "./createProduct.css";
 
 const CreateProduct = () => {
-  // state to hold formData
+  // STATE TO HOLD FORMDATA
   const token = getUserToken()
   const [newForm, setNewForm] = useState({
     name: "",
@@ -14,7 +14,7 @@ const CreateProduct = () => {
     shopping: "",
   });
 
-  // handleChange function for form
+  // HANDLECHANGE FUNCTION FOR FORM
   const handleChange = (e) => {
     setNewForm({ ...newForm, [e.target.name]: e.target.value });
   };
@@ -35,8 +35,6 @@ const CreateProduct = () => {
         }
       );
       console.log("Product created! Go check out the products page.");
-      //We have a page for this
-      //getProducts()
     } catch (err) {
       console.log(err);
     }

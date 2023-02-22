@@ -22,8 +22,6 @@ const Search = () => {
     getProducts();
   }, []);
 
-  // console.log(data);
-
   const onChange = (event) => {
     setValue(event.target.value);
   };
@@ -54,7 +52,7 @@ const Search = () => {
                 searchTerm && name.startsWith(searchTerm) && name !== searchTerm
               );
             })
-            //amount of rows that appear
+            // AMOUNT OF ROWS WHICH APPEAR
             .slice(0, 10)
             .map((item, index) => (
               <>
