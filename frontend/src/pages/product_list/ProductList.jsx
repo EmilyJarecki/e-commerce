@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import Wishlist from "../../components/Wishlist";
 import "./productlist.css";
 import { UserContext } from "../../data";
 import { useContext } from "react";
 import { getUserToken } from "../../utils/authToken";
-import Cart from "../Cart/Cart";
 
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
