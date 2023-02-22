@@ -80,7 +80,6 @@ const ProductList = (props) => {
             </li>
           </ul>{" "}
         </div>
-        <ul>
           <div className="product-container">
             {filteredProducts.map((product, index) => {
               return (
@@ -117,8 +116,7 @@ const ProductList = (props) => {
               );
             })}
           </div>
-        </ul>
-        <div className="product-container">
+        <div className="product">
           <div className="wishlist">
             {" "}
             <h1>Cart</h1>
