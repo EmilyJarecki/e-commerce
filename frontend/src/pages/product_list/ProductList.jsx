@@ -134,12 +134,12 @@ const ProductList = (props) => {
                         className="remove-wish"
                       />
                     </button>
-                    {wish.name} - ${wish.price}
+                    {wish.name} - ${wish.price.toFixed(2)}
                   </div>
                 </div>
               );
             })}
-            <p>Total: {getTotal()}</p>
+            <p>Total: ${getTotal()}</p>
             <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
               Go To Cart
             </Link>
