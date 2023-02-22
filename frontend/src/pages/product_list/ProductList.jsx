@@ -12,7 +12,7 @@ const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const token = getUserToken();
-  console.log(wishlist)
+  console.log(wishlist);
   // context data
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,21 +24,20 @@ const ProductList = (props) => {
   const filteredProducts = selectedCategory
     ? product.filter((p) => p.category === selectedCategory)
     : product;
-
+console.log(product)
   const addToWishlist = (product) => {
-    const updatedWishlist = [...wishlist, product]
-    setWishlist(updatedWishlist)
-    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
+    const updatedWishlist = [...wishlist, product];
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
   };
 
-const removeFromWishlist = (id) => {
-  const updatedWishlist = wishlist.filter((wish) => wish._id !== id)
-  console.log(id)
-  console.log(wishlist)
-  setWishlist(updatedWishlist)
-  localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
-
-}
+  const removeFromWishlist = (id) => {
+    const updatedWishlist = wishlist.filter((wish) => wish._id !== id);
+    console.log(id);
+    console.log(wishlist);
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+  };
   const getTotal = () => {
     let total = 0;
     wishlist.forEach((product) => {
@@ -131,19 +130,22 @@ const removeFromWishlist = (id) => {
                     {" "}
                     <button
                       className="wish-button"
-                        onClick={() => removeFromWishlist(wish._id)}
+                      onClick={() => removeFromWishlist(wish._id)}
                     >
                       <img
                         src="https://img.icons8.com/material-sharp/512/delete-sign.png"
                         className="remove-wish"
                       />
                     </button>
-                    {wish.name} - ${wish.price}          
+                    {wish.name} - ${wish.price}
                   </div>
                 </div>
               );
-            })}<p>Total: {getTotal()}</p>
-            <Cart wishlist={wishlist}/>
+            })}
+            <p>Total: {getTotal()}</p>
+            <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
+              Go To Cart
+            </Link>
           </div>
         </div>
       </div>
@@ -165,10 +167,10 @@ const removeFromWishlist = (id) => {
   );
 
   useEffect(() => {
-    getProducts()
-    const storedWishlistItems = JSON.parse(localStorage.getItem('wishlist'))
-    if (storedWishlistItems){
-      setWishlist(storedWishlistItems)
+    getProducts();
+    const storedWishlistItems = JSON.parse(localStorage.getItem("wishlist"));
+    if (storedWishlistItems) {
+      setWishlist(storedWishlistItems);
     }
   }, []);
 
