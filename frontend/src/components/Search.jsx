@@ -39,7 +39,7 @@ const Search = () => {
             className="search-inner"
             value={value}
             onChange={onChange}
-            placeholder="Search"
+            placeholder="Search Items"
           />
         </div>
         <div className="dropdown">

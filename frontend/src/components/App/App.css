@@ -2,6 +2,8 @@
     font-family: 'Nanum Myeongjo', serif;
 }
 
-/* font-family: 'Playfair Display', serif; */
-
-/* font-family: 'Sassy Frass', cursive;  */
+/* will prevent page from moving */
+html, body {
+    width: auto!important; 
+    overflow-x: hidden!important
+} 

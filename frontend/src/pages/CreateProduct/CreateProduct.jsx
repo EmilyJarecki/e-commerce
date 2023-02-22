@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { getUserToken } from "../../utils/authToken";
 import "./createProduct.css";
 
 const CreateProduct = () => {
   // state to hold formData
+  const token = getUserToken()
   const [newForm, setNewForm] = useState({
     name: "",
     image: "",
@@ -27,6 +29,7 @@ const CreateProduct = () => {
           method: "post",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify(productData),
         }
@@ -58,6 +61,7 @@ const CreateProduct = () => {
       <h1 className="add-product">Add a Product</h1>
 
       <div className="create-product-container">
+        {token ?
         <form className="create-form-div" onSubmit={handleSubmit}>
           <div className="create-form">
             <div className="add-titles">
@@ -66,6 +70,7 @@ const CreateProduct = () => {
               <h3 className="add-prrty prrty-desc">Description</h3>
               <h3 className="add-prrty">Price</h3>
               <h3 className="add-prrty">Store Link</h3>
+              <h3 className="add-prrty">Category</h3>
             </div>
             <div className="input-divs-cont">
               <p className="input-div">
@@ -112,6 +117,7 @@ const CreateProduct = () => {
                   autoComplete="off"
                 />
               </p>
+              
               <p className="input-div">
                 <input
                   className="create-input"
@@ -123,12 +129,23 @@ const CreateProduct = () => {
                   autoComplete="off"
                 />
               </p>
+              <p className="input-div">
+                <select className="create-input">
+                    <option value="Clothes">Clothes</option>                    
+                    <option value="Shoes">Shoes</option>
+                    <option value="">Accessories</option>
+                    <option value="Home & Decor">Home & Decor</option>
+                    <option value="Art">Art</option>
+                    <option value="Other">Other</option>
+                </select>
+              </p>
             </div>
           </div>
           <div className="add-btn">
           <input className="create-submit" type="submit" value="Add Product" />
           </div>
-        </form>
+        </form> : <p className="please-sign">Please Sign In</p> }
+
       </div>
       </div>
     </div>

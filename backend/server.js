@@ -15,13 +15,17 @@ const { PORT, MONGODB_URI } = process.env;
 //CONTROLLER IMPORT
 const productController = require('./controllers/product-controller')
 const reviewController = require('./controllers/review-controller')
-
+const authController = require('./controllers/auth-controller')
+const wishController = require('./controllers/wish-controller')
 //MIDDLEWARE
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json());
 app.use('/products', productController)
 app.use('/review', reviewController)
+app.use('/auth', authController)
+app.use('/wishlist', wishController)
+
 
 // LISTENER
 app.listen(process.env.PORT || 4000, () => console.log(`listening on PORT ${PORT}`));

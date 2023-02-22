@@ -8,6 +8,14 @@ const ProductSchema = new mongoose.Schema({
     price: {type: Number, required: true},
     shopping: {type: String},
     category: {type: String},
+    owner: {
+        //ObjectId lets us populate data
+        type: mongoose.Types.ObjectId,
+        // this is the model
+        ref: 'User',
+        // can prove to be buggy if there is data in the database
+        required: true
+    },
     reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
 }, {
     timestamps: true,

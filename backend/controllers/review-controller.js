@@ -4,9 +4,6 @@ const { Product } = require('../models/lib')
 const { Review } = require('../models/lib')
 
 // REVIEW INDEX ROUTE
-// when inputted in postman as /review/id , you get an array of reviews from that id object
-
-// how to get: http://localhost:4000/review/63db06578afff9d94a178ab5
 router.get("/:productid", async (req, res, next) => {
     try {
         const singleProduct = await Product.findById(req.params.productid)
@@ -29,7 +26,6 @@ router.delete("/:reviewid", async (req, res, next) => {
     }
 });
 
-// how to post: review/product/productid
 // POST ROUTE
 router.post('/:productid', async (req, res, next) => {
 	try {
@@ -58,10 +54,5 @@ router.put("/:id", async (req, res, next) => {
         return next(err)
 	}
 });
-
-
-
-
-
 
 module.exports = router 

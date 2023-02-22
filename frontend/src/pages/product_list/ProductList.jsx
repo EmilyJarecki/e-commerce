@@ -1,10 +1,50 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import Wishlist from "../../components/Wishlist";
 import "./productlist.css";
+import { UserContext } from "../../data";
+import { useContext } from "react";
+import { getUserToken } from "../../utils/authToken";
+import Cart from "../Cart/Cart";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [product, setProducts] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const token = getUserToken();
+  console.log(wishlist);
+  // context data
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const categories = Array.from(new Set(product.map((p) => p.category)));
+
+  const filteredProducts = selectedCategory
+    ? product.filter((p) => p.category === selectedCategory)
+    : product;
+console.log(product)
+  const addToWishlist = (product) => {
+    const updatedWishlist = [...wishlist, product];
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+  };
+
+  const removeFromWishlist = (id) => {
+    const updatedWishlist = wishlist.filter((wish) => wish._id !== id);
+    console.log(id);
+    console.log(wishlist);
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+  };
+  const getTotal = () => {
+    let total = 0;
+    wishlist.forEach((product) => {
+      total += product.price;
+    });
+    return total.toFixed(2);
+  };
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
@@ -21,20 +61,45 @@ const ProductList = () => {
   const loaded = () => {
     return (
       <div className="product-list">
-        <div>
+        <div className="ulList">
+          <ul>
+            {categories.map((category) => (
+              <li key={category}>
+                <a
+                  className="link view-by"
+                  href="#"
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a className="link view-by" href="" onClick={() => navigate()}>
+                View All
+              </a>
+            </li>
+          </ul>{" "}
+        </div>
+        <ul>
           <div className="product-container">
-            {product?.map((product, index) => {
+            {filteredProducts.map((product, index) => {
               return (
                 <div key={index}>
-                  {" "}
+                  {token ? (
+                    <button
+                      className="wish-button"
+                      onClick={() => addToWishlist(product)}
+                    >
+                      Add to Cart
+                    </button>
+                  ) : null}
                   <Link
                     className="link"
                     key={product._id}
                     to={`/shop/${product._id}`}
                   >
-                    <div
-                      className="product-item"
-                    >
+                    <div className="product-item">
                       <img
                         className="product-image"
                         src={product.image}
@@ -43,13 +108,44 @@ const ProductList = () => {
                       <div className="product-content">
                         <p className="list-prod-name">{product.name}</p>
 
-                        <p className="list-prod-price">${product.price}</p>
+                        <p className="list-prod-price">
+                          ${product.price.toFixed(2)}
+                        </p>
                       </div>
                     </div>{" "}
                   </Link>
                 </div>
               );
             })}
+          </div>
+        </ul>
+        <div className="product-container">
+          <div className="wishlist">
+            {" "}
+            <h1>Cart</h1>
+            {wishlist?.map((wish, index) => {
+              return (
+                <div key={index}>
+                  <div>
+                    {" "}
+                    <button
+                      className="wish-button"
+                      onClick={() => removeFromWishlist(wish._id)}
+                    >
+                      <img
+                        src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                        className="remove-wish"
+                      />
+                    </button>
+                    {wish.name} - ${wish.price}
+                  </div>
+                </div>
+              );
+            })}
+            <p>Total: {getTotal()}</p>
+            <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
+              Go To Cart
+            </Link>
           </div>
         </div>
       </div>
@@ -72,6 +168,10 @@ const ProductList = () => {
 
   useEffect(() => {
     getProducts();
+    const storedWishlistItems = JSON.parse(localStorage.getItem("wishlist"));
+    if (storedWishlistItems) {
+      setWishlist(storedWishlistItems);
+    }
   }, []);
 
   return <div>{product ? loaded() : loading()}</div>;
