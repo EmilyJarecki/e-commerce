@@ -10,8 +10,7 @@ const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const token = getUserToken();
-  console.log(wishlist);
-  // context data
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
@@ -22,7 +21,7 @@ const ProductList = (props) => {
   const filteredProducts = selectedCategory
     ? product.filter((p) => p.category === selectedCategory)
     : product;
-console.log(product)
+
   const addToWishlist = (product) => {
     const updatedWishlist = [...wishlist, product];
     setWishlist(updatedWishlist);
@@ -36,6 +35,8 @@ console.log(product)
     setWishlist(updatedWishlist);
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
   };
+
+  // PRICE TOTAL
   const getTotal = () => {
     let total = 0;
     wishlist.forEach((product) => {

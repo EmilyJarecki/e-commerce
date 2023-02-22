@@ -15,7 +15,8 @@ const LoginForm = ({ signIn }) => {
     } else {
       navigate("/");
     }
-    // form empties out
+    
+    // FORM EMPTIES OUT
     setInput(initialState);
   };
 

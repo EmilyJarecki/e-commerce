@@ -15,7 +15,7 @@ const RegisterForm = ({ signUp }) => {
     } else {
       navigate("/");
     }
-    // form empties out
+    // FORM EMPTIES OUT
     setInput(initialState);
   };
 
