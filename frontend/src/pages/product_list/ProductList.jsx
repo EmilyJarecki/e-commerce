@@ -117,14 +117,13 @@ const ProductList = (props) => {
             })}
           </div>
         <div className="product">
-          <div className="wishlist">
-            {" "}
+        {token ? (<div className="wishlist">
             <h1>Cart</h1>
             {wishlist?.map((wish, index) => {
               return (
                 <div key={index}>
                   <div>
-                    {" "}
+               
                     <button
                       className="wish-button"
                       onClick={() => removeFromWishlist(wish._id)}
@@ -143,7 +142,8 @@ const ProductList = (props) => {
             <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
               Go To Cart
             </Link>
-          </div>
+          </div>) : null}
+          
         </div>
       </div>
     );
