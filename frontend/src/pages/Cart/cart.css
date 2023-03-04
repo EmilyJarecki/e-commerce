@@ -1,0 +1,16 @@
+.cart-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-title, .cart-status{
+    display: flex;
+    justify-content: center;
+}
+
+.cart-name{
+    border-bottom: 2px solid black;
+    width: 50%;
+    text-align: center;
+    padding-bottom: 20px
+}

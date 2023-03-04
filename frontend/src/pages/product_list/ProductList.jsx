@@ -11,9 +11,7 @@ const ProductList = (props) => {
   const [wishlist, setWishlist] = useState([]);
   const token = getUserToken();
 
-  const { id } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = Array.from(new Set(product.map((p) => p.category)));
@@ -55,37 +53,6 @@ const ProductList = (props) => {
     } catch (err) {
       console.log(err);
     }
-  };
-  const cartList = () => {
-    return (
-      <div className="product">
-        <div className="wishlist">
-          <h1>Cart</h1>
-          {wishlist?.map((wish, index) => {
-            return (
-              <div key={index}>
-                <div>
-                  <button
-                    className="wish-button"
-                    onClick={() => removeFromWishlist(wish._id)}
-                  >
-                    <img
-                      src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                      className="remove-wish"
-                    />
-                  </button>
-                  {wish.name} - ${wish.price.toFixed(2)}
-                </div>
-              </div>
-            );
-          })}
-          <p>Total: ${getTotal()}</p>
-          <Link to="/cart" state={wishlist}>
-            Go To Cart
-          </Link>
-        </div>
-      </div>
-    );
   };
 
   const loaded = () => {
@@ -146,7 +113,35 @@ const ProductList = (props) => {
             );
           })}
         </div>
-        {cartList()}
+        <div className="product">
+          {token ? (
+            <div className="wishlist">
+              <h1>Cart</h1>
+              {wishlist?.map((wish, index) => {
+                return (
+                  <div key={index}>
+                    <div>
+                      <button
+                        className="wish-button"
+                        onClick={() => removeFromWishlist(wish._id)}
+                      >
+                        <img
+                          src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                          className="remove-wish"
+                        />
+                      </button>
+                      {wish.name} - ${wish.price.toFixed(2)}
+                    </div>
+                  </div>
+                );
+              })}
+              <p>Total: ${getTotal()}</p>
+              <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
+                Go To Cart
+              </Link>
+            </div>
+          ) : null}
+        </div>
       </div>
     );
   };
