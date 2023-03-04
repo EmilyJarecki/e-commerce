@@ -53,3 +53,19 @@ li{
 .remove-wish{
   width: 10px;
 }
+@media only screen and (max-width: 500px){
+  ul{
+    margin: 0;
+    text-align: center;
+  }
+.ulList{
+  padding: 0;
+}
+.view-by{
+  font-size: 14px;
+}
+li{
+  padding: 7px;
+}
+
+}
