@@ -1,6 +1,6 @@
 # Aviato
 
-### <a href="https://startling-flan-ce4f0b.netlify.app/" target="_blank">Live Site</a>
+### <a href="https://aviato-e-comm.netlify.app/shop" target="_blank">Live Site</a>
 
 ## Description:
 Aviato is a full-stack e-commerce site which allows users to post products that they are selling. It allows users to post the name, description, image, price, and store link. Shoppers are able to view, write reviews on, and directly purchase from the seller's website, as the provided link provides a direct connection between Aviato and the shop.
