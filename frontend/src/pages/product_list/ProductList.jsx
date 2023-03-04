@@ -84,14 +84,14 @@ const ProductList = (props) => {
             {filteredProducts.map((product, index) => {
               return (
                 <div key={index}>
-                  {token ? (
+                  
                     <button
                       className="wish-button"
                       onClick={() => addToWishlist(product)}
                     >
                       Add to Cart
                     </button>
-                  ) : null}
+                  
                   <Link
                     className="link"
                     key={product._id}

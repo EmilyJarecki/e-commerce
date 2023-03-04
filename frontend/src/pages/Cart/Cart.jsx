@@ -8,7 +8,7 @@ const Cart = (props) => {
   console.log(props.wishlist)
   return (
     <div>
-      <h1>This is the cart page</h1>
+      <h1>Cart</h1>
       {props.wishlist ? 
       <p>{props.wishlist}</p> 
       : 
