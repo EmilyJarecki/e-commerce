@@ -2,17 +2,17 @@ import React from 'react'
 import ProductList from '../product_list/ProductList'
 import { useParams } from 'react-router-dom'
 
+const Cart = ({wishlist}) => {
 
-const Cart = (props) => {
-
-  console.log(props.wishlist)
+  // console.log(props.wishlist)
   return (
     <div>
       <h1>Cart</h1>
-      {props.wishlist ? 
-      <p>{props.wishlist}</p> 
+      {wishlist ? 
+      <p>{wishlist}</p> 
       : 
       <p>No items in cart</p>}
+      {/* {<ProductList />} */}
     </div>
   )
 }

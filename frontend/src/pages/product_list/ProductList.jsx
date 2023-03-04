@@ -56,6 +56,37 @@ const ProductList = (props) => {
       console.log(err);
     }
   };
+  const cartList = () => {
+    return (
+      <div className="product">
+        <div className="wishlist">
+          <h1>Cart</h1>
+          {wishlist?.map((wish, index) => {
+            return (
+              <div key={index}>
+                <div>
+                  <button
+                    className="wish-button"
+                    onClick={() => removeFromWishlist(wish._id)}
+                  >
+                    <img
+                      src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                      className="remove-wish"
+                    />
+                  </button>
+                  {wish.name} - ${wish.price.toFixed(2)}
+                </div>
+              </div>
+            );
+          })}
+          <p>Total: ${getTotal()}</p>
+          <Link to="/cart" state={wishlist}>
+            Go To Cart
+          </Link>
+        </div>
+      </div>
+    );
+  };
 
   const loaded = () => {
     return (
@@ -80,71 +111,42 @@ const ProductList = (props) => {
             </li>
           </ul>{" "}
         </div>
-          <div className="product-container">
-            {filteredProducts.map((product, index) => {
-              return (
-                <div key={index}>
-                  
-                    <button
-                      className="wish-button"
-                      onClick={() => addToWishlist(product)}
-                    >
-                      Add to Cart
-                    </button>
-                  
-                  <Link
-                    className="link"
-                    key={product._id}
-                    to={`/shop/${product._id}`}
-                  >
-                    <div className="product-item">
-                      <img
-                        className="product-image"
-                        src={product.image}
-                        alt={product.name}
-                      />
-                      <div className="product-content">
-                        <p className="list-prod-name">{product.name}</p>
+        <div className="product-container">
+          {filteredProducts.map((product, index) => {
+            return (
+              <div key={index}>
+                <button
+                  className="wish-button"
+                  onClick={() => addToWishlist(product)}
+                >
+                  Add to Cart
+                </button>
 
-                        <p className="list-prod-price">
-                          ${product.price.toFixed(2)}
-                        </p>
-                      </div>
-                    </div>{" "}
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        <div className="product">
-        {token ? (<div className="wishlist">
-            <h1>Cart</h1>
-            {wishlist?.map((wish, index) => {
-              return (
-                <div key={index}>
-                  <div>
-               
-                    <button
-                      className="wish-button"
-                      onClick={() => removeFromWishlist(wish._id)}
-                    >
-                      <img
-                        src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                        className="remove-wish"
-                      />
-                    </button>
-                    {wish.name} - ${wish.price.toFixed(2)}
-                  </div>
-                </div>
-              );
-            })}
-            <p>Total: ${getTotal()}</p>
-            <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
-              Go To Cart
-            </Link>
-          </div>) : null}
-          
+                <Link
+                  className="link"
+                  key={product._id}
+                  to={`/shop/${product._id}`}
+                >
+                  <div className="product-item">
+                    <img
+                      className="product-image"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                    <div className="product-content">
+                      <p className="list-prod-name">{product.name}</p>
+
+                      <p className="list-prod-price">
+                        ${product.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>{" "}
+                </Link>
+              </div>
+            );
+          })}
         </div>
+        {cartList()}
       </div>
     );
   };
