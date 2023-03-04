@@ -60,10 +60,14 @@
   position: relative;
   max-width: 1200px;
   width: 435px;
-  border: 3px solid black;
-  border-top: none;
+  border: 2px solid black;
+  /* border-top: none; */
   display: flex;
   align-self: center;
+}
+.newReview-w-btn {
+  border-bottom: none;
+  margin-bottom: 10px;
 }
 .review-section {
   padding-left: 15px;
@@ -85,7 +89,7 @@
 }
 .newReview-w-btn {
   width: 435px;
-  border: 3px solid black;
+  border: 2px solid black;
 
   position: relative;
   height: 115px;
@@ -219,6 +223,9 @@
 .reviews-body{
   margin-left: 5px;
 }
+}
+.sign-to-post{
+  text-align: center;
 }
 @media only screen and (max-width: 400px){
 .detail-description-card{

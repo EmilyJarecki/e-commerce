@@ -11,9 +11,7 @@ const ProductList = (props) => {
   const [wishlist, setWishlist] = useState([]);
   const token = getUserToken();
 
-  const { id } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = Array.from(new Set(product.map((p) => p.category)));
@@ -80,70 +78,69 @@ const ProductList = (props) => {
             </li>
           </ul>{" "}
         </div>
-          <div className="product-container">
-            {filteredProducts.map((product, index) => {
-              return (
-                <div key={index}>
-                  
-                    <button
-                      className="wish-button"
-                      onClick={() => addToWishlist(product)}
-                    >
-                      Add to Cart
-                    </button>
-                  
-                  <Link
-                    className="link"
-                    key={product._id}
-                    to={`/shop/${product._id}`}
-                  >
-                    <div className="product-item">
-                      <img
-                        className="product-image"
-                        src={product.image}
-                        alt={product.name}
-                      />
-                      <div className="product-content">
-                        <p className="list-prod-name">{product.name}</p>
+        <div className="product-container">
+          {filteredProducts.map((product, index) => {
+            return (
+              <div key={index}>
+                <button
+                  className="wish-button"
+                  onClick={() => addToWishlist(product)}
+                >
+                  Add to Cart
+                </button>
 
-                        <p className="list-prod-price">
-                          ${product.price.toFixed(2)}
-                        </p>
-                      </div>
-                    </div>{" "}
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
+                <Link
+                  className="link"
+                  key={product._id}
+                  to={`/shop/${product._id}`}
+                >
+                  <div className="product-item">
+                    <img
+                      className="product-image"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                    <div className="product-content">
+                      <p className="list-prod-name">{product.name}</p>
+
+                      <p className="list-prod-price">
+                        ${product.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>{" "}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
         <div className="product">
-        {token ? (<div className="wishlist">
-            <h1>Cart</h1>
-            {wishlist?.map((wish, index) => {
-              return (
-                <div key={index}>
-                  <div>
-               
-                    <button
-                      className="wish-button"
-                      onClick={() => removeFromWishlist(wish._id)}
-                    >
-                      <img
-                        src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                        className="remove-wish"
-                      />
-                    </button>
-                    {wish.name} - ${wish.price.toFixed(2)}
+          {token ? (
+            <div className="wishlist">
+              <h1>Cart</h1>
+              {wishlist?.map((wish, index) => {
+                return (
+                  <div key={index}>
+                    <div>
+                      <button
+                        className="wish-button"
+                        onClick={() => removeFromWishlist(wish._id)}
+                      >
+                        <img
+                          src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                          className="remove-wish"
+                        />
+                      </button>
+                      {wish.name} - ${wish.price.toFixed(2)}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <p>Total: ${getTotal()}</p>
-            <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
-              Go To Cart
-            </Link>
-          </div>) : null}
-          
+                );
+              })}
+              <p>Total: ${getTotal()}</p>
+              <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
+                Go To Cart
+              </Link>
+            </div>
+          ) : null}
         </div>
       </div>
     );

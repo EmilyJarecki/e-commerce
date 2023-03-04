@@ -1,20 +1,13 @@
-import React from 'react'
-import ProductList from '../product_list/ProductList'
-import { useParams } from 'react-router-dom'
-
-
-const Cart = (props) => {
-
-  console.log(props.wishlist)
+import React from "react";
+import "./cart.css";
+const Cart = ({ wishlist }) => {
   return (
-    <div>
-      <h1>Cart</h1>
-      {props.wishlist ? 
-      <p>{props.wishlist}</p> 
-      : 
-      <p>No items in cart</p>}
-    </div>
-  )
-}
+    <div className="cart-div">
+      <h1 className="cart-title"><span className="cart-name">Cart</span></h1>
 
-export default Cart
+      <div className="cart-status">{wishlist ? <p>{wishlist}</p> : <p>No items in cart</p>}</div>
+    </div>
+  );
+};
+
+export default Cart;
