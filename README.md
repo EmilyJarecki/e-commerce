@@ -11,13 +11,15 @@ Aviato leverages the understanding that smaller businesses might not have as big
 
 ## Site Images:
 <h3> Home Page
-<img src="https://i.imgur.com/gGYCspG.jpg" alt="Home Page" />
+<img src="https://i.imgur.com/37YdkAQ.jpg" alt="Home Page" />
 <h3> Product Listings
-<img src="https://i.imgur.com/EcCbvGz.png" alt="Product Listing" />
+<img src="https://i.imgur.com/oFDvbxj.jpg" alt="Product Listing" />
 <h3> Product Detail Page
-<img src="https://i.imgur.com/Lbi6ezJ.png" alt="Detail Page" />
+<img src="https://i.imgur.com/KCW3AYs.png" alt="Detail Page" />
+<h3> Login Page
+<img src="https://i.imgur.com/ZSOnsIS.jpg" alt="Login" />     
 <h3> Add a Product
-<img src="https://i.imgur.com/r2Xt1FE.jpg" alt="Add a Product" />
+<img src="https://i.imgur.com/HEBAAJA.jpg" alt="Add a Product" />
 
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#user-flow">User Stories</a>
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#wireframes">Wireframes</a>
