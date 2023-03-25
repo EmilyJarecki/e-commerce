@@ -11,9 +11,6 @@ import { getUserToken } from "../../utils/authToken";
 const ProductDetail = (props) => {
   const [product, setProduct] = useState(null);
 
-
-
-
   const token = getUserToken();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,7 +19,6 @@ const ProductDetail = (props) => {
 
   // context data
   const { currentUser } = useContext(UserContext);
-
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {

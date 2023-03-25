@@ -1,11 +1,23 @@
 import React from "react";
 import "./cart.css";
-const Cart = ({ wishlist }) => {
+import { useState, useEffect } from "react";
+
+const Cart = () => {
+  const [cartData, setCartData] = useState([]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("cart");
+    const parsedData = JSON.parse(data);
+    setCartData(parsedData);
+  }, []);
+
   return (
     <div className="cart-div">
-      <h1 className="cart-title"><span className="cart-name">Cart</span></h1>
-
-      <div className="cart-status">{wishlist ? <p>{wishlist}</p> : <p>No items in cart</p>}</div>
+      {" "}
+      <h1>Cart Page</h1>
+      {cartData.map((item) => (
+        <p key={item.id}>{item.name}</p>
+      ))}
     </div>
   );
 };
