@@ -2,14 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./productlist.css";
-import { getUserToken } from "../../utils/authToken";
-import Cart from "../Cart/Cart";
-import { Routes, Route } from "react-router-dom";
 
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const token = getUserToken();
 
   const navigate = useNavigate();
 
@@ -96,23 +92,6 @@ const ProductList = (props) => {
             );
           })}
         </div>
-        <div className="product">
-          {token ? (
-            <div className="wishlist">
-              <h1>Cart</h1>
-              {cart?.map((cart, index) => {
-                return (
-                  <div key={index}>
-                    <div>
-                      {cart.name} - ${cart.price.toFixed(2)}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : null}
-        </div>
-
       </div>
     );
   };
