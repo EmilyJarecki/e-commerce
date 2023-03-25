@@ -88,5 +88,4 @@ $ nodemon (to start the server)
 ## Future improvements:
 <ul>
 <li>Offer an "add to cart" option and for user to directly purchase on Aviato site via Stripe.</li>
-<li>Create authorization.</li>
 </ul>
