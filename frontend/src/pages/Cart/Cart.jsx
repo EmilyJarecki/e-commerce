@@ -80,7 +80,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-                <p className="cart-item-price">{item.price.toFixed(2)}</p>
+                <p className="cart-item-price">${item.price.toFixed(2)}</p>
                 {/* </div> */}
                 <button
                   className="delete-comp"

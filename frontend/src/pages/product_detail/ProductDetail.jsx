@@ -114,6 +114,13 @@ const ProductDetail = (props) => {
     }
   };
 
+
+  useEffect(() => {
+    getDetails();
+    const data = localStorage.getItem("cart");
+    const parsedData = JSON.parse(data);
+    setCart(parsedData);
+  }, []);
   // ------------------------------------- UPDATE -------------------------------------
 
   const loaded = () => {
@@ -266,10 +273,7 @@ const ProductDetail = (props) => {
     );
   };
 
-  useEffect(() => {
-    getDetails();
-    // getReviews();
-  }, []);
+
 
   return product ? loaded() : loading();
 };
