@@ -6,7 +6,14 @@ const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
   const removeFromCart = (itemId) => {
-    const updatedCart = cartData.filter((item) => item._id !== itemId);
+    let updatedCart = [...cartData];
+    let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
+    if (itemIndex !== -1) {
+      updatedCart[itemIndex].quantity -= 1;
+      if (updatedCart[itemIndex].quantity === 0) {
+        updatedCart.splice(itemIndex, 1);
+      }
+    }
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCartData(updatedCart);
   };
