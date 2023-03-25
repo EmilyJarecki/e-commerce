@@ -119,29 +119,34 @@ const Reviews = () => {
           ) : (
             <p className="sign-to-post">Please sign in to post a review</p>
           )}
-
-          {review?.map((reviews, index) => {
-            return (
-              <div className="review-list">
-                <div className="review-container" key={reviews._id}>
-                  <section className="review-section">
-                    <h4 className="reviews-name">{reviews.name}: </h4>
-                    <p className="reviews-body">{reviews.body}</p>
-                    <div
-                      className="delete-div"
-                      onClick={() => deletePost(reviews._id)}
-                    >
-                      <img
-                        className="delete-icon"
-                        src="https://img.icons8.com/glyph-neue/512/delete-property.png"
-                        alt="delete-icon"
-                      />
+          {review.length === 0 ? (
+            <p>no reviews</p>
+          ) : (
+            <div>
+              {review?.map((reviews, index) => {
+                return (
+                  <div className="review-list">
+                    <div className="review-container" key={reviews._id}>
+                      <section className="review-section">
+                        <h4 className="reviews-name">{reviews.name}: </h4>
+                        <p className="reviews-body">{reviews.body}</p>
+                        <div
+                          className="delete-div"
+                          onClick={() => deletePost(reviews._id)}
+                        >
+                          <img
+                            className="delete-icon"
+                            src="https://img.icons8.com/glyph-neue/512/delete-property.png"
+                            alt="delete-icon"
+                          />
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                </div>
-              </div>
-            );
-          })}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     );
