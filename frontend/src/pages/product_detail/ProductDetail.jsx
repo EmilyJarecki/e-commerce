@@ -135,9 +135,9 @@ const ProductDetail = (props) => {
             <p className="detail-price">${product.price}</p>
             <h4 className="detail-description">{product.description}</h4>
             <div className="p-redirect-div">
-              <a className="link purchase-redirect" href={product.shopping}>
+              {/* <a className="link purchase-redirect" href={product.shopping}>
                 SHOP NOW
-              </a>
+              </a> */}
               <button
                   className="wish-button"
                   onClick={() => addToCart(product)}

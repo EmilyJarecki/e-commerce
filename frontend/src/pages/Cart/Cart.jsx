@@ -55,35 +55,46 @@ const Cart = () => {
 
   return (
     <div className="cart-div">
-      <div>
+      <div className="cart-map">
         {cartData.length !== 0 ? (
-          <div>
+          <div className="item-strip">
             {cartData.map((item) => (
               <div className="cart-status" key={item._id}>
-                <div>
-                  <button
-                    onClick={() => removeFromCart(item._id)}
-                  >
-                    Remove One
-                  </button>
-
-                  <button onClick={() => addOne(item._id)}>Add one more</button>
-                  <button onClick={() => Delete(item._id)}>
-                    Delete Completely
-                  </button>
-
-                  <img className="product-image" src={item.image} />
-                </div>
-                <p>{item.quantity}</p>
+                {/* <div className="exclusive-strip"> */}
+                <img className="cart-product-image" src={item.image} />
                 <p className="cart-item-name">{item.name}</p>
+                <div className="quantity-sec">
+                  <p className="cart-quant-int">{item.quantity}</p>
+                  <div className="two-cart-buttons">
+                    <button
+                      className="one-more"
+                      onClick={() => addOne(item._id)}
+                    >
+                      +
+                    </button>
+                    <button
+                      className="one-less"
+                      onClick={() => removeFromCart(item._id)}
+                    >
+                      -
+                    </button>
+                  </div>
+                </div>
                 <p className="cart-item-price">{item.price.toFixed(2)}</p>
+                {/* </div> */}
+                <button
+                  className="delete-comp"
+                  onClick={() => Delete(item._id)}
+                >
+                  X
+                </button>
               </div>
             ))}
-            <p>Total: ${getTotal()}</p>
           </div>
         ) : (
-          <h1>No Items in Cart</h1>
+          <h1 className="no-items">No Items in Cart</h1>
         )}
+        <p className="cart-total">Total: ${getTotal()}</p>
       </div>
     </div>
   );
