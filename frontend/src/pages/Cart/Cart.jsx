@@ -18,6 +18,16 @@ const Cart = () => {
     setCartData(updatedCart);
   };
 
+  const AddOne = (itemId) => {
+    let updatedCart = [...cartData];
+    let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
+    if (itemIndex !== -1) {
+      updatedCart[itemIndex].quantity += 1;
+    }
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCartData(updatedCart);
+  };
+  
   // PRICE TOTAL
   const getTotal = () => {
     let total = 0;
@@ -50,6 +60,8 @@ const Cart = () => {
                       className="remove-wish"
                     />
                   </button>
+                  
+                  <button onClick={() => AddOne(item._id)} >Add one more</button>
                   <img className="product-image" src={item.image} />
                 </div>
                 <p>{item.quantity}</p>
