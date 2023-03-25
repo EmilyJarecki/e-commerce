@@ -1,15 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./productlist.css";
-import { UserContext } from "../../data";
-import { useContext } from "react";
-import { getUserToken } from "../../utils/authToken";
 
 const ProductList = (props) => {
   const [product, setProducts] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
-  const token = getUserToken();
+  const [cart, setCart] = useState([]);
 
   const navigate = useNavigate();
 
@@ -20,28 +16,20 @@ const ProductList = (props) => {
     ? product.filter((p) => p.category === selectedCategory)
     : product;
 
-  const addToWishlist = (product) => {
-    const updatedWishlist = [...wishlist, product];
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-  };
-
-  const removeFromWishlist = (id) => {
-    const updatedWishlist = wishlist.filter((wish) => wish._id !== id);
-    console.log(id);
-    console.log(wishlist);
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-  };
-
-  // PRICE TOTAL
-  const getTotal = () => {
-    let total = 0;
-    wishlist.forEach((product) => {
-      total += product.price;
-    });
-    return total.toFixed(2);
-  };
+    const addToCart = (product) => {
+      const existingItem = cart.find((item) => item._id === product._id);
+      if (existingItem) {
+        const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+        const updatedCart = cart.map((item) => item._id === product._id ? updatedItem : item);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      } else {
+        const newItem = { ...product, quantity: 1 };
+        const updatedCart = [...cart, newItem];
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+    };
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
@@ -84,7 +72,7 @@ const ProductList = (props) => {
               <div key={index}>
                 <button
                   className="wish-button"
-                  onClick={() => addToWishlist(product)}
+                  onClick={() => addToCart(product)}
                 >
                   Add to Cart
                 </button>
@@ -113,35 +101,6 @@ const ProductList = (props) => {
             );
           })}
         </div>
-        <div className="product">
-          {token ? (
-            <div className="wishlist">
-              <h1>Cart</h1>
-              {wishlist?.map((wish, index) => {
-                return (
-                  <div key={index}>
-                    <div>
-                      <button
-                        className="wish-button"
-                        onClick={() => removeFromWishlist(wish._id)}
-                      >
-                        <img
-                          src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                          className="remove-wish"
-                        />
-                      </button>
-                      {wish.name} - ${wish.price.toFixed(2)}
-                    </div>
-                  </div>
-                );
-              })}
-              <p>Total: ${getTotal()}</p>
-              <Link to={{ pathname: "/cart", state: { wishlist: wishlist } }}>
-                Go To Cart
-              </Link>
-            </div>
-          ) : null}
-        </div>
       </div>
     );
   };
@@ -162,9 +121,9 @@ const ProductList = (props) => {
 
   useEffect(() => {
     getProducts();
-    const storedWishlistItems = JSON.parse(localStorage.getItem("wishlist"));
-    if (storedWishlistItems) {
-      setWishlist(storedWishlistItems);
+    const storedCartItems = JSON.parse(localStorage.getItem("cart"));
+    if (storedCartItems) {
+      setCart(storedCartItems);
     }
   }, []);
 

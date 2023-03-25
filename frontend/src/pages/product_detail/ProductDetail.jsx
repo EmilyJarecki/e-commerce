@@ -10,19 +10,30 @@ import { getUserToken } from "../../utils/authToken";
 
 const ProductDetail = (props) => {
   const [product, setProduct] = useState(null);
-
-
-
+  const [cart, setCart] = useState([]);
 
   const token = getUserToken();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
-
+  
+  const addToCart = (product) => {
+    const existingItem = cart.find((item) => item._id === product._id);
+    if (existingItem) {
+      const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+      const updatedCart = cart.map((item) => item._id === product._id ? updatedItem : item);
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      const newItem = { ...product, quantity: 1 };
+      const updatedCart = [...cart, newItem];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  };
   // context data
   const { currentUser } = useContext(UserContext);
-
 
   // GET ALL INFORMATION ABOUT SINGLE PRODUCT
   const getDetails = async () => {
@@ -124,9 +135,15 @@ const ProductDetail = (props) => {
             <p className="detail-price">${product.price}</p>
             <h4 className="detail-description">{product.description}</h4>
             <div className="p-redirect-div">
-              <a className="link purchase-redirect" href={product.shopping}>
+              {/* <a className="link purchase-redirect" href={product.shopping}>
                 SHOP NOW
-              </a>
+              </a> */}
+              <button
+                  className="wish-button"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
             </div>
             {token && currentUser?._id === product.owner._id ? (
               <p className="delete" onClick={removeProduct}>
