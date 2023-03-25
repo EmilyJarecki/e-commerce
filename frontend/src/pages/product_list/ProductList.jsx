@@ -26,12 +26,6 @@ const ProductList = (props) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const removeFromCart = (id) => {
-    const updatedCart = cart.filter((cartItems) => cartItems._id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
   // PRICE TOTAL
   const getTotal = () => {
     let total = 0;
@@ -119,15 +113,6 @@ const ProductList = (props) => {
                 return (
                   <div key={index}>
                     <div>
-                      <button
-                        className="wish-button"
-                        onClick={() => removeFromCart(cart._id)}
-                      >
-                        <img
-                          src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                          className="remove-wish"
-                        />
-                      </button>
                       {cart.name} - ${cart.price.toFixed(2)}
                     </div>
                   </div>

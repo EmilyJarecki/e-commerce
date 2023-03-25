@@ -5,6 +5,12 @@ import { useState, useEffect } from "react";
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
+  const removeFromCart = (itemId) => {
+    const updatedCart = cartData.filter((item) => item._id !== itemId);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCartData(updatedCart);
+  };
+
   useEffect(() => {
     const data = localStorage.getItem("cart");
     const parsedData = JSON.parse(data);
@@ -13,15 +19,25 @@ const Cart = () => {
 
   return (
     <div className="cart-div">
-      {" "}
-      <h1>Cart </h1>
-      <div className="cart-status">
+      <div>
         {cartData.length !== 0 ? (
           <div>
             {cartData.map((item) => (
-              <div>
-                <p key={item.id}>{item.name}</p>
-                <p>{item.price}</p>
+              <div className="cart-status" key={item._id}>
+                <div>
+                  <button
+                    className="wish-button"
+                    onClick={() => removeFromCart(item._id)}
+                  >
+                    <img
+                      src="https://img.icons8.com/material-sharp/512/delete-sign.png"
+                      className="remove-wish"
+                    />
+                  </button>
+                  <img className="product-image" src={item.image} />
+                </div>
+                <p className="cart-item-name">{item.name}</p>
+                <p className="cart-item-price">{item.price.toFixed(2)}</p>
               </div>
             ))}
           </div>

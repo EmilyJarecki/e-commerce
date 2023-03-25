@@ -1,16 +1,9 @@
-.cart-div{
-    display: flex;
-    flex-direction: column;
-}
-
-.cart-title, .cart-status{
-    display: flex;
-    justify-content: center;
-}
-
-.cart-name{
-    border-bottom: 2px solid black;
-    width: 50%;
-    text-align: center;
-    padding-bottom: 20px
+.cart-status{
+    display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));    
+  grid-auto-rows: minmax(250px, auto);
+  grid-gap: 1rem;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1rem;
 }
