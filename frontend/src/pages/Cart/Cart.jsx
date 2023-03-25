@@ -28,6 +28,16 @@ const Cart = () => {
     setCartData(updatedCart);
   };
   
+  const Delete = (itemId) => {
+    let updatedCart = [...cartData];
+    let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
+    if (itemIndex !== -1) {
+      updatedCart.splice(itemIndex, 1);
+    }
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCartData(updatedCart);
+  };
+
   // PRICE TOTAL
   const getTotal = () => {
     let total = 0;
@@ -62,6 +72,8 @@ const Cart = () => {
                   </button>
                   
                   <button onClick={() => AddOne(item._id)} >Add one more</button>
+                  <button onClick={() => Delete(item._id)} >Delete Completely</button>
+
                   <img className="product-image" src={item.image} />
                 </div>
                 <p>{item.quantity}</p>
