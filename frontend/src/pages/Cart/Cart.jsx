@@ -11,6 +11,15 @@ const Cart = () => {
     setCartData(updatedCart);
   };
 
+  // PRICE TOTAL
+  const getTotal = () => {
+    let total = 0;
+    cartData.forEach((product) => {
+      total += product.price;
+    });
+    return total.toFixed(2);
+  };
+
   useEffect(() => {
     const data = localStorage.getItem("cart");
     const parsedData = JSON.parse(data);
@@ -40,6 +49,7 @@ const Cart = () => {
                 <p className="cart-item-price">{item.price.toFixed(2)}</p>
               </div>
             ))}
+            <p>Total: ${getTotal()}</p>
           </div>
         ) : (
           <h1>No Items in Cart</h1>

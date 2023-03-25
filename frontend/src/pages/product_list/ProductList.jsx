@@ -26,15 +26,6 @@ const ProductList = (props) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  // PRICE TOTAL
-  const getTotal = () => {
-    let total = 0;
-    cart.forEach((product) => {
-      total += product.price;
-    });
-    return total.toFixed(2);
-  };
-
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
   const getProducts = async () => {
@@ -118,8 +109,6 @@ const ProductList = (props) => {
                   </div>
                 );
               })}
-
-              <p>Total: ${getTotal()}</p>
             </div>
           ) : null}
         </div>
