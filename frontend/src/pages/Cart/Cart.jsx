@@ -14,10 +14,21 @@ const Cart = () => {
   return (
     <div className="cart-div">
       {" "}
-      <h1>Cart Page</h1>
-      {cartData.map((item) => (
-        <p key={item.id}>{item.name}</p>
-      ))}
+      <h1>Cart </h1>
+      <div className="cart-status">
+        {cartData.length !== 0 ? (
+          <div>
+            {cartData.map((item) => (
+              <div>
+                <p key={item.id}>{item.name}</p>
+                <p>{item.price}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <h1>No Items in Cart</h1>
+        )}
+      </div>
     </div>
   );
 };
