@@ -15,7 +15,7 @@ const Cart = () => {
   const getTotal = () => {
     let total = 0;
     cartData.forEach((product) => {
-      total += product.price;
+      total += (product.price*product.quantity);
     });
     return total.toFixed(2);
   };
@@ -45,6 +45,7 @@ const Cart = () => {
                   </button>
                   <img className="product-image" src={item.image} />
                 </div>
+                <p>{item.quantity}</p>
                 <p className="cart-item-name">{item.name}</p>
                 <p className="cart-item-price">{item.price.toFixed(2)}</p>
               </div>

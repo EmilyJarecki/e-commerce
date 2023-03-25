@@ -16,11 +16,20 @@ const ProductList = (props) => {
     ? product.filter((p) => p.category === selectedCategory)
     : product;
 
-  const addToCart = (product) => {
-    const updatedCart = [...cart, product];
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+    const addToCart = (product) => {
+      const existingItem = cart.find((item) => item._id === product._id);
+      if (existingItem) {
+        const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+        const updatedCart = cart.map((item) => item._id === product._id ? updatedItem : item);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      } else {
+        const newItem = { ...product, quantity: 1 };
+        const updatedCart = [...cart, newItem];
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+    };
 
   const URL = "https://capstone-commerce.herokuapp.com/products";
 
