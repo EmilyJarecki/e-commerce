@@ -18,7 +18,7 @@ const Cart = () => {
     setCartData(updatedCart);
   };
 
-  const AddOne = (itemId) => {
+  const addOne = (itemId) => {
     let updatedCart = [...cartData];
     let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
     if (itemIndex !== -1) {
@@ -27,7 +27,7 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCartData(updatedCart);
   };
-  
+
   const Delete = (itemId) => {
     let updatedCart = [...cartData];
     let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
@@ -42,7 +42,7 @@ const Cart = () => {
   const getTotal = () => {
     let total = 0;
     cartData.forEach((product) => {
-      total += (product.price*product.quantity);
+      total += product.price * product.quantity;
     });
     return total.toFixed(2);
   };
@@ -62,17 +62,15 @@ const Cart = () => {
               <div className="cart-status" key={item._id}>
                 <div>
                   <button
-                    className="wish-button"
                     onClick={() => removeFromCart(item._id)}
                   >
-                    <img
-                      src="https://img.icons8.com/material-sharp/512/delete-sign.png"
-                      className="remove-wish"
-                    />
+                    Remove One
                   </button>
-                  
-                  <button onClick={() => AddOne(item._id)} >Add one more</button>
-                  <button onClick={() => Delete(item._id)} >Delete Completely</button>
+
+                  <button onClick={() => addOne(item._id)}>Add one more</button>
+                  <button onClick={() => Delete(item._id)}>
+                    Delete Completely
+                  </button>
 
                   <img className="product-image" src={item.image} />
                 </div>
