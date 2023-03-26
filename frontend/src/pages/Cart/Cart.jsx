@@ -50,7 +50,9 @@ const Cart = () => {
   useEffect(() => {
     const data = localStorage.getItem("cart");
     const parsedData = JSON.parse(data);
-    setCartData(parsedData);
+    if (parsedData !== null) {
+      setCartData(parsedData);
+    }
   }, []);
 
   return (
