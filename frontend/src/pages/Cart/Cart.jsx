@@ -56,7 +56,7 @@ const Cart = () => {
   return (
     <div className="cart-div">
       <div className="cart-map">
-        {cartData.length !== 0 ? (
+        {cartData && cartData.length !== 0 ? (
           <div className="item-strip">
             {cartData.map((item) => (
               <div className="cart-status" key={item._id}>  
