@@ -8,8 +8,10 @@ Aviato is a full-stack e-commerce site which allows users to post products that 
 <br>
 Aviato leverages the understanding that smaller businesses might not have as big an outreach as large companies. It is a platform which provides the lesser-known seller with more visibility in the vast e-commerce market space. 
 
-
-## Site Images:
+## Images
+<details>
+            <summary>View here:</summary>
+<div>
 <h3> Home Page
 <img src="https://i.imgur.com/BTZg2ck.jpg" alt="Home Page" />
 <h3> Product Listings
@@ -22,7 +24,11 @@ Aviato leverages the understanding that smaller businesses might not have as big
 <img src="https://i.imgur.com/DolZ81b.jpg" alt="Login" />     
 <h3> Add a Product
 <img src="https://i.imgur.com/HEBAAJA.jpg" alt="Add a Product" />
-
+            </div>
+            </details>
+            
+            
+            
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#user-flow">User Stories</a>
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#wireframes">Wireframes</a>
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#data-models">Entity Relationship Diagram</a>
