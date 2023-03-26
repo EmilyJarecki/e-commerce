@@ -114,6 +114,13 @@ const ProductDetail = (props) => {
     }
   };
 
+
+  useEffect(() => {
+    getDetails();
+    const data = localStorage.getItem("cart");
+    const parsedData = JSON.parse(data);
+    setCart(parsedData);
+  }, []);
   // ------------------------------------- UPDATE -------------------------------------
 
   const loaded = () => {
@@ -139,7 +146,7 @@ const ProductDetail = (props) => {
                 SHOP NOW
               </a> */}
               <button
-                  className="wish-button"
+                  className="purchase-redirect"
                   onClick={() => addToCart(product)}
                 >
                   Add to Cart
@@ -266,10 +273,7 @@ const ProductDetail = (props) => {
     );
   };
 
-  useEffect(() => {
-    getDetails();
-    // getReviews();
-  }, []);
+
 
   return product ? loaded() : loading();
 };

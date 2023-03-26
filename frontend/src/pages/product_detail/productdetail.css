@@ -36,17 +36,12 @@
   align-items: center;
   margin-top: 10%;
   color: white;
-  padding: 15px;
+  padding: 10px 15px;
   background-color: rgb(0, 0, 0);
   position: absolute;
   bottom: 0;
   left: 0;
 }
-/* .extra-content{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-} */
 
 /* ------------------------------------- REVIEWS ------------------------------------- */
 .newReview {
@@ -54,7 +49,9 @@
   justify-content: center;
   margin-top: 20px;
 }
-
+.no-reviews{
+  text-align: center;
+}
 .review-container,
 .newReview-w-btn {
   position: relative;
@@ -119,7 +116,6 @@
   color: black;
 }
 .CommentButton {
-  border: none;
   color: white;
   background-color: black;
   padding: 8px 15px;

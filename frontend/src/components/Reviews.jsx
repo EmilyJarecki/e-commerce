@@ -120,7 +120,7 @@ const Reviews = () => {
             <p className="sign-to-post">Please sign in to post a review</p>
           )}
           {review.length === 0 ? (
-            <p>no reviews</p>
+            <p className="no-reviews">no reviews</p>
           ) : (
             <div>
               {review?.map((reviews, index) => {
