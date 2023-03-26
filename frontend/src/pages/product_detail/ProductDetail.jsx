@@ -146,7 +146,7 @@ const ProductDetail = (props) => {
                 SHOP NOW
               </a> */}
               <button
-                  className="wish-button"
+                  className="purchase-redirect"
                   onClick={() => addToCart(product)}
                 >
                   Add to Cart
