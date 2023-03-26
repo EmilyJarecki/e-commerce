@@ -59,9 +59,17 @@ const Cart = () => {
         {cartData.length !== 0 ? (
           <div className="item-strip">
             {cartData.map((item) => (
-              <div className="cart-status" key={item._id}>
-                {/* <div className="exclusive-strip"> */}
+              <div className="cart-status" key={item._id}>  
+              <div className="cart-btn-sec">              
+                <button
+                  className="delete-comp"
+                  onClick={() => Delete(item._id)}
+                >
+                  X
+                </button>
                 <img className="cart-product-image" src={item.image} />
+                </div>              
+
                 <p className="cart-item-name">{item.name}</p>
                 <div className="quantity-sec">
                   <p className="cart-quant-int">{item.quantity}</p>
@@ -81,13 +89,7 @@ const Cart = () => {
                   </div>
                 </div>
                 <p className="cart-item-price">${item.price.toFixed(2)}</p>
-                {/* </div> */}
-                <button
-                  className="delete-comp"
-                  onClick={() => Delete(item._id)}
-                >
-                  X
-                </button>
+
               </div>
             ))}
           </div>
