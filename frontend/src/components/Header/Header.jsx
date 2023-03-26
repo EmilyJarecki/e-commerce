@@ -7,11 +7,8 @@ const Header = () => {
   return (
     <div className="top-header container">
               <Link className="link reg-log header-link" to="/auth">Login/Logout</Link>
-      <Link className="link header-link" to={"/"}>
+      <Link className="link header-link" to={"/shop"}>
         <h4 className="AVIATO ">AVIATO</h4>
-      </Link>
-      <Link className="link product-list-link header-link" to={"/shop"}>
-        <h3 className="view-all">Shop All</h3>
       </Link>
       <Link className="link product-list-link header-link" to={"/cart"}>
         <h3 className="view-all">Cart</h3>
