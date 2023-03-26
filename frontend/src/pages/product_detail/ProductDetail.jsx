@@ -120,7 +120,7 @@ const ProductDetail = (props) => {
     const data = localStorage.getItem("cart");
     const parsedData = JSON.parse(data);
     if (parsedData !== null) {
-      setCartData(parsedData);
+      setCart(parsedData);
     }
   }, []);
   // ------------------------------------- UPDATE -------------------------------------
