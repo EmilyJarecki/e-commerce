@@ -9,7 +9,7 @@
 }
 .home-container{
     display: flex;
-    justify-content: center;
+    justify-content: center;  
 }
 .shop-now{
     align-items: center;
