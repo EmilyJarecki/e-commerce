@@ -49,7 +49,7 @@ router.post("/login", async (req, res, next) => {
 // token will be sent with every request to protected/authoriezed route
 
       res.status(200).json({
-        user: foundUser,
+        user: foundUser.name,
         isLoggedIn: true,
         token,
       });
@@ -58,6 +58,13 @@ router.post("/login", async (req, res, next) => {
     }
   });
 
+  // router.get("/me", async (req, res, next)=>{
+  //   try {
+      
+  //   } catch (error) {
+  //     res.status(401).json({error: err.message})
+  //   }
+  // })
   
   
 module.exports = router;
