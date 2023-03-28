@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {User} = require("../models/lib");
-
+const { requireToken } = require('../middleware/auth');
 const{createUserToken} = require('../middleware/auth')
 const bcrypt = require("bcrypt");
 
@@ -49,7 +49,7 @@ router.post("/login", async (req, res, next) => {
 // token will be sent with every request to protected/authoriezed route
 
       res.status(200).json({
-        user: foundUser.name,
+        name: foundUser.name,
         isLoggedIn: true,
         token,
       });
@@ -58,13 +58,15 @@ router.post("/login", async (req, res, next) => {
     }
   });
 
-  // router.get("/me", async (req, res, next)=>{
-  //   try {
-      
-  //   } catch (error) {
-  //     res.status(401).json({error: err.message})
-  //   }
-  // })
-  
-  
+
+// Route to get the name of the authenticated user
+router.get('/name', requireToken, async (req, res) => {
+  try {
+    const user = req.user;
+    res.json({ name: user.name });
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 module.exports = router;
