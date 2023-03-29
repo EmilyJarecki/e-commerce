@@ -77,9 +77,9 @@ const Auth = (props) => {
         // sets local storage
         setUserToken(currentUser.token);
         // put the returned user object in state
-        setUser({ ...currentUser.user, name: currentUser.user.name });
+        setUser({ ...currentUser.user});
         setAuth(currentUser.isLoggedIn);
-        console.log(currentUser.user.name)
+        // console.log(currentUser.user.name)
         return currentUser;
       } else {
         throw `Server Error: ${currentUser.statusText}`;
@@ -119,7 +119,6 @@ const Auth = (props) => {
             <h6 onClick={logoutUser} className="logout-button">
               Log Out
             </h6>
-            {person && <p>Hello, {person.user.name}</p>}
           </>
         ) : null}{" "}
       </div>
