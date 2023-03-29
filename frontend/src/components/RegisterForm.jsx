@@ -26,7 +26,7 @@ const RegisterForm = ({ signUp }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Name: </label>
+        <label htmlFor="username">Username: </label>
         <input
           className="auth-input"
           autoComplete="off"
@@ -44,6 +44,17 @@ const RegisterForm = ({ signUp }) => {
           id="password"
           name="password"
           value={input.password}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <label htmlFor="name">Name: </label>
+        <input
+          autoComplete="off"
+          className="auth-input"
+          id="name"
+          name="name"
+          value={input.name}
           onChange={handleChange}
         />
         <br />

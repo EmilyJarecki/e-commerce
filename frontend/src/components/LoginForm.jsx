@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const LoginForm = ({ signIn }) => {
-  const initialState = { username: "", password: "" };
+  const initialState = { username: "", password: "", name: "" };
   const [input, setInput] = useState(initialState);
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const LoginForm = ({ signIn }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Name: </label>
+        <label htmlFor="username">Username: </label>
         <input
           autoComplete="off"
           className="auth-input"
@@ -45,6 +45,17 @@ const LoginForm = ({ signIn }) => {
           id="password"
           name="password"
           value={input.password}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <label htmlFor="name">Name: </label>
+        <input
+          autoComplete="off"
+          className="auth-input"
+          id="name"
+          name="name"
+          value={input.name}
           onChange={handleChange}
         />
         <br />
