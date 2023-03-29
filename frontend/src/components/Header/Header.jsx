@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 import Search from "../Search";
-import { getUserToken } from "../../utils/authToken";
+import { getUserToken, clearUserToken } from "../../utils/authToken";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
@@ -29,12 +29,18 @@ const Header = () => {
     fetchUserName();
   }, []);
 
+  const handleLogout = () => {
+    // Clear the user name when the user logs out
+    setUserName("");
+    clearUserToken();
+  };
+
   return (
     <div className="top-header container">
-      <Link className="link reg-log header-link" to="/auth">
-        Login/Logout
+        <Link className="link reg-log header-link" to="/auth" onClick={handleLogout}>
+        {userName ? "Logout" : "Login"}
       </Link>
-      <h1>{userName && <p className="user-name">hello___{userName}</p>}</h1>
+      <h4>{userName && <p className="user-name">Hello, {userName}</p>}</h4>
 
       <Link className="link header-link" to={"/shop"}>
         <h4 className="AVIATO ">AVIATO</h4>
