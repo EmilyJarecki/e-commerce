@@ -1,6 +1,6 @@
 import React from "react";
 import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../data";
 import RegisterForm from "../components/RegisterForm";
 import LoginForm from "../components/LoginForm";
@@ -14,7 +14,7 @@ const Auth = (props) => {
   // invoke useContext hook and provide a context object as an argument
   // react will look at the value property of that context
   // provide the named keys in the value prop
-
+  const [person, setPerson] = useState("");
   // console.log(setAuth, setUser)
   const navigate = useNavigate();
   const token = getUserToken();
@@ -40,7 +40,7 @@ const Auth = (props) => {
       // sets local storage
       setUserToken(parsedUser.token);
       // put the returned user object in state
-      setUser(parsedUser.user);
+      setUser({ ...parsedUser.user, name: data.name });
       // adds a boolean cast of the responses isAuthenticated prop
       setAuth(parsedUser.isLoggedIn);
 
@@ -71,15 +71,15 @@ const Auth = (props) => {
       );
 
       const currentUser = await response.json();
-      //console.log(currentUser)
+      console.log(currentUser);
 
       if (currentUser.token) {
         // sets local storage
         setUserToken(currentUser.token);
         // put the returned user object in state
-        setUser(currentUser.user);
+        setUser({ ...currentUser.user, name: currentUser.user.name });
         setAuth(currentUser.isLoggedIn);
-
+        console.log(currentUser.user.name)
         return currentUser;
       } else {
         throw `Server Error: ${currentUser.statusText}`;
@@ -115,9 +115,11 @@ const Auth = (props) => {
         {token ? (
           <>
             <br />
+            <div>{person}</div>
             <h6 onClick={logoutUser} className="logout-button">
               Log Out
             </h6>
+            {person && <p>Hello, {person.user.name}</p>}
           </>
         ) : null}{" "}
       </div>

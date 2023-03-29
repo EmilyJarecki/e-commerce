@@ -64,6 +64,7 @@ router.get('/name', requireToken, async (req, res) => {
   try {
     const user = req.user;
     res.json({ name: user.name });
+    console.log(user.name)
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
   }
