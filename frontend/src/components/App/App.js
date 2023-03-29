@@ -16,7 +16,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <UserProvider> */}
         <UserInfo
           value={{
             isAuthenticated,
@@ -28,7 +27,6 @@ function App() {
           <Header />
           <Main />
         </UserInfo>
-      {/* </UserProvider> */}
     </div>
   );
 }
