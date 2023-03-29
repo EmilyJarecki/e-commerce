@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserProvider>
+      {/* <UserProvider> */}
         <UserInfo
           value={{
             isAuthenticated,
@@ -28,7 +28,7 @@ function App() {
           <Header />
           <Main />
         </UserInfo>
-      </UserProvider>
+      {/* </UserProvider> */}
     </div>
   );
 }
