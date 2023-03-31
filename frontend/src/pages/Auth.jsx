@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import "./auth.css";
 
 const Auth = (props) => {
-  const { setAuth, setUser } = useContext(UserContext);
+  const { setAuth, setUser, user } = useContext(UserContext);
+
   // import the pieces of context we want
   // invoke useContext hook and provide a context object as an argument
   // react will look at the value property of that context
@@ -71,15 +72,17 @@ const Auth = (props) => {
       );
 
       const currentUser = await response.json();
-      console.log(currentUser);
+      // console.log(currentUser)
+        setPerson(currentUser)
+      // console.log(currentUser.name);
 
       if (currentUser.token) {
         // sets local storage
         setUserToken(currentUser.token);
         // put the returned user object in state
-        setUser({ ...currentUser.user, name: currentUser.user.name });
+        setUser({ ...currentUser.user});
         setAuth(currentUser.isLoggedIn);
-        console.log(currentUser.user.name)
+        // console.log(currentUser.user.name)
         return currentUser;
       } else {
         throw `Server Error: ${currentUser.statusText}`;
@@ -115,11 +118,9 @@ const Auth = (props) => {
         {token ? (
           <>
             <br />
-            <div>{person}</div>
             <h6 onClick={logoutUser} className="logout-button">
               Log Out
             </h6>
-            {person && <p>Hello, {person.user.name}</p>}
           </>
         ) : null}{" "}
       </div>
