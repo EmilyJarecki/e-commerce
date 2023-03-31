@@ -4,9 +4,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getUserToken } from "../utils/authToken";
 
 const Reviews = () => {
+  const [userName, setUserName] = useState("");
   const [review, setReview] = useState([]);
   const [newReview, setNewReview] = useState({
-    name: "",
+    name: userName,
     body: "",
   });
   const { id } = useParams();
@@ -33,7 +34,7 @@ const Reviews = () => {
   // POST
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const currentState = { ...newReview };
+    const currentState = { ...newReview, name: userName };
     try {
       const requestOptions = {
         method: "POST",
@@ -46,7 +47,7 @@ const Reviews = () => {
       const createdReview = await response.json();
       setReview([...review, createdReview]);
       setNewReview({
-        name: "",
+        name: userName,
         body: "",
       });
       navigate(0);
@@ -85,15 +86,7 @@ const Reviews = () => {
               <div className="newReview-w-btn">
                 <div className="newReview-wo-btn">
                   <label>
-                    <input
-                      className="review-add-area"
-                      autoComplete="off"
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      value={newReview.name}
-                      onChange={handleChange}
-                    />
+                  {userName}:
                   </label>
                   <label>
                     <textarea
@@ -130,7 +123,7 @@ const Reviews = () => {
                       <section className="review-section">
                         <h4 className="reviews-name">{reviews.name}: </h4>
                         <p className="reviews-body">{reviews.body}</p>
-                        <div
+                        {/* <div
                           className="delete-div"
                           onClick={() => deletePost(reviews._id)}
                         >
@@ -139,7 +132,7 @@ const Reviews = () => {
                             src="https://img.icons8.com/glyph-neue/512/delete-property.png"
                             alt="delete-icon"
                           />
-                        </div>
+                        </div> */}
                       </section>
                     </div>
                   </div>
@@ -161,6 +154,25 @@ const Reviews = () => {
   // INITIATES UPON MOUNT IF THERE IS A COMMENT
   useEffect(() => {
     getReview();
+    const fetchUserName = async () => {
+      const token = getUserToken();
+      if (token) {
+        const response = await fetch("https://capstone-commerce.herokuapp.com/auth/name", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setUserName(data.name);
+        } else {
+          console.error(data.message);
+        }
+      }
+    };
+    fetchUserName();
   }, []);
 
   return (
