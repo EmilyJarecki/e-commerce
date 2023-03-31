@@ -22,8 +22,6 @@ Aviato leverages the understanding that smaller businesses might not have as big
 <img src="https://i.imgur.com/k5eTPCE.png" alt="Cart Page" />
 <h3> Login Page
 <img src="https://i.imgur.com/DolZ81b.jpg" alt="Login" />     
-<h3> Add a Product
-<img src="https://i.imgur.com/HEBAAJA.jpg" alt="Add a Product" />
             </div>
             </details>
             
