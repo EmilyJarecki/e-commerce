@@ -123,7 +123,7 @@ const Reviews = () => {
                       <section className="review-section">
                         <h4 className="reviews-name">{reviews.name}: </h4>
                         <p className="reviews-body">{reviews.body}</p>
-                        <div
+                        {/* <div
                           className="delete-div"
                           onClick={() => deletePost(reviews._id)}
                         >
@@ -132,7 +132,7 @@ const Reviews = () => {
                             src="https://img.icons8.com/glyph-neue/512/delete-property.png"
                             alt="delete-icon"
                           />
-                        </div>
+                        </div> */}
                       </section>
                     </div>
                   </div>
