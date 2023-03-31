@@ -40,7 +40,7 @@ const Header = () => {
         <Link className="link reg-log header-link" to="/auth" onClick={handleLogout}>
         {userName ? "Logout" : "Login/Register"}
       </Link>
-      <h4>{userName && <p className="user-name">Hello, {userName}</p>}</h4>
+      <h4 className="name-place">{userName && <p className="user-name">Hello, {userName}</p>}</h4>
 
       <Link className="link header-link" to={"/shop"}>
         <h4 className="AVIATO ">AVIATO</h4>
