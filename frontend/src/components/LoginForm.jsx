@@ -50,17 +50,6 @@ const LoginForm = ({ signIn }) => {
         />
         <br />
         <br />
-        <label htmlFor="name">Name: </label>
-        <input
-          autoComplete="off"
-          className="auth-input"
-          id="name"
-          name="name"
-          value={input.name}
-          onChange={handleChange}
-        />
-        <br />
-        <br />
         <input className="auth-log" type="submit" value="Login User" />
       </form>
     </>

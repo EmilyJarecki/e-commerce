@@ -1,7 +1,7 @@
 import React from "react";
 import "./cart.css";
 import { useState, useEffect } from "react";
-import Checkout from "../../components/Checkout";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -62,16 +62,16 @@ const Cart = () => {
         {cartData && cartData.length !== 0 ? (
           <div className="item-strip">
             {cartData.map((item) => (
-              <div className="cart-status" key={item._id}>  
-              <div className="cart-btn-sec">              
-                <button
-                  className="delete-comp"
-                  onClick={() => Delete(item._id)}
-                >
-                  X
-                </button>
-                <img className="cart-product-image" src={item.image} />
-                </div>              
+              <div className="cart-status" key={item._id}>
+                <div className="cart-btn-sec">
+                  <button
+                    className="delete-comp"
+                    onClick={() => Delete(item._id)}
+                  >
+                    X
+                  </button>
+                  <img className="cart-product-image" src={item.image} />
+                </div>
 
                 <p className="cart-item-name">{item.name}</p>
                 <div className="quantity-sec">
@@ -92,16 +92,28 @@ const Cart = () => {
                   </div>
                 </div>
                 <p className="cart-item-price">${item.price.toFixed(2)}</p>
-
               </div>
             ))}
           </div>
         ) : (
-          <h1 className="no-items">No Items in Cart</h1>
+          <>
+            <h1 className="no-items">No Items in Cart</h1>
+            <Link className="link" to={"/shop"}>
+              <h4>Continue Shopping</h4>
+            </Link>
+          </>
         )}
-        <p className="cart-total">Total: ${getTotal()}</p>
       </div>
-      <Checkout />
+      {cartData && cartData.length !== 0 ? (
+        <div>
+          <p className="cart-total">Total: ${getTotal()}</p>
+          <Link className="link" to={"/checkout"}>
+            <h4>Proceed to Checkout</h4>
+          </Link>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

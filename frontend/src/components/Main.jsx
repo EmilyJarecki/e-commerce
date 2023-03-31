@@ -6,6 +6,7 @@ import ProductList from "../pages/product_list/ProductList";
 import CreateProduct from "../pages/CreateProduct/CreateProduct";
 import Auth from "../pages/Auth";
 import Cart from "../pages/Cart/Cart";
+import Checkout from "../pages/Checkout/Checkout";
 
 const Main = (props) => {
   return (
@@ -17,6 +18,7 @@ const Main = (props) => {
           <Route path="/shop/:id" element={<ProductDetail />} />
           <Route path="/auth" element={<Auth />}/>
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes> 
     </main>
   );
