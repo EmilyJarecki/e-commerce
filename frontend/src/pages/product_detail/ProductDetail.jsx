@@ -154,11 +154,11 @@ const ProductDetail = (props) => {
                   Add to Cart
                 </button>
             </div>
-            {token && currentUser?._id === product.owner._id ? (
+            {/* {token && currentUser?._id === product.owner._id ? (
               <p className="delete" onClick={removeProduct}>
                 Delete
               </p>
-            ) : null}
+            ) : null} */}
             <p></p>
           </div>
         </section>
@@ -167,7 +167,7 @@ const ProductDetail = (props) => {
             <div className="reviews-comp">
               <Reviews />
             </div>
-            <div className="update-container">
+            {/* <div className="update-container">
               {token && currentUser?._id === product.owner._id ? (
                 <form className="update-form" onSubmit={handleSubmit}>
                   <h1 className="edit-title">Edit Product</h1>
@@ -252,7 +252,7 @@ const ProductDetail = (props) => {
                   </div>
                 </form>
               ) : null}
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
