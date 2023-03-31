@@ -44,18 +44,8 @@ const LoginForm = ({ signIn }) => {
           className="auth-input"
           id="password"
           name="password"
+          type="password"
           value={input.password}
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        <label htmlFor="name">Name: </label>
-        <input
-          autoComplete="off"
-          className="auth-input"
-          id="name"
-          name="name"
-          value={input.name}
           onChange={handleChange}
         />
         <br />
