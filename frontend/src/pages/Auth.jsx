@@ -106,11 +106,11 @@ const Auth = (props) => {
           <h1>Log In</h1>
           <LoginForm signIn={loginUser} />
         </div>
-        <div>
+        {/* <div>
           <Link className="link create-product-link" to={"/add"}>
             <h6 className="add-a-product">Add a product</h6>
           </Link>
-        </div>
+        </div> */}
         <div className="register-form">
           <h3>Not a member? Register here:</h3>
           <RegisterForm signUp={registerUser} />

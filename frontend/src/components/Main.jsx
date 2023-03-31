@@ -12,7 +12,7 @@ const Main = (props) => {
     <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/add" element={<CreateProduct />} />
+          {/* <Route path="/add" element={<CreateProduct />} /> */}
           <Route path="/shop" element={<ProductList />} />
           <Route path="/shop/:id" element={<ProductDetail />} />
           <Route path="/auth" element={<Auth />}/>
