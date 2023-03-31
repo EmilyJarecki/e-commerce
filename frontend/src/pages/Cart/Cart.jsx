@@ -1,6 +1,7 @@
 import React from "react";
 import "./cart.css";
 import { useState, useEffect } from "react";
+import Checkout from "../../components/Checkout";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -100,6 +101,7 @@ const Cart = () => {
         )}
         <p className="cart-total">Total: ${getTotal()}</p>
       </div>
+      <Checkout />
     </div>
   );
 };

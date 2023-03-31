@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <div className="top-header container">
         <Link className="link reg-log header-link" to="/auth" onClick={handleLogout}>
-        {userName ? "Logout" : "Login"}
+        {userName ? "Logout" : "Login/Register"}
       </Link>
       <h4>{userName && <p className="user-name">Hello, {userName}</p>}</h4>
 

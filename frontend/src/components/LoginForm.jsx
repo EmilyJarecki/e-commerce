@@ -44,6 +44,7 @@ const LoginForm = ({ signIn }) => {
           className="auth-input"
           id="password"
           name="password"
+          type="password"
           value={input.password}
           onChange={handleChange}
         />
