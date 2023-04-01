@@ -14,21 +14,25 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-    }
+    },
+    wishlist: [
+      {
+        type: String,
+      },
+    ],
   },
   {
     timestamps: true,
     id: false,
-    toJSON:{
-        virtuals: true,
-        transform: (_doc, ret) => {
-            // remove password before it's ever sent to db
-            delete ret.password
-            return ret
-        }
-    }
+    toJSON: {
+      virtuals: true,
+      transform: (_doc, ret) => {
+        // remove password before it's ever sent to db
+        delete ret.password;
+        return ret;
+      },
+    },
   }
 );
 
 module.exports = mongoose.model("User", userSchema);
-
