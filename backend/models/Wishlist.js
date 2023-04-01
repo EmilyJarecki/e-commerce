@@ -6,6 +6,14 @@ const WishlistSchema = new mongoose.Schema({
     description: {type: String, required: true},
     price: {type: Number, required: true},
     category: {type: String},
+    owner: {
+        //ObjectId lets us populate data
+        type: mongoose.Types.ObjectId,
+        // this is the model
+        ref: "User",
+        // can prove to be buggy if there is data in the database
+        required: true,
+      },
 }, {
     timestamps: true,
 })

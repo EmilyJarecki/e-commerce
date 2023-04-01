@@ -4,37 +4,17 @@ const { User, Wishlist } = require("../models/lib");
 const { handleValidateOwnership, requireToken } = require("../middleware/auth");
 const db = require("../models/lib");
 
-// POST route to add an item to a user's wishlist
-router.post("/", requireToken, async (req, res) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
-    // Find the authenticated user by their ID
-    const user = await User.findById(req.user._id);
-
-    if (!user) {
-      // If user is not found, return an error message
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Create a new wishlist item based on the request body
-    const newItem = new Wishlist({
-      name: req.body.name,
-      image: req.body.image,
-      description: req.body.description,
-      price: req.body.price,
-      category: req.body.category,
-    });
-
-    // Add the new wishlist item to the user's wishlist
-    user.wishlist.push(newItem);
-
-    // Save the updated user document
-    await user.save();
-
-    // Return the updated user document with the new wishlist item
-    res.status(201).json(user);
+    const owner = req.user._id;
+    console.log(owner, req.user, req.user.wishlist);
+    req.body.owner = owner;
+    const createWish = await Wishlist.create(req.body);
+    const user = await User.findByIdAndUpdate(owner, { $push: { wishlist: createWish._id } });
+    res.status(201).json(createWish);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server Error" });
+    res.status(400).json({ error: "error" });
+    return next(err);
   }
 });
 
@@ -56,6 +36,37 @@ router.get("/", requireToken, async (req, res) => {
   }
 });
 
+router.delete("/:itemId", requireToken, async (req, res) => {
+  try {
+    // Find the authenticated user by their ID
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      // If user is not found, return an error message
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Find the wishlist item to remove
+    const itemToRemove = user.wishlist.find((item) => item._id == req.params.itemId);
+
+    if (!itemToRemove) {
+      // If item is not found, return an error message
+      return res.status(404).json({ message: "Wishlist item not found" });
+    }
+
+    // Remove the wishlist item from the user's wishlist
+    user.wishlist.pull(itemToRemove);
+
+    // Save the updated user document
+    await user.save();
+
+    // Return the updated user document without the removed wishlist item
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
 
 
