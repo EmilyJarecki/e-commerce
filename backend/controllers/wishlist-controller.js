@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User, Wishlist } = require("../models/lib");
+const { User, Wishlist, Product } = require("../models/lib");
 const { handleValidateOwnership, requireToken } = require("../middleware/auth");
 const db = require("../models/lib");
 
@@ -36,35 +36,33 @@ router.get("/", requireToken, async (req, res) => {
   }
 });
 
-router.delete("/:itemId", requireToken, async (req, res) => {
+router.delete("/:id", requireToken, async (req, res, next) => {
   try {
-    // Find the authenticated user by their ID
-    const user = await User.findById(req.user._id);
+    const wishId = req.params.id;
+    const userId = req.user._id;
 
+    // Find the user and remove the wish from their wishlist
+    const user = await User.findByIdAndUpdate(userId, { $pull: { wishlist: wishId } });
+
+    // If the user is not found, return an error message
     if (!user) {
-      // If user is not found, return an error message
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Find the wishlist item to remove
-    const itemToRemove = user.wishlist.find((item) => item._id == req.params.itemId);
+    // Find the wish by its ID and remove it
+    const deletedWish = await Wishlist.findByIdAndDelete(wishId);
 
-    if (!itemToRemove) {
-      // If item is not found, return an error message
-      return res.status(404).json({ message: "Wishlist item not found" });
+    // If the wish is not found, return an error message
+    if (!deletedWish) {
+      return res.status(404).json({ message: "Wish not found" });
     }
 
-    // Remove the wishlist item from the user's wishlist
-    user.wishlist.pull(itemToRemove);
-
-    // Save the updated user document
-    await user.save();
-
-    // Return the updated user document without the removed wishlist item
-    res.status(200).json(user);
+    // Send a success response
+    res.status(200).json({ message: "Wish deleted successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server Error" });
+    return next(err);
   }
 });
 
