@@ -5,14 +5,12 @@ import axios from "axios";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
-
-
-  const URL = "http://localhost:4000/wishlist";
   const token = getUserToken();
 
+  //TODO get ownerId- there is a get route for it
   const getWishlist = async () => {
     try {
-      const res = await fetch(URL, {
+      const res = await fetch(`http://localhost:4000/wishlist`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -21,20 +19,6 @@ const Wishlist = () => {
       });
       const allWishes = await res.json();
       setWishlist(allWishes);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
-  const deleteWish = async (id) => {
-    try {
-      const res = await axios.delete(`${URL}/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(res.data);
-      getWishlist();
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +34,6 @@ const Wishlist = () => {
       {wishlist.map((item) => (
         <div key={item._id}>
           <p>{item.name}</p>
-          <button onClick={() => deleteWish(item._id)}>Remove from Wishlist</button>
         </div>
       ))}
     </div>

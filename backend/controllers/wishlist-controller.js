@@ -34,16 +34,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// router.get("/:ownerId", async (req, res, next) => {
-//   const ownerId = req.params.ownerId;
-//   try {
-//     const allWishes = await Wishlist.find({ ownerId: ownerId });
-//     res.status(200).json(allWishes);
-//   } catch (error) {
-//     res.status(400).json({ error: "error" });
-//     return next(err);
-//   }
-// });
+
 router.get("/:userId", requireToken, async (req, res, next) => {
   try {
     const userId = req.user._id;

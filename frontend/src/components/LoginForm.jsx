@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const LoginForm = ({ signIn }) => {
-  const initialState = { username: "", password: "", name: "" };
+  const initialState = { username: "", password: "" };
   const [input, setInput] = useState(initialState);
   const navigate = useNavigate();
 
@@ -15,10 +16,11 @@ const LoginForm = ({ signIn }) => {
     } else {
       navigate("/");
     }
-    
+
     // FORM EMPTIES OUT
     setInput(initialState);
   };
+
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
