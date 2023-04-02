@@ -10,7 +10,9 @@ router.post("/", requireToken, async (req, res, next) => {
     console.log(owner, req.user, req.user.wishlist);
     req.body.owner = owner;
     const createWish = await Wishlist.create(req.body);
-    const user = await User.findByIdAndUpdate(owner, { $push: { wishlist: createWish._id } });
+    const user = await User.findByIdAndUpdate(owner, {
+      $push: { wishlist: createWish._id },
+    });
     res.status(201).json(createWish);
   } catch (err) {
     res.status(400).json({ error: "error" });
@@ -18,23 +20,44 @@ router.post("/", requireToken, async (req, res, next) => {
   }
 });
 
-router.get("/", requireToken, async (req, res) => {
+//gets all wishlist items, not individual
+router.get("/", async (req, res, next) => {
   try {
-    // Find the authenticated user by their ID
-    const user = await User.findById(req.user._id);
+    const allWishes = await Wishlist.find({})
+      .populate("owner", "username")
+      .exec();
+    res.status(200).json(allWishes);
+    console.log(allWishes[0].name);
+  } catch (err) {
+    res.status(400).json({ error: "error" });
+    return next(err);
+  }
+});
 
-    if (!user) {
-      // If user is not found, return an error message
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Return the user's wishlist items in the response
+// router.get("/:ownerId", async (req, res, next) => {
+//   const ownerId = req.params.ownerId;
+//   try {
+//     const allWishes = await Wishlist.find({ ownerId: ownerId });
+//     res.status(200).json(allWishes);
+//   } catch (error) {
+//     res.status(400).json({ error: "error" });
+//     return next(err);
+//   }
+// });
+router.get("/:userId", requireToken, async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId).populate("wishlist");
     res.status(200).json(user.wishlist);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server Error" });
+    return next(err);
   }
 });
+
+
+
 
 router.delete("/:id", requireToken, async (req, res, next) => {
   try {
@@ -42,7 +65,9 @@ router.delete("/:id", requireToken, async (req, res, next) => {
     const userId = req.user._id;
 
     // Find the user and remove the wish from their wishlist
-    const user = await User.findByIdAndUpdate(userId, { $pull: { wishlist: wishId } });
+    const user = await User.findByIdAndUpdate(userId, {
+      $pull: { wishlist: wishId },
+    });
 
     // If the user is not found, return an error message
     if (!user) {
@@ -65,8 +90,5 @@ router.delete("/:id", requireToken, async (req, res, next) => {
     return next(err);
   }
 });
-
-
-
 
 module.exports = router;
