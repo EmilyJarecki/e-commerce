@@ -78,7 +78,7 @@ const Auth = (props) => {
         // sets local storage
         setUserToken(currentUser.token);
 
-        localStorage.setItem("currentUser", JSON.stringify(configs.data));
+        localStorage.setItem("currentUser", JSON.stringify(data));
 
         console.log(configs);
         // put the returned user object in state
