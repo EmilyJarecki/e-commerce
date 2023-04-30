@@ -28,26 +28,41 @@ const Wishlist = () => {
   };
 
   //TODO this was literally working
-  const getUserId = async () => {
-    try {
-      const res = await fetch('http://localhost:4000/auth/identity', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-      })        
-      const userID = await res.json()
-      console.log(userID)
-      setId(userID)
-    } catch (error) {   
-      console.error(error)
-    }
+  // const getUserId = async () => {
+  //   try {
+  //     const res = await fetch('http://localhost:4000/auth/idName', {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Mjg1ZTZjZmU3MDQ3OGY4NjRlYWU4OSIsImlhdCI6MTY4MDQ4NjAwMywiZXhwIjoxNjgwNTIyMDAzfQ.Swa-1qv6JD_o_vKw1GZhKbm6ZdB13Tx99BrAV2eRv7w`
+  //       },
+  //     })        
+  //     const userID = await res.json()
+  //     // console.log(userID)
+  //     setId(userID)
+  //   } catch (error) {   
+  //     console.error(error)
+  //   }
+  // }
+  function getCurrentUserInfo() {
+    const token = localStorage.getItem('token'); // assuming the token is stored in localStorage
+    fetch('/idName', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Do something with the data, such as updating the UI
+      console.log(data);
+    })
+    .catch(error => console.error(error));
   }
 
-
   useEffect(() => {
-    getUserId()
+    getCurrentUserInfo()
   }, []);
 
   return (

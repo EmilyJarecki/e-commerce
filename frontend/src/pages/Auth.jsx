@@ -71,7 +71,6 @@ const Auth = (props) => {
       );
 
       const currentUser = await response.json();
-      console.log(currentUser);
       setPerson(currentUser);
 
       if (currentUser.token) {
@@ -79,8 +78,10 @@ const Auth = (props) => {
         setUserToken(currentUser.token);
 
         localStorage.setItem("currentUser", JSON.stringify(data));
-
+      
+        console.log(currentUser);
         console.log(configs);
+
         // put the returned user object in state
         setUser({ ...currentUser });
         setAuth(currentUser.isLoggedIn);
