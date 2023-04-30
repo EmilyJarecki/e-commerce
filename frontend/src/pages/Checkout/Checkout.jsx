@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Payment from "../../components/Payment";
 import Shipping from "../../components/Shipping";
 import { Link } from "react-router-dom";
+import ReviewOrder from "../../components/ReviewOrder";
 
 const Checkout = () => {
     const [paymentSuccess, setPaymentSuccess] = useState(false);
@@ -35,6 +36,7 @@ const Checkout = () => {
       </Link>
       <Shipping />
       <Payment />
+      <ReviewOrder />
       <button onClick={handlePayClick}>Complete Purchase</button>
       {paymentSuccess && <p>Payment successful!</p>}
 
