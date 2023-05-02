@@ -4,6 +4,12 @@ import * as Yup from "yup";
 
 const Checkout = () => {
   const [email, setEmail] = useState("");
+  const checkValue = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (/\D/.test(String.fromCharCode(charCode))) {
+      e.preventDefault();
+    }
+  };
 
   const states = [
     { name: "Alabama", abbr: "AL" },
@@ -87,7 +93,13 @@ const Checkout = () => {
     const storedValues = localStorage.getItem("formValues");
     const initialValues = storedValues
       ? JSON.parse(storedValues)
-      : { firstName: "", lastName: "", streetAddress: "", email: "", cardNum: "" };
+      : {
+          firstName: "",
+          lastName: "",
+          streetAddress: "",
+          email: "",
+          cardNum: "",
+        };
     console.log(initialValues);
   };
   getItems();
@@ -111,7 +123,7 @@ const Checkout = () => {
             cardNum: "",
             expMonth: "",
             expYear: "",
-            cvv:"",
+            cvv: "",
           }}
           validationSchema={Yup.object({
             firstName: Yup.string()
@@ -134,7 +146,7 @@ const Checkout = () => {
               .required("Required"),
             cardName: Yup.string().required("Required"),
             cardNum: Yup.string()
-              // .min(16, "Must be 16 characters")
+              .min(16, "Must be 16 characters")
               .required("Required"),
             expMonth: Yup.string().required("Required"),
             expYear: Yup.string()
@@ -149,7 +161,7 @@ const Checkout = () => {
               // alert(JSON.stringify(values, null, 2));
               setEmail(values.email); // update email state with the entered email address
               localStorage.setItem("formValues", JSON.stringify(values)); // store form values in local storage
-              console.log(values)
+              console.log(values);
               setSubmitting(false);
             }, 400);
           }}
@@ -183,11 +195,11 @@ const Checkout = () => {
             </Field>
 
             <label htmlFor="zip">ZIP Code</label>
-            <Field name="zip" type="text" maxLength={5} />
+            <Field name="zip" type="text" maxLength={5} onKeyPress={(e) => checkValue(e)}/>
             <ErrorMessage name="zip" />
 
             <label htmlFor="phone">Mobile Number</label>
-            <Field name="phone" type="text" maxLength={10} />
+            <Field name="phone" type="text" maxLength={10} onKeyPress={(e) => checkValue(e)}/>
             <ErrorMessage name="phone" />
 
             <label htmlFor="email">Email Address</label>
@@ -201,7 +213,12 @@ const Checkout = () => {
             <ErrorMessage name="cardName" />
 
             <label htmlFor="cardNum">Card Number</label>
-            <Field name="cardNum" type="text" maxLength={16}/>
+            <Field
+              name="cardNum"
+              type="text"
+              maxLength={16}
+              onKeyPress={(e) => checkValue(e)}
+            />
             <ErrorMessage name="cardNum" />
 
             <label htmlFor="expMonth">Exp. Month</label>
@@ -225,14 +242,11 @@ const Checkout = () => {
             </Field>
 
             <label htmlFor="cvv">CVV</label>
-            <Field name="cvv" type="text" maxLength={3} />
+            <Field name="cvv" type="text" maxLength={3} onKeyPress={(e) => checkValue(e)}/>
             <ErrorMessage name="cvv" />
-
-
 
             <button type="submit">Submit</button>
           </Form>
-
         </Formik>
       </div>
     </>
