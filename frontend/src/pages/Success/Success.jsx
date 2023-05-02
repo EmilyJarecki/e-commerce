@@ -6,7 +6,12 @@ const randomNumber = () =>{
   const randomNumber = Math.floor(Math.random() * 900000000) + 100000000;
   return randomNumber
 }
-
+const addSevenDays = () => {
+  let date = new Date();
+  // Add five days to current date
+  date.setDate(date.getDate() + 7);
+  return date.toLocaleDateString();
+}
 
   return (
     <>
@@ -16,7 +21,7 @@ const randomNumber = () =>{
     </div>
     <div>
       <h3>Order #{randomNumber()}</h3>
-      <p>Expected Delivery: </p>
+      <p>Expected Delivery: {addSevenDays()}</p>
     </div>
     <Link to={`/shop`}>
     Keep Shopping
