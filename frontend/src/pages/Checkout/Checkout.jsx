@@ -108,7 +108,7 @@ const Checkout = () => {
     <>
       <div>Checkout</div>
       <div>
-        <h1>Shipping</h1>
+        <h1 className="text-4xl font-bold underline yellow">Shipping</h1>
         <Formik
           initialValues={{
             firstName: "",
@@ -168,19 +168,19 @@ const Checkout = () => {
         >
           <Form>
             <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text" />
+            <Field className="h-9 border-solid border-2 border-sky-500" name="firstName" type="text" />
             <ErrorMessage name="firstName" />
 
             <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" type="text" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="lastName" type="text" />
             <ErrorMessage name="lastName" />
 
             <label htmlFor="streetAddress">Street Address</label>
-            <Field name="streetAddress" type="text" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="streetAddress" type="text" />
             <ErrorMessage name="streetAddress" />
 
             <label htmlFor="city">City</label>
-            <Field name="city" type="text" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="city" type="text" />
             <ErrorMessage name="city" />
 
             {/* State */}
@@ -195,26 +195,27 @@ const Checkout = () => {
             </Field>
 
             <label htmlFor="zip">ZIP Code</label>
-            <Field name="zip" type="text" maxLength={5} onKeyPress={(e) => checkValue(e)}/>
-            <ErrorMessage name="zip" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="zip" type="text" maxLength={5} onKeyPress={(e) => checkValue(e)}/>
+            <ErrorMessage className="text-sky-400" name="zip" />
 
             <label htmlFor="phone">Mobile Number</label>
-            <Field name="phone" type="text" maxLength={10} onKeyPress={(e) => checkValue(e)}/>
+            <Field className="h-9 border-solid border-2 border-sky-500"name="phone" type="text" maxLength={10} onKeyPress={(e) => checkValue(e)}/>
             <ErrorMessage name="phone" />
 
             <label htmlFor="email">Email Address</label>
-            <Field name="email" type="email" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="email" type="email" />
             <ErrorMessage name="email" />
 
             <h1>Payment</h1>
 
             <label htmlFor="cardName">Cardholder's Name</label>
-            <Field name="cardName" type="text" />
+            <Field className="h-9 border-solid border-2 border-sky-500"name="cardName" type="text" />
             <ErrorMessage name="cardName" />
 
             <label htmlFor="cardNum">Card Number</label>
             <Field
               name="cardNum"
+              className="h-9 border-solid border-2 border-sky-500"
               type="text"
               maxLength={16}
               onKeyPress={(e) => checkValue(e)}
@@ -242,7 +243,7 @@ const Checkout = () => {
             </Field>
 
             <label htmlFor="cvv">CVV</label>
-            <Field name="cvv" type="text" maxLength={3} onKeyPress={(e) => checkValue(e)}/>
+            <Field className="h-9 border-solid border-2 border-sky-500" name="cvv" type="text" maxLength={3} onKeyPress={(e) => checkValue(e)}/>
             <ErrorMessage name="cvv" />
 
             <button type="submit">Submit</button>
@@ -254,48 +255,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-// import React, { useState } from "react";
-// import Payment from "../../components/Payment";
-// import Shipping from "../../components/Shipping";
-// import { Link } from "react-router-dom";
-// import ReviewOrder from "../../components/ReviewOrder";
-
-// const Checkout = () => {
-//   const [paymentSuccess, setPaymentSuccess] = useState(false);
-
-//   function clearLocalStorage() {
-//     localStorage.removeItem("cart");
-//   }
-
-//   function handlePayClick() {
-//     const inputs = document.querySelectorAll("input[required]");
-
-//     // Check if all required input fields are filled
-//     const allFieldsFilled = Array.from(inputs).every(
-//       (input) => input.value !== ""
-//     );
-
-//     if (allFieldsFilled) {
-//       clearLocalStorage();
-//       setPaymentSuccess(true);
-//       window.location.href = "/success";
-//     } else {
-//       alert("Please fill out all required fields.");
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <Link className="link" to={"/cart"}>
-//         <h4>Go Back to Cart</h4>
-//       </Link>
-//       <Shipping />
-//       <Payment />
-//       <ReviewOrder />
-//       <button onClick={handlePayClick}>Complete Purchase</button>
-//     </div>
-//   );
-// };
-
-// export default Checkout;
