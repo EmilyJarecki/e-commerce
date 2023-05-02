@@ -1,9 +1,32 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const Success = () => {
+
+const randomNumber = () =>{
+  const randomNumber = Math.floor(Math.random() * 900000000) + 100000000;
+  return randomNumber
+}
+
+
   return (
-    <div>Success</div>
-  )
+    <>
+    <div>
+      <h1>THANKS FOR SHOPPING WITH US!</h1>
+      <p>We are getting started on your order right now, and you will receive an order confirmation email shortly after to loremipsum@gmail.com. If the email hasn’t arrived within two minutes, please check your spam folder to see if the email was routed there.</p>
+    </div>
+    <div>
+      <h3>Order #{randomNumber()}</h3>
+      <p>Expected Delivery: </p>
+    </div>
+    <Link to={`/shop`}>
+    Keep Shopping
+    </Link>
+    <div>
+      <h4>CONTACT US</h4>
+      <p>1-800-123-4567</p>
+      <p>customerservice@aviato.com</p>
+    </div>
+  </>)
 }
 
 export default Success

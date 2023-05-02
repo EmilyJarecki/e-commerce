@@ -127,7 +127,6 @@ const CheckoutForm = () => {
           zip: "",
           phone: "",
           email: "",
-
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -155,13 +154,13 @@ const CheckoutForm = () => {
             localStorage.setItem("formValues", JSON.stringify(values)); // store form values in local storage
             console.log(values);
             setSubmitting(false);
-            setIsPaymentOpen(true)
+            setIsPaymentOpen(true);
             //   localStorage.setItem('cart', [""])
           }, 400);
         }}
       >
         <Form>
-          <div className="flex flex-col border-solid border-2 border-green-600">
+          <div className="flex flex-col border-solid border-2 border-green-600 ">
             <h1
               className="text-4xl font-bold underline yellow"
               // onClick={toggleShipping}
@@ -169,81 +168,80 @@ const CheckoutForm = () => {
               Shipping
             </h1>
             {/* {isShippingOpen && ( */}
-              <>
-                <label htmlFor="firstName">First Name</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="firstName"
-                  type="text"
-                />
-                <ErrorMessage name="firstName" />
+            <>
+              <label htmlFor="firstName">First Name</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="firstName"
+                type="text"
+              />
+              <ErrorMessage name="firstName" />
 
-                <label htmlFor="lastName">Last Name</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="lastName"
-                  type="text"
-                />
-                <ErrorMessage name="lastName" />
+              <label htmlFor="lastName">Last Name</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="lastName"
+                type="text"
+              />
+              <ErrorMessage name="lastName" />
 
-                <label htmlFor="streetAddress">Street Address</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="streetAddress"
-                  type="text"
-                />
-                <ErrorMessage name="streetAddress" />
+              <label htmlFor="streetAddress">Street Address</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="streetAddress"
+                type="text"
+              />
+              <ErrorMessage name="streetAddress" />
 
-                <label htmlFor="city">City</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="city"
-                  type="text"
-                />
-                <ErrorMessage name="city" />
+              <label htmlFor="city">City</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="city"
+                type="text"
+              />
+              <ErrorMessage name="city" />
 
-                {/* State */}
-                <label htmlFor="state">Select a state:</label>
-                <Field as="select" name="state" id="state">
-                  <option value="">--Select--</option>
-                  {states.map((state, index) => (
-                    <option key={index} value={state.abbr}>
-                      {state.name}
-                    </option>
-                  ))}
-                </Field>
+              {/* State */}
+              <label htmlFor="state">Select a state:</label>
+              <Field as="select" name="state" id="state">
+                <option value="">--Select--</option>
+                {states.map((state, index) => (
+                  <option key={index} value={state.abbr}>
+                    {state.name}
+                  </option>
+                ))}
+              </Field>
 
-                <label htmlFor="zip">ZIP Code</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="zip"
-                  type="text"
-                  maxLength={5}
-                  onKeyPress={(e) => checkValue(e)}
-                />
-                <ErrorMessage className="text-sky-400" name="zip" />
+              <label htmlFor="zip">ZIP Code</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="zip"
+                type="text"
+                maxLength={5}
+                onKeyPress={(e) => checkValue(e)}
+              />
+              <ErrorMessage className="text-sky-400" name="zip" />
 
-                <label htmlFor="phone">Mobile Number</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="phone"
-                  type="text"
-                  maxLength={10}
-                  onKeyPress={(e) => checkValue(e)}
-                />
-                <ErrorMessage name="phone" />
+              <label htmlFor="phone">Mobile Number</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="phone"
+                type="text"
+                maxLength={10}
+                onKeyPress={(e) => checkValue(e)}
+              />
+              <ErrorMessage name="phone" />
 
-                <label htmlFor="email">Email Address</label>
-                <Field
-                  className="h-9 border-solid border-2 border-sky-500 w-64"
-                  name="email"
-                  type="email"
-                />
-                <ErrorMessage name="email" />
-              </>
+              <label htmlFor="email">Email Address</label>
+              <Field
+                className="h-9 border-solid border-2 border-sky-500 w-64"
+                name="email"
+                type="email"
+              />
+              <ErrorMessage name="email" />
+            </>
             {/* )} */}
           </div>
-
           <button type="submit">Continue to Payment</button>
         </Form>
       </Formik>
@@ -278,9 +276,11 @@ const CheckoutForm = () => {
       >
         <Form>
           <div className="flex flex-col border-solid border-2 border-sky-500 w-64">
-            <h1 
+            <h1
             // onClick={togglePayment}
-            >Payment</h1>
+            >
+              Payment
+            </h1>
             {isPaymentOpen && (
               <>
                 <label htmlFor="cardName">Cardholder's Name</label>
