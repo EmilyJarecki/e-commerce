@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 // import Footer from '../Footer/Footer';
 import Main from "../Main";
 import UserProvider from "../../data/userContext";
+import 'semantic-ui-css/semantic.min.css'
 
 import { UserContext } from "../../data";
 import { useState } from "react";

@@ -7,7 +7,7 @@ const ReviewOrder = () => {
     setReviewPayOpen(!reviewPayOpen);
   };
   return (
-    <div>
+    <div className="order-review">
       <h1 onClick={handleReviewPayClick}>Review Order</h1>
       {reviewPayOpen && (
         <div>

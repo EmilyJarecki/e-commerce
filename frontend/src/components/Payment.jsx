@@ -7,7 +7,7 @@ const Payment = () => {
     setPaymentOpen(!paymentOpen);
   };
   return (
-    <div>
+    <div className="payment">
       <h1 onClick={handlePaymentClick}>Payment</h1>
       {paymentOpen && (
         <form className="payment">
