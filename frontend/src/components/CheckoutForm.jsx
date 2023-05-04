@@ -4,9 +4,10 @@ import * as Yup from "yup";
 
 const CheckoutForm = () => {
   const [email, setEmail] = useState("");
-  const [isShippingOpen, setIsShippingOpen] = useState(false);
+  const [isShippingOpen, setIsShippingOpen] = useState(true);
 
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [isReviewOrderOpen, setIsReviewOrderOpen] = useState(false);
 
   const toggleShipping = () => {
     setIsShippingOpen(!isShippingOpen);
@@ -14,6 +15,9 @@ const CheckoutForm = () => {
 
   const togglePayment = () => {
     setIsPaymentOpen(!isPaymentOpen);
+  };
+  const toggleReview = () => {
+    setIsReviewOrderOpen(!isReviewOrderOpen);
   };
 
   const checkValue = (e) => {
@@ -191,199 +195,55 @@ const CheckoutForm = () => {
       >
         {({ values, handleChange }) => (
           <Form>
-            <h1>SHIPPING</h1>
-            <div>
-              <label htmlFor="firstName">First Name</label>
-              <Field
-                type="text"
-                name="firstName"
-                value={values.firstName}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="firstName" />
-            </div>
-            <div>
-              <label htmlFor="lastName">Last Name</label>
-              <Field
-                type="text"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="lastName" />
-            </div>
-            <div>
-              <label htmlFor="shippingAddress">Shipping Address</label>
-              <Field
-                type="text"
-                name="shippingAddress"
-                value={values.shippingAddress}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="shippingAddress" />
-            </div>
-            <div>
-              <label htmlFor="shippingCity">City</label>
-              <Field
-                type="text"
-                name="shippingCity"
-                value={values.shippingCity}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="shippingCity" />
-            </div>
-            <div>
-              <label htmlFor="shippingState">State</label>
-              <Field
-                as="select"
-                name="shippingState"
-                value={values.shippingState}
-              >
-                <option value="">--Select--</option>
-                {states.map((state, index) => (
-                  <option key={index} value={state.name}>
-                    {state.name}
-                  </option>
-                ))}
-              </Field>
-
-              <ErrorMessage name="shippingState" />
-            </div>
-            <div>
-              <label htmlFor="shippingZip">Zip Code</label>
-              <Field
-                type="text"
-                name="shippingZip"
-                value={values.shippingZip}
-                onChange={handleChange}
-                onKeyPress={(e) => checkValue(e)}
-                maxLength={5}
-              />
-              <ErrorMessage name="shippingZip" />
-            </div>
-
-            <div>
-              <label htmlFor="phone">Phone</label>
-              <Field
-                type="text"
-                name="phone"
-                value={values.phone}
-                onChange={handleChange}
-                maxLength={10}
-                onKeyPress={(e) => checkValue(e)}
-              />
-              <ErrorMessage name="phone" />
-            </div>
-            <div>
-              <label htmlFor="shippingZip">Email</label>
-              <Field
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="email" />
-            </div>
-
-
-
-                  <h1>PAYMENT</h1>
-
-            <div>
-              <label htmlFor="cardName">Cardholder Name</label>
-              <Field
-                type="text"
-                name="cardName"
-                value={values.cardName}
-                onChange={handleChange}
-              />
-              <ErrorMessage name="cardName" />
-            </div>
-            <div>
-              <label htmlFor="cardNum">Card Number</label>
-              <Field
-                type="text"
-                name="cardNum"
-                value={values.cardNum}
-                onChange={handleChange}
-                maxLength={16}
-                onKeyPress={(e) => checkValue(e)}
-              />
-              <ErrorMessage name="cardNum" />
-            </div>
-            <div>
-              <label htmlFor="expMonth">Exp Month</label>
-              <Field as="select" name="expMonth" value={values.expMonth}>
-                <option value="">--Select--</option>
-                {months.map((month, index) => (
-                  <option key={index} value={month.name}>
-                    {month.name}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="expMonth" />
-            </div>
-            <div>
-              <label htmlFor="cardNum">Exp Year</label>
-              <Field as="select" name="expYear" value={values.expYear}>
-                <option value="">--Select--</option>
-                {years.map((year, index) => (
-                  <option key={index} value={year.name}>
-                    {year.name}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="expYear" />
-            </div>
-            <div>
-              <label htmlFor="cvv">CVV</label>
-              <Field
-                type="text"
-                name="cvv"
-                value={values.cvv}
-                maxLength={3}
-                onChange={handleChange}
-                onKeyPress={(e) => checkValue(e)}
-              />
-              <ErrorMessage name="cvv" />
-            </div>
-            <div>
-              <label htmlFor="billingSameAsShipping">
-                <Field
-                  type="checkbox"
-                  name="billingSameAsShipping"
-                  checked={values.billingSameAsShipping}
-                  onChange={handleChange}
-                />
-                Billing Address Same as Shipping
-              </label>
-            </div>
-            {values.billingSameAsShipping ? null : (
-              <>
+            <h1 onClick={toggleShipping}>SHIPPING</h1>
+            {isShippingOpen && (
+              <div>
                 <div>
-                  <label htmlFor="billingAddress">Billing Address</label>
+                  <label htmlFor="firstName">First Name</label>
                   <Field
                     type="text"
-                    name="billingAddress"
-                    value={values.billingAddress}
+                    name="firstName"
+                    value={values.firstName}
                     onChange={handleChange}
                   />
+                  <ErrorMessage name="firstName" />
                 </div>
                 <div>
-                  <label htmlFor="billingCity">City</label>
+                  <label htmlFor="lastName">Last Name</label>
                   <Field
                     type="text"
-                    name="billingCity"
-                    value={values.billingCity}
+                    name="lastName"
+                    value={values.lastName}
                     onChange={handleChange}
                   />
+                  <ErrorMessage name="lastName" />
                 </div>
                 <div>
-                  <label htmlFor="billingState">State</label>
+                  <label htmlFor="shippingAddress">Shipping Address</label>
+                  <Field
+                    type="text"
+                    name="shippingAddress"
+                    value={values.shippingAddress}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage name="shippingAddress" />
+                </div>
+                <div>
+                  <label htmlFor="shippingCity">City</label>
+                  <Field
+                    type="text"
+                    name="shippingCity"
+                    value={values.shippingCity}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage name="shippingCity" />
+                </div>
+                <div>
+                  <label htmlFor="shippingState">State</label>
                   <Field
                     as="select"
-                    name="billingState"
-                    value={values.billingState}
+                    name="shippingState"
+                    value={values.shippingState}
                   >
                     <option value="">--Select--</option>
                     {states.map((state, index) => (
@@ -392,30 +252,183 @@ const CheckoutForm = () => {
                       </option>
                     ))}
                   </Field>
+
+                  <ErrorMessage name="shippingState" />
                 </div>
                 <div>
-                  <label htmlFor="billingZip">Zip Code</label>
+                  <label htmlFor="shippingZip">Zip Code</label>
                   <Field
                     type="text"
-                    name="billingZip"
-                    value={values.billingZip}
+                    name="shippingZip"
+                    value={values.shippingZip}
+                    onChange={handleChange}
+                    onKeyPress={(e) => checkValue(e)}
+                    maxLength={5}
+                  />
+                  <ErrorMessage name="shippingZip" />
+                </div>
+
+                <div>
+                  <label htmlFor="phone">Phone</label>
+                  <Field
+                    type="text"
+                    name="phone"
+                    value={values.phone}
+                    onChange={handleChange}
+                    maxLength={10}
+                    onKeyPress={(e) => checkValue(e)}
+                  />
+                  <ErrorMessage name="phone" />
+                </div>
+                <div>
+                  <label htmlFor="shippingZip">Email</label>
+                  <Field
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage name="email" />
+                </div>
+              </div>
+            )}
+            <h1 onClick={togglePayment}>PAYMENT</h1>
+            {isPaymentOpen && (
+              <div>
+                <div>
+                  <label htmlFor="cardName">Cardholder Name</label>
+                  <Field
+                    type="text"
+                    name="cardName"
+                    value={values.cardName}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage name="cardName" />
+                </div>
+                <div>
+                  <label htmlFor="cardNum">Card Number</label>
+                  <Field
+                    type="text"
+                    name="cardNum"
+                    value={values.cardNum}
+                    onChange={handleChange}
+                    maxLength={16}
+                    onKeyPress={(e) => checkValue(e)}
+                  />
+                  <ErrorMessage name="cardNum" />
+                </div>
+                <div>
+                  <label htmlFor="expMonth">Exp Month</label>
+                  <Field as="select" name="expMonth" value={values.expMonth}>
+                    <option value="">--Select--</option>
+                    {months.map((month, index) => (
+                      <option key={index} value={month.name}>
+                        {month.name}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name="expMonth" />
+                </div>
+                <div>
+                  <label htmlFor="cardNum">Exp Year</label>
+                  <Field as="select" name="expYear" value={values.expYear}>
+                    <option value="">--Select--</option>
+                    {years.map((year, index) => (
+                      <option key={index} value={year.name}>
+                        {year.name}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name="expYear" />
+                </div>
+                <div>
+                  <label htmlFor="cvv">CVV</label>
+                  <Field
+                    type="text"
+                    name="cvv"
+                    value={values.cvv}
+                    maxLength={3}
                     onChange={handleChange}
                     onKeyPress={(e) => checkValue(e)}
                   />
+                  <ErrorMessage name="cvv" />
                 </div>
-              </>
+                <div>
+                  <label htmlFor="billingSameAsShipping">
+                    <Field
+                      type="checkbox"
+                      name="billingSameAsShipping"
+                      checked={values.billingSameAsShipping}
+                      onChange={handleChange}
+                    />
+                    Billing Address Same as Shipping
+                  </label>
+                </div>
+                {values.billingSameAsShipping ? null : (
+                  <>
+                    <div>
+                      <label htmlFor="billingAddress">Billing Address</label>
+                      <Field
+                        type="text"
+                        name="billingAddress"
+                        value={values.billingAddress}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="billingCity">City</label>
+                      <Field
+                        type="text"
+                        name="billingCity"
+                        value={values.billingCity}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="billingState">State</label>
+                      <Field
+                        as="select"
+                        name="billingState"
+                        value={values.billingState}
+                      >
+                        <option value="">--Select--</option>
+                        {states.map((state, index) => (
+                          <option key={index} value={state.name}>
+                            {state.name}
+                          </option>
+                        ))}
+                      </Field>
+                    </div>
+                    <div>
+                      <label htmlFor="billingZip">Zip Code</label>
+                      <Field
+                        type="text"
+                        name="billingZip"
+                        value={values.billingZip}
+                        onChange={handleChange}
+                        onKeyPress={(e) => checkValue(e)}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
             )}
-            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
       <div>
-        <h1>REVIEW ORDER</h1>
-        <p>
-          By clicking the “Place Order” button, you confirm you you have read,
-          understand, and accept our Terms of Sale, Privacy Policy, and Return
-          Policy.
-        </p>
+        <h1 onClick={toggleReview}>REVIEW ORDER</h1>
+{isReviewOrderOpen && (
+          <div>
+          <p>
+            By clicking the “Place Order” button, you confirm you you have read,
+            understand, and accept our Terms of Sale, Privacy Policy, and Return
+            Policy.
+          </p>      
+          <button type="submit">PLACE ORDER</button>
+        </div>
+)}
+
       </div>
     </>
   );
