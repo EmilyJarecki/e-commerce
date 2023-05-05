@@ -13,7 +13,7 @@ const Success = () => {
   };
 
   const retrieveInfo = () => {
-    const storedData = localStorage.getItem("formValues"); // retrieve the JSON string from local storage
+    const storedData = localStorage.getItem("formData"); // retrieve the JSON string from local storage
     const parsedData = JSON.parse(storedData); // parse the JSON string into a JavaScript object
     const email = parsedData.email; // access the email property of the object
     return email;

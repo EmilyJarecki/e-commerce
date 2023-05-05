@@ -7,8 +7,8 @@ const Checkout = () => {
 
   return (
     <>
-      <h1>Checkout</h1>
-      <div>
+      <h1 className="text-center ship-font text-4xl my-12" >CHECKOUT</h1>
+      <div className="flex justify-center">
         <CheckoutForm/>
         <CheckoutProducts />
       </div>

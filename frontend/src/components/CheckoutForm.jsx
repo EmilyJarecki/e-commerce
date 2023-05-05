@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import classNames from "classnames";
 
 const CheckoutForm = () => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,10 @@ const CheckoutForm = () => {
       e.preventDefault();
     }
   };
+
+  const commonInput =
+    "rounded ship-font shadow-inner shadow-grey-50 h-[30px] px-2 mb-2";
+  const commonLabel = "ship-font text-sm";
 
   const states = [
     { name: "Alabama", abbr: "AL" },
@@ -120,7 +125,7 @@ const CheckoutForm = () => {
   };
   getItems();
   return (
-    <>
+    <div className="flex-col w-1/3 mr-16">
       <Formik
         initialValues={{
           firstName: "",
@@ -195,32 +200,55 @@ const CheckoutForm = () => {
       >
         {({ values, handleChange }) => (
           <Form>
-            <h1 onClick={toggleShipping}>SHIPPING</h1>
+            <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={toggleShipping}>
+              SHIPPING
+            </h1>
             {isShippingOpen && (
               <div>
-                <div>
-                  <label htmlFor="firstName">First Name</label>
-                  <Field
-                    type="text"
-                    name="firstName"
-                    value={values.firstName}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage name="firstName" />
+                <div className="flex justify-between">
+                  <div className="flex flex-col mr-8">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="firstName"
+                    >
+                      First Name
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-60")}
+                      type="text"
+                      name="firstName"
+                      value={values.firstName}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage name="firstName" />
+                  </div>
+                  <div className="ship-font flex flex-col ">
+                    <label
+                      className={classNames(commonLabel, "w-60")}
+                      htmlFor="lastName"
+                    >
+                      Last Name
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "")}
+                      type="text"
+                      name="lastName"
+                      value={values.lastName}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage name="lastName" />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="lastName">Last Name</label>
+
+                <div className="ship-font flex flex-col">
+                  <label
+                    className={classNames(commonLabel, "")}
+                    htmlFor="shippingAddress"
+                  >
+                    Shipping Address
+                  </label>
                   <Field
-                    type="text"
-                    name="lastName"
-                    value={values.lastName}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage name="lastName" />
-                </div>
-                <div>
-                  <label htmlFor="shippingAddress">Shipping Address</label>
-                  <Field
+                    className={classNames(commonInput, "")}
                     type="text"
                     name="shippingAddress"
                     value={values.shippingAddress}
@@ -228,76 +256,118 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="shippingAddress" />
                 </div>
-                <div>
-                  <label htmlFor="shippingCity">City</label>
-                  <Field
-                    type="text"
-                    name="shippingCity"
-                    value={values.shippingCity}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage name="shippingCity" />
-                </div>
-                <div>
-                  <label htmlFor="shippingState">State</label>
-                  <Field
-                    as="select"
-                    name="shippingState"
-                    value={values.shippingState}
-                  >
-                    <option value="">--Select--</option>
-                    {states.map((state, index) => (
-                      <option key={index} value={state.name}>
-                        {state.name}
-                      </option>
-                    ))}
-                  </Field>
 
-                  <ErrorMessage name="shippingState" />
-                </div>
-                <div>
-                  <label htmlFor="shippingZip">Zip Code</label>
-                  <Field
-                    type="text"
-                    name="shippingZip"
-                    value={values.shippingZip}
-                    onChange={handleChange}
-                    onKeyPress={(e) => checkValue(e)}
-                    maxLength={5}
-                  />
-                  <ErrorMessage name="shippingZip" />
+                <div className="flex justify-between">
+                  <div className="ship-font flex flex-col">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="shippingCity"
+                    >
+                      City
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-60")}
+                      type="text"
+                      name="shippingCity"
+                      value={values.shippingCity}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage name="shippingCity" />
+                  </div>
+                  <div className="ship-font flex flex-col">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="shippingState"
+                    >
+                      State
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-16")}
+                      as="select"
+                      name="shippingState"
+                      value={values.shippingState}
+                    >
+                      <option value=""></option>
+                      {states.map((state, index) => (
+                        <option key={index} value={state.name}>
+                          {state.abbr}
+                        </option>
+                      ))}
+                    </Field>
+
+                    <ErrorMessage name="shippingState" />
+                  </div>
+                  <div className="ship-font flex flex-col">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="shippingZip"
+                    >
+                      Zip Code
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-36")}
+                      type="text"
+                      name="shippingZip"
+                      value={values.shippingZip}
+                      onChange={handleChange}
+                      onKeyPress={(e) => checkValue(e)}
+                      maxLength={5}
+                    />
+                    <ErrorMessage name="shippingZip" />
+                  </div>
                 </div>
 
-                <div>
-                  <label htmlFor="phone">Phone</label>
-                  <Field
-                    type="text"
-                    name="phone"
-                    value={values.phone}
-                    onChange={handleChange}
-                    maxLength={10}
-                    onKeyPress={(e) => checkValue(e)}
-                  />
-                  <ErrorMessage name="phone" />
-                </div>
-                <div>
-                  <label htmlFor="shippingZip">Email</label>
-                  <Field
-                    type="email"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage name="email" />
+                <div className="flex justify-between">
+                  <div className="ship-font flex flex-col">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="phone"
+                    >
+                      Phone
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-60")}
+                      type="text"
+                      name="phone"
+                      value={values.phone}
+                      onChange={handleChange}
+                      maxLength={10}
+                      onKeyPress={(e) => checkValue(e)}
+                    />
+                    <ErrorMessage name="phone" />
+                  </div>
+                  <div className="ship-font flex flex-col">
+                    <label
+                      className={classNames(commonLabel, "")}
+                      htmlFor="shippingZip"
+                    >
+                      Email
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-60")}
+                      type="email"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange}
+                    />
+                    <ErrorMessage name="email" />
+                  </div>
                 </div>
               </div>
             )}
-            <h1 onClick={togglePayment}>PAYMENT</h1>
+
+
+
+
+            <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={togglePayment}>
+              PAYMENT
+            </h1>
             {isPaymentOpen && (
               <div>
-                <div>
-                  <label htmlFor="cardName">Cardholder Name</label>
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="cardName">Cardholder Name</label>
                   <Field
+                  className={classNames(commonInput, "")}
                     type="text"
                     name="cardName"
                     value={values.cardName}
@@ -305,9 +375,10 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="cardName" />
                 </div>
-                <div>
-                  <label htmlFor="cardNum">Card Number</label>
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="cardNum">Card Number</label>
                   <Field
+                  className={classNames(commonInput, "")}
                     type="text"
                     name="cardNum"
                     value={values.cardNum}
@@ -317,9 +388,9 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="cardNum" />
                 </div>
-                <div>
-                  <label htmlFor="expMonth">Exp Month</label>
-                  <Field as="select" name="expMonth" value={values.expMonth}>
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="expMonth">Exp Month</label>
+                  <Field as="select" className={classNames(commonInput, "")} name="expMonth" value={values.expMonth}>
                     <option value="">--Select--</option>
                     {months.map((month, index) => (
                       <option key={index} value={month.name}>
@@ -329,9 +400,9 @@ const CheckoutForm = () => {
                   </Field>
                   <ErrorMessage name="expMonth" />
                 </div>
-                <div>
-                  <label htmlFor="cardNum">Exp Year</label>
-                  <Field as="select" name="expYear" value={values.expYear}>
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="cardNum">Exp Year</label>
+                  <Field as="select" className={classNames(commonInput, "")} name="expYear" value={values.expYear}>
                     <option value="">--Select--</option>
                     {years.map((year, index) => (
                       <option key={index} value={year.name}>
@@ -341,9 +412,10 @@ const CheckoutForm = () => {
                   </Field>
                   <ErrorMessage name="expYear" />
                 </div>
-                <div>
-                  <label htmlFor="cvv">CVV</label>
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="cvv">CVV</label>
                   <Field
+                  className={classNames(commonInput, "")}
                     type="text"
                     name="cvv"
                     value={values.cvv}
@@ -353,8 +425,8 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="cvv" />
                 </div>
-                <div>
-                  <label htmlFor="billingSameAsShipping">
+                <div className="flex flex-col">
+                  <label className={classNames(commonLabel, "")} htmlFor="billingSameAsShipping">
                     <Field
                       type="checkbox"
                       name="billingSameAsShipping"
@@ -417,20 +489,19 @@ const CheckoutForm = () => {
         )}
       </Formik>
       <div>
-        <h1 onClick={toggleReview}>REVIEW ORDER</h1>
-{isReviewOrderOpen && (
+        <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={toggleReview}>REVIEW ORDER</h1>
+        {isReviewOrderOpen && (
           <div>
-          <p>
-            By clicking the “Place Order” button, you confirm you you have read,
-            understand, and accept our Terms of Sale, Privacy Policy, and Return
-            Policy.
-          </p>      
-          <button type="submit">PLACE ORDER</button>
-        </div>
-)}
-
+            <p>
+              By clicking the “Place Order” button, you confirm you you have
+              read, understand, and accept our Terms of Sale, Privacy Policy,
+              and Return Policy.
+            </p>
+            <button type="submit">PLACE ORDER</button>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

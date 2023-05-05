@@ -1,9 +1,15 @@
 *{
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Nanum Myeongjo', serif;    
 }
 
 /* will prevent page from moving */
 html, body {
     width: auto!important; 
     overflow-x: hidden!important;
+    background-color: rgba(240, 235, 228, 1)
+
 } 
+::-webkit-scrollbar {
+    background-color: transparent; /* Set scrollbar background color to transparent */
+    width: 0px;
+  }
