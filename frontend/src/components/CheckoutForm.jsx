@@ -181,12 +181,12 @@ const CheckoutForm = () => {
           expMonth: Yup.string().required("Required"),
           expYear: Yup.string().required("Required"),
           cvv: Yup.string().min(3, "Must be 3 digits").required("Required"),
-          billingAddress: Yup.string().required("Required street Address"),
-          billingCity: Yup.string().required("City Required"),
-          billingState: Yup.string().required("State Required"),
-          billingZip: Yup.string()
-            .required("Zip Code Required")
-            .min(5, "Zip must be 5 digits"),
+          // billingAddress: Yup.string().required("Required street Address"),
+          // billingCity: Yup.string().required("City Required"),
+          // billingState: Yup.string().required("State Required"),
+          // billingZip: Yup.string()
+          //   .required("Zip Code Required")
+          //   .min(5, "Zip must be 5 digits"),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -552,11 +552,20 @@ const CheckoutForm = () => {
                       type="checkbox"
                       name="billingSameAsShipping"
                       checked={values.billingSameAsShipping}
-                      onChange={handleChange}
+                      onChange={(e) =>
+                        handleChange({
+                          target: { name: e.target.name, value: e.target.checked },
+                        })
+                      }
                     />
                     Billing address same as shipping
                   </label>
                 </div>
+
+
+
+
+
 
                 {values.billingSameAsShipping ? null : (
                   <>
@@ -580,10 +589,10 @@ const CheckoutForm = () => {
                           value={values.billingFirstName}
                           onChange={handleChange}
                         />
-                        <ErrorMessage
+                        {/* <ErrorMessage
                           className={classNames(commonLabel, "")}
                           name="billingFirstName"
-                        />
+                        /> */}
                       </div>
                       <div
                         className={classNames(
@@ -604,7 +613,7 @@ const CheckoutForm = () => {
                           value={values.billingLastName}
                           onChange={handleChange}
                         />
-                        <ErrorMessage name="billingLastName" />
+                        {/* <ErrorMessage name="billingLastName" /> */}
                       </div>
                     </div>
                     <div
