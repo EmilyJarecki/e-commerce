@@ -7,3 +7,7 @@
 .ship-font{
     font-family: 'Montserrat', sans-serif;
 }
+.button-class{
+    background-color: rgba(74, 0, 61, 1);
+    color: rgba(240, 235, 228, 1)
+}

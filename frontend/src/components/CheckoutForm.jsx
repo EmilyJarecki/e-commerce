@@ -14,6 +14,12 @@ const CheckoutForm = () => {
     setIsShippingOpen(!isShippingOpen);
   };
 
+  const contToPay = () => {
+    // setIsShippingOpen(!isShippingOpen);
+    // setIsPaymentOpen(!isPaymentOpen);
+    console.log("cont")
+  };
+
   const togglePayment = () => {
     setIsPaymentOpen(!isPaymentOpen);
   };
@@ -29,8 +35,8 @@ const CheckoutForm = () => {
   };
 
   const commonInput =
-    "rounded ship-font shadow-inner shadow-grey-50 h-[30px] px-2 mb-2";
-  const commonLabel = "ship-font text-sm";
+    "rounded ship-font shadow-inner shadow-grey-50 h-[30px] px-2 text-black";
+  const commonLabel = "ship-font text-sm mt-2";
 
   const states = [
     { name: "Alabama", abbr: "AL" },
@@ -86,18 +92,18 @@ const CheckoutForm = () => {
   ];
 
   const months = [
-    { name: "January", int: 1 },
-    { name: "February", int: 2 },
-    { name: "March", int: 3 },
-    { name: "April", int: 4 },
+    { name: "Jan", int: 1 },
+    { name: "Feb", int: 2 },
+    { name: "Mar", int: 3 },
+    { name: "Apr", int: 4 },
     { name: "May", int: 5 },
     { name: "June", int: 6 },
     { name: "July", int: 7 },
-    { name: "August", int: 8 },
-    { name: "September", int: 9 },
-    { name: "October", int: 10 },
-    { name: "November", int: 11 },
-    { name: "December", int: 12 },
+    { name: "Aug", int: 8 },
+    { name: "Sept", int: 9 },
+    { name: "Oct", int: 10 },
+    { name: "Nov", int: 11 },
+    { name: "Dec", int: 12 },
   ];
 
   const years = [
@@ -142,6 +148,8 @@ const CheckoutForm = () => {
           expYear: "",
           cvv: "",
           billingSameAsShipping: true, // added a new field for the checkbox
+          billingFirstName: "",
+          billingLastName: "",
           billingAddress: "",
           billingCity: "",
           billingState: "",
@@ -154,14 +162,14 @@ const CheckoutForm = () => {
           lastName: Yup.string()
             .max(20, "Must be 20 characters or less")
             .required("Required"),
-          shippingAddress: Yup.string().required("Required street Address"),
-          shippingCity: Yup.string().required("City Required"),
-          shippingState: Yup.string().required("State Required"),
+          shippingAddress: Yup.string().required("Required"),
+          shippingCity: Yup.string().required("Required"),
+          shippingState: Yup.string().required("Required"),
           shippingZip: Yup.string()
-            .required("Zip Code Required")
+            .required("Required")
             .min(5, "Zip must be 5 digits"),
           phone: Yup.string()
-            .required("Phone Required")
+            .required("Required")
             .min(10, "Zip must be 10 digits"),
           email: Yup.string()
             .email("Invalid email address")
@@ -172,13 +180,13 @@ const CheckoutForm = () => {
             .required("Required"),
           expMonth: Yup.string().required("Required"),
           expYear: Yup.string().required("Required"),
-          cvv: Yup.string().min(3, "Zip must be 3 digits").required("Required"),
-          // billingAddress: Yup.string().required("Required street Address"),
-          // billingCity: Yup.string().required("City Required"),
-          // billingState: Yup.string().required("State Required"),
-          // billingZip: Yup.string()
-          //   .required("Zip Code Required")
-          //   .min(5, "Zip must be 5 digits"),
+          cvv: Yup.string().min(3, "Must be 3 digits").required("Required"),
+          billingAddress: Yup.string().required("Required street Address"),
+          billingCity: Yup.string().required("City Required"),
+          billingState: Yup.string().required("State Required"),
+          billingZip: Yup.string()
+            .required("Zip Code Required")
+            .min(5, "Zip must be 5 digits"),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -191,7 +199,7 @@ const CheckoutForm = () => {
             }
             console.log(values.shippingState);
             console.log(values.billingState);
-
+            console.log("hello from here")
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
             setSubmitting(false);
@@ -200,15 +208,23 @@ const CheckoutForm = () => {
       >
         {({ values, handleChange }) => (
           <Form>
-            <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={toggleShipping}>
+            <h1
+              className="ship-font text-2xl mb-4 border-b-2 border-black pb-4"
+              // onClick={toggleShipping}
+            >
               SHIPPING
             </h1>
             {isShippingOpen && (
               <div>
                 <div className="flex justify-between">
-                  <div className="flex flex-col mr-8">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="firstName"
                     >
                       First Name
@@ -220,17 +236,25 @@ const CheckoutForm = () => {
                       value={values.firstName}
                       onChange={handleChange}
                     />
-                    <ErrorMessage name="firstName" />
+                    <ErrorMessage
+                      className={classNames(commonLabel, "")}
+                      name="firstName"
+                    />
                   </div>
-                  <div className="ship-font flex flex-col ">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "w-60")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="lastName"
                     >
                       Last Name
                     </label>
                     <Field
-                      className={classNames(commonInput, "")}
+                      className={classNames(commonInput, "w-60")}
                       type="text"
                       name="lastName"
                       value={values.lastName}
@@ -240,9 +264,14 @@ const CheckoutForm = () => {
                   </div>
                 </div>
 
-                <div className="ship-font flex flex-col">
+                <div
+                  className={classNames(
+                    commonLabel,
+                    "flex flex-col  text-red-500"
+                  )}
+                >
                   <label
-                    className={classNames(commonLabel, "")}
+                    className={classNames(commonLabel, "text-black")}
                     htmlFor="shippingAddress"
                   >
                     Shipping Address
@@ -258,9 +287,14 @@ const CheckoutForm = () => {
                 </div>
 
                 <div className="flex justify-between">
-                  <div className="ship-font flex flex-col">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="shippingCity"
                     >
                       City
@@ -274,9 +308,14 @@ const CheckoutForm = () => {
                     />
                     <ErrorMessage name="shippingCity" />
                   </div>
-                  <div className="ship-font flex flex-col">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="shippingState"
                     >
                       State
@@ -297,9 +336,14 @@ const CheckoutForm = () => {
 
                     <ErrorMessage name="shippingState" />
                   </div>
-                  <div className="ship-font flex flex-col">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="shippingZip"
                     >
                       Zip Code
@@ -318,9 +362,14 @@ const CheckoutForm = () => {
                 </div>
 
                 <div className="flex justify-between">
-                  <div className="ship-font flex flex-col">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="phone"
                     >
                       Phone
@@ -336,9 +385,14 @@ const CheckoutForm = () => {
                     />
                     <ErrorMessage name="phone" />
                   </div>
-                  <div className="ship-font flex flex-col">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
                     <label
-                      className={classNames(commonLabel, "")}
+                      className={classNames(commonLabel, "text-black")}
                       htmlFor="shippingZip"
                     >
                       Email
@@ -356,18 +410,28 @@ const CheckoutForm = () => {
               </div>
             )}
 
-
-
-
-            <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={togglePayment}>
+            <h1
+              className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
+              onClick={togglePayment}
+            >
               PAYMENT
             </h1>
             {isPaymentOpen && (
               <div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="cardName">Cardholder Name</label>
+                <div
+                  className={classNames(
+                    commonLabel,
+                    "flex flex-col  text-red-500"
+                  )}
+                >
+                  <label
+                    className={classNames(commonLabel, "text-black")}
+                    htmlFor="cardName"
+                  >
+                    Cardholder Name
+                  </label>
                   <Field
-                  className={classNames(commonInput, "")}
+                    className={classNames(commonInput, "")}
                     type="text"
                     name="cardName"
                     value={values.cardName}
@@ -375,95 +439,234 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="cardName" />
                 </div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="cardNum">Card Number</label>
-                  <Field
-                  className={classNames(commonInput, "")}
-                    type="text"
-                    name="cardNum"
-                    value={values.cardNum}
-                    onChange={handleChange}
-                    maxLength={16}
-                    onKeyPress={(e) => checkValue(e)}
-                  />
-                  <ErrorMessage name="cardNum" />
+
+                <div className="flex justify-between">
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
+                    <label
+                      className={classNames(commonLabel, "text-black")}
+                      htmlFor="cardNum"
+                    >
+                      Card Number
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "")}
+                      type="text"
+                      name="cardNum"
+                      value={values.cardNum}
+                      onChange={handleChange}
+                      maxLength={16}
+                      onKeyPress={(e) => checkValue(e)}
+                    />
+                    <ErrorMessage name="cardNum" />
+                  </div>
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
+                    <label
+                      className={classNames(commonLabel, "text-black")}
+                      htmlFor="expMonth"
+                    >
+                      Exp Month
+                    </label>
+                    <Field
+                      as="select"
+                      className={classNames(commonInput, "w-24")}
+                      name="expMonth"
+                      value={values.expMonth}
+                    >
+                      <option value=""></option>
+                      {months.map((month, index) => (
+                        <option key={index} value={month.name}>
+                          {month.name}
+                        </option>
+                      ))}
+                    </Field>
+                    <ErrorMessage name="expMonth" />
+                  </div>
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
+                    <label
+                      className={classNames(commonLabel, "text-black")}
+                      htmlFor="cardNum"
+                    >
+                      Exp Year
+                    </label>
+                    <Field
+                      as="select"
+                      className={classNames(commonInput, "w-24")}
+                      name="expYear"
+                      value={values.expYear}
+                    >
+                      <option value=""></option>
+                      {years.map((year, index) => (
+                        <option key={index} value={year.name}>
+                          {year.name}
+                        </option>
+                      ))}
+                    </Field>
+                    <ErrorMessage name="expYear" />
+                  </div>
+                  <div
+                    className={classNames(
+                      commonLabel,
+                      "flex flex-col  text-red-500"
+                    )}
+                  >
+                    <label
+                      className={classNames(commonLabel, "text-black")}
+                      htmlFor="cvv"
+                    >
+                      CVV
+                    </label>
+                    <Field
+                      className={classNames(commonInput, "w-24")}
+                      type="text"
+                      name="cvv"
+                      value={values.cvv}
+                      maxLength={3}
+                      onChange={handleChange}
+                      onKeyPress={(e) => checkValue(e)}
+                    />
+                    <ErrorMessage name="cvv" />
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="expMonth">Exp Month</label>
-                  <Field as="select" className={classNames(commonInput, "")} name="expMonth" value={values.expMonth}>
-                    <option value="">--Select--</option>
-                    {months.map((month, index) => (
-                      <option key={index} value={month.name}>
-                        {month.name}
-                      </option>
-                    ))}
-                  </Field>
-                  <ErrorMessage name="expMonth" />
-                </div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="cardNum">Exp Year</label>
-                  <Field as="select" className={classNames(commonInput, "")} name="expYear" value={values.expYear}>
-                    <option value="">--Select--</option>
-                    {years.map((year, index) => (
-                      <option key={index} value={year.name}>
-                        {year.name}
-                      </option>
-                    ))}
-                  </Field>
-                  <ErrorMessage name="expYear" />
-                </div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="cvv">CVV</label>
-                  <Field
-                  className={classNames(commonInput, "")}
-                    type="text"
-                    name="cvv"
-                    value={values.cvv}
-                    maxLength={3}
-                    onChange={handleChange}
-                    onKeyPress={(e) => checkValue(e)}
-                  />
-                  <ErrorMessage name="cvv" />
-                </div>
-                <div className="flex flex-col">
-                  <label className={classNames(commonLabel, "")} htmlFor="billingSameAsShipping">
+
+                <div className={classNames(commonLabel, "flex flex-col ")}>
+                  <label
+                    className={classNames(commonLabel, "")}
+                    htmlFor="billingSameAsShipping"
+                  >
                     <Field
                       type="checkbox"
                       name="billingSameAsShipping"
                       checked={values.billingSameAsShipping}
                       onChange={handleChange}
                     />
-                    Billing Address Same as Shipping
+                    Billing address same as shipping
                   </label>
                 </div>
+
                 {values.billingSameAsShipping ? null : (
                   <>
-                    <div>
-                      <label htmlFor="billingAddress">Billing Address</label>
+                    <div className="flex justify-between">
+                      <div
+                        className={classNames(
+                          commonLabel,
+                          "flex flex-col text-red-500"
+                        )}
+                      >
+                        <label
+                          className={classNames(commonLabel, "text-black")}
+                          htmlFor="billingFirstName"
+                        >
+                          First Name
+                        </label>
+                        <Field
+                          className={classNames(commonInput, "w-60")}
+                          type="text"
+                          name="billingFirstName"
+                          value={values.billingFirstName}
+                          onChange={handleChange}
+                        />
+                        <ErrorMessage
+                          className={classNames(commonLabel, "")}
+                          name="billingFirstName"
+                        />
+                      </div>
+                      <div
+                        className={classNames(
+                          commonLabel,
+                          "flex flex-col  text-red-500"
+                        )}
+                      >
+                        <label
+                          className={classNames(commonLabel, "text-black")}
+                          htmlFor="billingLastName"
+                        >
+                          Last Name
+                        </label>
+                        <Field
+                          className={classNames(commonInput, "w-60")}
+                          type="text"
+                          name="billingLastName"
+                          value={values.billingLastName}
+                          onChange={handleChange}
+                        />
+                        <ErrorMessage name="billingLastName" />
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        commonLabel,
+                        "flex flex-col  text-red-500"
+                      )}
+                    >
+                      <label
+                        className={classNames(commonLabel, "text-black")}
+                        htmlFor="billingAddress"
+                      >
+                        Billing Address
+                      </label>
                       <Field
+                        className={classNames(commonInput, "")}
                         type="text"
                         name="billingAddress"
                         value={values.billingAddress}
                         onChange={handleChange}
                       />
                     </div>
-                    <div>
-                      <label htmlFor="billingCity">City</label>
+
+                    <div
+                      className={classNames(
+                        commonLabel,
+                        "flex flex-col  text-red-500"
+                      )}
+                    >
+                      <label
+                        className={classNames(commonLabel, "text-black")}
+                        htmlFor="billingCity"
+                      >
+                        City
+                      </label>
                       <Field
+                        className={classNames(commonInput, "")}
                         type="text"
                         name="billingCity"
                         value={values.billingCity}
                         onChange={handleChange}
                       />
                     </div>
-                    <div>
-                      <label htmlFor="billingState">State</label>
+                    <div
+                      className={classNames(
+                        commonLabel,
+                        "flex flex-col  text-red-500"
+                      )}
+                    >
+                      <label
+                        className={classNames(commonLabel, "text-black")}
+                        htmlFor="billingState"
+                      >
+                        State
+                      </label>
                       <Field
+                        className={classNames(commonInput, "")}
                         as="select"
                         name="billingState"
                         value={values.billingState}
                       >
-                        <option value="">--Select--</option>
+                        <option value=""></option>
                         {states.map((state, index) => (
                           <option key={index} value={state.name}>
                             {state.name}
@@ -471,9 +674,20 @@ const CheckoutForm = () => {
                         ))}
                       </Field>
                     </div>
-                    <div>
-                      <label htmlFor="billingZip">Zip Code</label>
+                    <div
+                      className={classNames(
+                        commonLabel,
+                        "flex flex-col  text-red-500"
+                      )}
+                    >
+                      <label
+                        className={classNames(commonLabel, "text-black")}
+                        htmlFor="billingZip"
+                      >
+                        Zip Code
+                      </label>
                       <Field
+                        className={classNames(commonInput, "")}
                         type="text"
                         name="billingZip"
                         value={values.billingZip}
@@ -485,19 +699,37 @@ const CheckoutForm = () => {
                 )}
               </div>
             )}
+                        <button
+              className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+              type="submit"
+            >
+              PLACE ORDER
+            </button>
           </Form>
+          
         )}
+        
       </Formik>
       <div>
-        <h1 className="ship-font text-2xl mb-4 border-b-2 border-black pb-4" onClick={toggleReview}>REVIEW ORDER</h1>
+        <h1
+          className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
+          onClick={toggleReview}
+        >
+          REVIEW ORDER
+        </h1>
         {isReviewOrderOpen && (
           <div>
-            <p>
+            <p className="ship-font text-base">
               By clicking the “Place Order” button, you confirm you you have
               read, understand, and accept our Terms of Sale, Privacy Policy,
               and Return Policy.
             </p>
-            <button type="submit">PLACE ORDER</button>
+            {/* <button
+              className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+              type="submit"
+            >
+              PLACE ORDER
+            </button> */}
           </div>
         )}
       </div>
