@@ -136,7 +136,7 @@ const CheckoutForm = () => {
   };
   getItems();
   return (
-    <div className="flex-col w-[500px] mr-16 mx:w-1/2">
+    <div className="flex-col w-[500px] mr-16 mx:w-1/2 lg:w-2/3 lg:mr-0">
       <Formik
         initialValues={{
           firstName: "",
