@@ -21,12 +21,12 @@ const Success = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="self-center w-1/2">
-        <h1 className="text-center ship-font text-4xl my-12">
+      <div className="self-center w-1/2 sm:w-full">
+        <h1 className="text-center ship-font text-4xl my-12 sm:text-2xl sm:mx-4">
           THANKS FOR SHOPPING WITH US!
         </h1>
 
-        <p className="ship-font text-xl text-center">
+        <p className="ship-font text-xl text-center sm:text-base sm:mx-4">
           We are getting started on your order right now, and you will receive
           an order confirmation email shortly after to{" "}
           <span className="ship-font purple-link-color">{retrieveInfo()}</span>.
@@ -36,7 +36,7 @@ const Success = () => {
       </div>
 
       <div className="h-32 self-center mt-8 ">
-        <p className="ship-font text-3xl font-bold text-center">
+        <p className="ship-font text-3xl font-bold text-center sm:text-2xl">
           Order #{randomNumber()}
         </p>
         <p className="ship-font text-sm bg-white w-96 flex justify-between p-4 rounded mt-4 shadow-inner shadow-grey-50">
@@ -54,8 +54,8 @@ const Success = () => {
       </div>
 
       <div className="flex flex-col">
-        <div className="bg-white w-80 self-center rounded-lg p-6 leading-8 shadow-inner shadow-grey-50">
-          <p className="ship-font text-xl text-center rounded leading-10">
+        <div className="bg-white mb-24 w-80 self-center rounded-lg p-6 leading-8 shadow-inner shadow-grey-50 sm:p-2 sm:leading-0 ">
+          <p className="ship-font text-xl text-center rounded leading-10 sm:leading-0">
             CONTACT US
           </p>
           <p className="ship-font purple-link-color text-center underline">

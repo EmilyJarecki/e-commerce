@@ -136,7 +136,7 @@ const CheckoutForm = () => {
   };
   getItems();
   return (
-    <div className="flex-col w-[500px] mr-16 mx:w-1/2 lg:w-2/3 lg:mr-0">
+    <div className="flex-col w-[500px] mr-16 mx:w-1/2 lg:w-2/3 lg:mr-0  md:w-full md:px-4">
       <Formik
         initialValues={{
           firstName: "",
@@ -220,7 +220,7 @@ const CheckoutForm = () => {
             </h1>
             {isShippingOpen && (
               <div>
-                <div className="flex justify-between">
+                <div className="flex justify-between sm:flex-col">
                   {/* first name */}
                   <div
                     className={classNames(
@@ -235,7 +235,7 @@ const CheckoutForm = () => {
                       First Name
                     </label>
                     <Field
-                      className={classNames(commonInput, "w-60")}
+                      className={classNames(commonInput, "w-60 sm:w-full")}
                       type="text"
                       name="firstName"
                       value={values.firstName}
@@ -260,7 +260,7 @@ const CheckoutForm = () => {
                       Last Name
                     </label>
                     <Field
-                      className={classNames(commonInput, "w-60")}
+                      className={classNames(commonInput, "w-60 sm:w-full")}
                       type="text"
                       name="lastName"
                       value={values.lastName}
@@ -291,8 +291,8 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="shippingAddress" />
                 </div>
-                {/* city */}
-                <div className="flex justify-between">
+                {/* city, state, zipcode */}
+                <div className="flex justify-between sm:flex-wrap">
                   <div
                     className={classNames(
                       commonLabel,
@@ -306,7 +306,7 @@ const CheckoutForm = () => {
                       City
                     </label>
                     <Field
-                      className={classNames(commonInput, "w-60")}
+                      className={classNames(commonInput, "w-60 sm:w-full")}
                       type="text"
                       name="shippingCity"
                       value={values.shippingCity}
@@ -314,6 +314,7 @@ const CheckoutForm = () => {
                     />
                     <ErrorMessage name="shippingCity" />
                   </div>
+
                   <div
                     className={classNames(
                       commonLabel,
@@ -365,9 +366,10 @@ const CheckoutForm = () => {
                     />
                     <ErrorMessage name="shippingZip" />
                   </div>
+
                 </div>
-                {/* phone */}
-                <div className="flex justify-between">
+                {/* phone & email*/}
+                <div className="flex justify-between sm:flex-col">
                   <div
                     className={classNames(
                       commonLabel,
@@ -381,7 +383,7 @@ const CheckoutForm = () => {
                       Phone
                     </label>
                     <Field
-                      className={classNames(commonInput, "w-60")}
+                      className={classNames(commonInput, "w-60 sm:w-full")}
                       type="text"
                       name="phone"
                       value={values.phone}
@@ -404,7 +406,7 @@ const CheckoutForm = () => {
                       Email
                     </label>
                     <Field
-                      className={classNames(commonInput, "w-60")}
+                      className={classNames(commonInput, "w-60 sm:w-full")}
                       type="email"
                       name="email"
                       value={values.email}
@@ -460,7 +462,7 @@ const CheckoutForm = () => {
                   <ErrorMessage name="cardName" />
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex justify-between sm:flex-wrap">
                   <div
                     className={classNames(
                       commonLabel,
@@ -474,7 +476,7 @@ const CheckoutForm = () => {
                       Card Number
                     </label>
                     <Field
-                      className={classNames(commonInput, "")}
+                      className={classNames(commonInput, "sm:w-full")}
                       type="text"
                       name="cardNum"
                       value={values.cardNum}
