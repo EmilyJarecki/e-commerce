@@ -37,7 +37,7 @@ const CheckoutProducts = () => {
   }, []);
 
   return (
-    <div className=" bg-stone-100 rounded h-4/5">
+    <div className=" bg-stone-100 rounded h-4/5 lg:w-2/3">
       <div className="overflow-y-auto h-96 w-96 pt-8 ship-font">
         {cartData.map((item) => (
           <div className="flex justify-center mx-4 mb-4 " key={item._id}>

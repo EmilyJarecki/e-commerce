@@ -20,10 +20,10 @@ const CheckoutForm = () => {
     console.log("cont");
   };
 
-  const contToReview = () => {
-    setIsPaymentOpen(!isPaymentOpen);
-    setIsReviewOrderOpen(!isReviewOrderOpen);
-  };
+  const contToReview = () =>{
+    setIsPaymentOpen(!isPaymentOpen)
+    setIsReviewOrderOpen(!isReviewOrderOpen)
+  }
 
   const togglePayment = () => {
     setIsPaymentOpen(!isPaymentOpen);
@@ -136,7 +136,7 @@ const CheckoutForm = () => {
   };
   getItems();
   return (
-    <div className="flex-col w-1/3 mr-16">
+    <div className="flex-col w-[500px] mr-16 mx:w-1/2">
       <Formik
         initialValues={{
           firstName: "",
@@ -269,7 +269,7 @@ const CheckoutForm = () => {
                     <ErrorMessage name="lastName" />
                   </div>
                 </div>
-                {/* shipping address */}
+                  {/* shipping address */}
                 <div
                   className={classNames(
                     commonLabel,
@@ -413,17 +413,22 @@ const CheckoutForm = () => {
                     <ErrorMessage name="email" />
                   </div>
                 </div>
-                <div className="border-purple">
-                  <button
-                    type="submit"
-                    className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
-                    onClick={contToPay}
-                  >
-                    CONTINUE TO PAYMENT
+
+                <button 
+                type="submit" 
+                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                onClick={contToPay}
+                >
+                  CONTINUE TO PAYMENT
                   </button>
-                </div>
               </div>
             )}
+
+
+
+
+
+
 
             <h1
               className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
@@ -579,15 +584,13 @@ const CheckoutForm = () => {
                     Billing address same as shipping
                   </label>
                 </div>
-                <div className="border-purple">
-                  <button
-                    type="button"
-                    className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
-                    onClick={contToReview}
-                  >
-                    CONTINUE TO REVIEW
+                <button 
+                type="button" 
+                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                onClick={contToReview}
+                >
+                  CONTINUE TO REVIEW
                   </button>
-                </div>
 
                 {values.billingSameAsShipping ? null : (
                   <>
@@ -744,14 +747,12 @@ const CheckoutForm = () => {
                     have read, understand, and accept our Terms of Sale, Privacy
                     Policy, and Return Policy.
                   </p>
-                  <div className="border-purple">
-                    <button
-                      className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
-                      type="submit"
-                    >
-                      PLACE ORDER
-                    </button>
-                  </div>
+                  <button
+                    className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+                    type="submit"
+                  >
+                    PLACE ORDER
+                  </button>
                 </div>
               )}
             </div>
