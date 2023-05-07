@@ -42,13 +42,16 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
     try {
       const loggingUser = req.body.username;
+
       const foundUser = await User.findOne({ username: loggingUser });
+      console.log(foundUser)
       const token = await createUserToken(req, foundUser);
       console.log(token)
 // token is required in response to authenticate our current user
 // token will be sent with every request to protected/authoriezed route
-
+      console.log(foundUser)
       res.status(200).json({
+        _id: foundUser._id,
         name: foundUser.name,
         isLoggedIn: true,
         token,
@@ -59,8 +62,10 @@ router.post("/login", async (req, res, next) => {
   });
 
 
+
+
 // Route to get the name of the authenticated user
-router.get('/name', requireToken, async (req, res) => {
+router.get('/name', requireToken, async (req, res, next) => {
   try {
     const user = req.user;
     res.json({ name: user.name });
@@ -69,5 +74,17 @@ router.get('/name', requireToken, async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
+router.get('/idName', requireToken, async (req, res, next) => {
+  try {
+    const user = req.user;
+    res.json({ _id: user._id, name: user.name });
+    console.log(user)
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 
 module.exports = router;

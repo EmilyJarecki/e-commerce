@@ -48,9 +48,9 @@
   font-size: 20px;
   height: 20px
 }
-input {
+/* input {
   outline: none;
-}
+} */
 input:focus {
   border-bottom: 1px solid black;
 }

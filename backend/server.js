@@ -16,6 +16,7 @@ const { PORT, MONGODB_URI } = process.env;
 const productController = require('./controllers/product-controller')
 const reviewController = require('./controllers/review-controller')
 const authController = require('./controllers/auth-controller')
+const wishlistController = require('./controllers/wishlist-controller')
 
 //MIDDLEWARE
 app.use(cors())
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use('/products', productController)
 app.use('/review', reviewController)
 app.use('/auth', authController)
+app.use('/wishlist', wishlistController)
 
 
 // LISTENER

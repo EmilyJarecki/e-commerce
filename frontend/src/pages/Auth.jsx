@@ -65,24 +65,26 @@ const Auth = (props) => {
           "Content-Type": "application/json",
         },
       };
-
       const response = await fetch(
         "https://capstone-commerce.herokuapp.com/auth/login",
         configs
       );
 
       const currentUser = await response.json();
-      // console.log(currentUser)
-        setPerson(currentUser)
-      // console.log(currentUser.name);
+      setPerson(currentUser);
 
       if (currentUser.token) {
         // sets local storage
         setUserToken(currentUser.token);
+
+        localStorage.setItem("currentUser", JSON.stringify(data));
+      
+        console.log(currentUser);
+        console.log(configs);
+
         // put the returned user object in state
-        setUser({ ...currentUser.user});
+        setUser({ ...currentUser });
         setAuth(currentUser.isLoggedIn);
-        // console.log(currentUser.user.name)
         return currentUser;
       } else {
         throw `Server Error: ${currentUser.statusText}`;

@@ -7,6 +7,8 @@ import CreateProduct from "../pages/CreateProduct/CreateProduct";
 import Auth from "../pages/Auth";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
+import Wishlist from "../pages/wishlist/Wishlist";
+import Success from "../pages/Success/Success";
 
 const Main = (props) => {
   return (
@@ -19,6 +21,8 @@ const Main = (props) => {
           <Route path="/auth" element={<Auth />}/>
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/wishlist" element={<Wishlist />}/>
+          <Route path="/success" element={<Success />}/>
         </Routes> 
     </main>
   );

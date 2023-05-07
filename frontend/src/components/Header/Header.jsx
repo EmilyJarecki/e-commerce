@@ -11,13 +11,16 @@ const Header = () => {
     const fetchUserName = async () => {
       const token = getUserToken();
       if (token) {
-        const response = await fetch("https://capstone-commerce.herokuapp.com/auth/name", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://capstone-commerce.herokuapp.com/auth/name",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
         if (response.ok) {
           setUserName(data.name);
@@ -37,11 +40,33 @@ const Header = () => {
 
   return (
     <div className="top-header container">
-        <Link className="link reg-log header-link" to="/auth" onClick={handleLogout}>
+      <Link
+        className="link reg-log header-link"
+        to="/auth"
+        onClick={handleLogout}
+      >
         {userName ? "Logout" : "Login/Register"}
       </Link>
-      <h4 className="name-place">{userName && <p className="user-name">Hello, {userName}</p>}</h4>
-
+      <h4 className="name-place">
+        {userName && 
+        <>
+        <p className="user-name">Hello, {userName}</p>
+        </>}
+      </h4>
+      <>
+        {userName ? (
+          <>
+            <Link
+              className="link product-list-link header-link"
+              to={"/wishlist"}
+            >
+              <h3 className="view-all">Wishlist</h3>
+            </Link>
+          </>
+        ) : (
+          ""
+        )}
+      </>
       <Link className="link header-link" to={"/shop"}>
         <h4 className="AVIATO ">AVIATO</h4>
       </Link>
