@@ -11,3 +11,7 @@
     background-color: rgba(74, 0, 61, 1);
     color: rgba(240, 235, 228, 1)
 }
+
+.purple-link-color{
+    color: rgba(74, 0, 61, 0.35)
+}

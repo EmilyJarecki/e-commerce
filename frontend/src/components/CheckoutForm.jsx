@@ -202,9 +202,8 @@ const CheckoutForm = () => {
               values.billingState = values.shippingState;
               values.billingZip = values.shippingZip;
             }
-            console.log(values.shippingState);
-            console.log(values.billingState);
-            console.log("hello from here");
+            //takes you to new page
+            // window.location.href = "https://capstone-commerce.herokuapp.com/success";
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
             setSubmitting(false);
