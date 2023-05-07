@@ -6,6 +6,21 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
+  // TAX TOTAL
+  const getTax = () => {
+    const taxRate = 0.07; // 7% tax rate
+    return (getTotal() * taxRate).toFixed(2);
+  };
+
+  function getItemTotal(quantity, price) {
+    return quantity * price;
+  }
+  const getTotalWithTax = () => {
+    const total = parseFloat(getTotal());
+    const tax = parseFloat(getTax());
+    const shippingPrice = 4.95;
+    return (total + tax + shippingPrice).toFixed(2);
+  };
   const removeFromCart = (itemId) => {
     let updatedCart = [...cartData];
     let itemIndex = updatedCart.findIndex((item) => item._id === itemId);
@@ -57,63 +72,90 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="cart-div">
-      <div className="cart-map">
+    <div className="flex justify-center lg:flex-col-reverse lg:flex lg:items-center">
+      <div className="">
         {cartData && cartData.length !== 0 ? (
-          <div className="item-strip">
+          <div className="">
             {cartData.map((item) => (
-              <div className="cart-status" key={item._id}>
-                <div className="cart-btn-sec">
-                  <button
-                    className="delete-comp"
-                    onClick={() => Delete(item._id)}
-                  >
-                    X
-                  </button>
-                  <img className="cart-product-image" src={item.image} />
-                </div>
+              <div
+                className="border-b-2 border-black w-[500px] flex my-6 pb-6"
+                key={item._id}
+              >
+                <img
+                  className="w-[125px] h-[125px] object-cover"
+                  src={item.image}
+                />
 
-                <p className="cart-item-name">{item.name}</p>
-                <div className="quantity-sec">
-                  <p className="cart-quant-int">{item.quantity}</p>
-                  <div className="two-cart-buttons">
-                    <button
-                      className="one-more"
-                      onClick={() => addOne(item._id)}
-                    >
-                      +
-                    </button>
-                    <button
-                      className="one-less"
-                      onClick={() => removeFromCart(item._id)}
-                    >
-                      -
+                <div className="w-full flex flex-col justify-between">
+
+
+                  <div className="flex justify-between pl-6">
+                    <p className="ship-font">{item.name}</p>
+                    <button className="" onClick={() => Delete(item._id)}>
+                      Delete
                     </button>
                   </div>
+
+                  <div className="flex justify-between">
+                    <div className="flex bg-neutral-100 rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 pl-6">
+                      <button
+                        className=""
+                        onClick={() => removeFromCart(item._id)}
+                      >
+                        -
+                      </button>
+                      <p className="mx-4 ship-font">{item.quantity}</p>
+                      <button className="" onClick={() => addOne(item._id)}>
+                        +
+                      </button>
+                    </div>
+
+                    <p className="ship-font">${item.price.toFixed(2)}</p>
+                  </div>
+
+
                 </div>
-                <p className="cart-item-price">${item.price.toFixed(2)}</p>
               </div>
             ))}
           </div>
         ) : (
           <>
-            <h1 className="no-items">No Items in Cart</h1>
-            <Link className="link" to={"/shop"}>
+            <h1 className="">No Items in Cart</h1>
+            <Link className="" to={"/shop"}>
               <h4>Continue Shopping</h4>
             </Link>
           </>
         )}
       </div>
-      {cartData && cartData.length !== 0 ? (
-        <div>
-          <p className="cart-total">Total: ${getTotal()}</p>
-          <Link className="link" to={"/checkout"}>
-            <h4>Proceed to Checkout</h4>
-          </Link>
+      <div className="w-96">
+        <div className="mx-8 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4">
+          <p className="flex justify-between ship-font">
+            SUBTOTAL <span className="ship-font">${getTotal()}</span>
+          </p>
+          <p className="flex ship-font justify-between">
+            SHIPPING <span className="ship-font">$4.95</span>
+          </p>
+          <p className="flex ship-font justify-between">
+            ESTIMATED TAX <span className="ship-font">${getTax()}</span>
+          </p>
+          <p className="flex ship-font justify-between">
+            TOTAL <span className="ship-font">${getTotalWithTax()}</span>
+          </p>
         </div>
-      ) : (
-        <div></div>
-      )}
+
+        {cartData && cartData.length !== 0 ? (
+          <div className="self-center mt-4 mb-16">
+            <Link
+              className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+              to={`/checkout`}
+            >
+              CHECKOUT
+            </Link>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 };
