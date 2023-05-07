@@ -15,10 +15,15 @@ const CheckoutForm = () => {
   };
 
   const contToPay = () => {
-    // setIsShippingOpen(!isShippingOpen);
-    // setIsPaymentOpen(!isPaymentOpen);
-    console.log("cont")
+    setIsShippingOpen(!isShippingOpen);
+    setIsPaymentOpen(!isPaymentOpen);
+    console.log("cont");
   };
+
+  const contToReview = () =>{
+    setIsPaymentOpen(!isPaymentOpen)
+    setIsReviewOrderOpen(!isReviewOrderOpen)
+  }
 
   const togglePayment = () => {
     setIsPaymentOpen(!isPaymentOpen);
@@ -199,7 +204,7 @@ const CheckoutForm = () => {
             }
             console.log(values.shippingState);
             console.log(values.billingState);
-            console.log("hello from here")
+            console.log("hello from here");
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
             setSubmitting(false);
@@ -210,13 +215,14 @@ const CheckoutForm = () => {
           <Form>
             <h1
               className="ship-font text-2xl mb-4 border-b-2 border-black pb-4"
-              // onClick={toggleShipping}
+              onClick={toggleShipping}
             >
               SHIPPING
             </h1>
             {isShippingOpen && (
               <div>
                 <div className="flex justify-between">
+                  {/* first name */}
                   <div
                     className={classNames(
                       commonLabel,
@@ -241,6 +247,7 @@ const CheckoutForm = () => {
                       name="firstName"
                     />
                   </div>
+                  {/* last name */}
                   <div
                     className={classNames(
                       commonLabel,
@@ -263,7 +270,7 @@ const CheckoutForm = () => {
                     <ErrorMessage name="lastName" />
                   </div>
                 </div>
-
+                  {/* shipping address */}
                 <div
                   className={classNames(
                     commonLabel,
@@ -285,7 +292,7 @@ const CheckoutForm = () => {
                   />
                   <ErrorMessage name="shippingAddress" />
                 </div>
-
+                {/* city */}
                 <div className="flex justify-between">
                   <div
                     className={classNames(
@@ -360,7 +367,7 @@ const CheckoutForm = () => {
                     <ErrorMessage name="shippingZip" />
                   </div>
                 </div>
-
+                {/* phone */}
                 <div className="flex justify-between">
                   <div
                     className={classNames(
@@ -407,8 +414,22 @@ const CheckoutForm = () => {
                     <ErrorMessage name="email" />
                   </div>
                 </div>
+
+                <button 
+                type="submit" 
+                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                onClick={contToPay}
+                >
+                  CONTINUE TO PAYMENT
+                  </button>
               </div>
             )}
+
+
+
+
+
+
 
             <h1
               className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
@@ -554,18 +575,23 @@ const CheckoutForm = () => {
                       checked={values.billingSameAsShipping}
                       onChange={(e) =>
                         handleChange({
-                          target: { name: e.target.name, value: e.target.checked },
+                          target: {
+                            name: e.target.name,
+                            value: e.target.checked,
+                          },
                         })
                       }
                     />
                     Billing address same as shipping
                   </label>
                 </div>
-
-
-
-
-
+                <button 
+                type="button" 
+                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                onClick={contToReview}
+                >
+                  CONTINUE TO REVIEW
+                  </button>
 
                 {values.billingSameAsShipping ? null : (
                   <>
@@ -708,40 +734,32 @@ const CheckoutForm = () => {
                 )}
               </div>
             )}
-                        <button
-              className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
-              type="submit"
-            >
-              PLACE ORDER
-            </button>
+            <div>
+              <h1
+                className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
+                onClick={toggleReview}
+              >
+                REVIEW ORDER
+              </h1>
+              {isReviewOrderOpen && (
+                <div>
+                  <p className="ship-font text-base mb-4">
+                    By clicking the “Place Order” button, you confirm you you
+                    have read, understand, and accept our Terms of Sale, Privacy
+                    Policy, and Return Policy.
+                  </p>
+                  <button
+                    className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+                    type="submit"
+                  >
+                    PLACE ORDER
+                  </button>
+                </div>
+              )}
+            </div>
           </Form>
-          
         )}
-        
       </Formik>
-      <div>
-        <h1
-          className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
-          onClick={toggleReview}
-        >
-          REVIEW ORDER
-        </h1>
-        {isReviewOrderOpen && (
-          <div>
-            <p className="ship-font text-base">
-              By clicking the “Place Order” button, you confirm you you have
-              read, understand, and accept our Terms of Sale, Privacy Policy,
-              and Return Policy.
-            </p>
-            {/* <button
-              className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
-              type="submit"
-            >
-              PLACE ORDER
-            </button> */}
-          </div>
-        )}
-      </div>
     </div>
   );
 };
