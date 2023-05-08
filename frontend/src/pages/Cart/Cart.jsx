@@ -73,15 +73,17 @@ const Cart = () => {
 
   return (
     <>
-      <h1 className="ship-font text-4xl my-12 text-center">YOUR BAG({cartData.reduce((total, item) => total + item.quantity, 0)})</h1>
+      <h1 className="ship-font text-4xl my-12 text-center">
+        YOUR BAG({cartData.reduce((total, item) => total + item.quantity, 0)})
+      </h1>
+      <div className="flex justify-center lg:flex-col lg:flex lg:items-center">
 
-      <div className="flex justify-center lg:flex-col-reverse lg:flex lg:items-center">
-        <div className="">
+        <div className="sm:w-full">
           {cartData && cartData.length !== 0 ? (
             <div className="">
               {cartData.map((item) => (
                 <div
-                  className="border-b-2 border-black w-[500px] flex my-6 pb-6"
+                  className="border-b-2 border-black w-[500px] flex px-4 my-6 pb-6 sm:w-full"
                   key={item._id}
                 >
                   <img
@@ -89,8 +91,6 @@ const Cart = () => {
                     src={item.image}
                   />
                   <div className="w-full flex flex-col justify-between">
-
-
                     <div className="pl-6">
                       <div className="flex justify-between">
                         <p className="ship-font text-xl">{item.name}</p>
@@ -101,7 +101,6 @@ const Cart = () => {
                           />
                         </button>
                       </div>
-
 
                       <p className="ship-font text-xs">
                         ${item.price.toFixed(2)}
@@ -139,7 +138,7 @@ const Cart = () => {
           )}
         </div>
         <div className="w-96">
-          <div className="ml-16 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4">
+          <div className="ml-16 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 lg:ml-0">
             <p className="flex justify-between ship-font">
               SUBTOTAL <span className="ship-font">${getTotal()}</span>
             </p>
@@ -155,7 +154,7 @@ const Cart = () => {
           </div>
 
           {cartData && cartData.length !== 0 ? (
-            <div className="flex mt-4 mb-16 justify-center">
+            <div className="flex mt-4 mb-16 justify-center lg:ml-0">
               <Link
                 className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
                 to={`/checkout`}
