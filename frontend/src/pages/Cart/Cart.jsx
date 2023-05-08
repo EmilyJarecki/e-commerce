@@ -73,14 +73,18 @@ const Cart = () => {
 
   return (
     <>
-      <h1 className="ship-font text-4xl my-12 text-center">
+      <h1 className="  text-4xl my-12 text-center sm:text-2xl">
         YOUR BAG({cartData.reduce((total, item) => total + item.quantity, 0)})
       </h1>
       <div className="flex justify-center lg:flex-col lg:flex lg:items-center">
-
         <div className="sm:w-full">
           {cartData && cartData.length !== 0 ? (
             <div className="">
+              <Link className="text-lg" to={"/shop"}>
+                <h4 className="   underline text-purple-950">
+                  Keep Shopping
+                </h4>
+              </Link>
               {cartData.map((item) => (
                 <div
                   className="border-b-2 border-black w-[500px] flex px-4 my-6 pb-6 sm:w-full"
@@ -93,7 +97,7 @@ const Cart = () => {
                   <div className="w-full flex flex-col justify-between">
                     <div className="pl-6">
                       <div className="flex justify-between">
-                        <p className="ship-font text-xl">{item.name}</p>
+                        <p className="  text-xl">{item.name}</p>
                         <button className="" onClick={() => Delete(item._id)}>
                           <img
                             className="w-[21px]"
@@ -102,7 +106,7 @@ const Cart = () => {
                         </button>
                       </div>
 
-                      <p className="ship-font text-xs">
+                      <p className="  text-xs">
                         ${item.price.toFixed(2)}
                       </p>
                     </div>
@@ -115,12 +119,12 @@ const Cart = () => {
                         >
                           -
                         </button>
-                        <p className="mx-4 ship-font">{item.quantity}</p>
+                        <p className="mx-4  ">{item.quantity}</p>
                         <button className="" onClick={() => addOne(item._id)}>
                           +
                         </button>
                       </div>
-                      <p className="ship-font">
+                      <p className=" ">
                         ${getItemTotal(item.quantity, item.price).toFixed(2)}
                       </p>
                     </div>
@@ -139,24 +143,24 @@ const Cart = () => {
         </div>
         <div className="w-96">
           <div className="ml-16 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 lg:ml-0">
-            <p className="flex justify-between ship-font">
-              SUBTOTAL <span className="ship-font">${getTotal()}</span>
+            <p className="flex justify-between  ">
+              SUBTOTAL <span className=" ">${getTotal()}</span>
             </p>
-            <p className="flex ship-font justify-between">
-              SHIPPING <span className="ship-font">$4.95</span>
+            <p className="flex   justify-between">
+              SHIPPING <span className=" ">$4.95</span>
             </p>
-            <p className="flex ship-font justify-between">
-              ESTIMATED TAX <span className="ship-font">${getTax()}</span>
+            <p className="flex   justify-between">
+              ESTIMATED TAX <span className=" ">${getTax()}</span>
             </p>
-            <p className="flex ship-font justify-between">
-              TOTAL <span className="ship-font">${getTotalWithTax()}</span>
+            <p className="flex   justify-between">
+              TOTAL <span className=" ">${getTotalWithTax()}</span>
             </p>
           </div>
 
           {cartData && cartData.length !== 0 ? (
             <div className="flex mt-4 mb-16 justify-center lg:ml-0">
               <Link
-                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+                className="  text-base font-medium button-class px-6 py-2 rounded-lg"
                 to={`/checkout`}
               >
                 CHECKOUT

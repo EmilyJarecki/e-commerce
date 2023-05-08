@@ -118,11 +118,11 @@ const ProductDetail = (props) => {
                 >
                   Add to Cart
                 </button>
-                <button
+                {/* <button
                   onClick={() => addToWishlist(product)}
                 >
                   Add to Wishlist
-                </button>
+                </button> */}
             </div>
           </div>
         </section>

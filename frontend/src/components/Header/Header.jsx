@@ -6,6 +6,7 @@ import { getUserToken, clearUserToken } from "../../utils/authToken";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
+  const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -30,6 +31,12 @@ const Header = () => {
       }
     };
     fetchUserName();
+
+    const data = localStorage.getItem("cart");
+    const parsedData = JSON.parse(data);
+    if (parsedData !== null) {
+      setCartData(parsedData);
+    }
   }, []);
 
   const handleLogout = () => {
@@ -48,10 +55,11 @@ const Header = () => {
         {userName ? "Logout" : "Login/Register"}
       </Link>
       <h4 className="name-place">
-        {userName && 
-        <>
-        <p className="user-name">Hello, {userName}</p>
-        </>}
+        {userName && (
+          <>
+            <p className="user-name">Hello, {userName}</p>
+          </>
+        )}
       </h4>
       <>
         {userName ? (
@@ -71,7 +79,11 @@ const Header = () => {
         <h4 className="AVIATO ">AVIATO</h4>
       </Link>
       <Link className="link product-list-link header-link" to={"/cart"}>
-        <h3 className="view-all">Cart</h3>
+        <img
+          className="w-[21px]"
+          src="https://img.icons8.com/?size=512&id=3686&format=png"
+        />
+        {cartData.reduce((total, item) => total + item.quantity, 0)}
       </Link>
       <div className="top-menu text-right list-inline header-link">
         <Search />
