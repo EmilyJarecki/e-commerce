@@ -32,11 +32,11 @@ const Header = () => {
     };
     fetchUserName();
 
-    const data = localStorage.getItem("cart");
-    const parsedData = JSON.parse(data);
-    if (parsedData !== null) {
-      setCartData(parsedData);
-    }
+    // const data = localStorage.getItem("cart");
+    // const parsedData = JSON.parse(data);
+    // if (parsedData !== null) {
+    //   setCartData(parsedData);
+    // }
   }, []);
 
   const handleLogout = () => {
@@ -83,7 +83,7 @@ const Header = () => {
           className="w-[21px]"
           src="https://img.icons8.com/?size=512&id=3686&format=png"
         />
-        {cartData.reduce((total, item) => total + item.quantity, 0)}
+        {/* {cartData.reduce((total, item) => total + item.quantity, 0)} */}
       </Link>
       <div className="top-menu text-right list-inline header-link">
         <Search />

@@ -203,9 +203,10 @@ const CheckoutForm = () => {
               values.billingZip = values.shippingZip;
             }
             //takes you to new page
-            window.location.href = "https://capstone-commerce.herokuapp.com/success";
+            window.location.href = "/success";
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
+            localStorage.removeItem('cart');
             setSubmitting(false);
           }, 400);
         }}
