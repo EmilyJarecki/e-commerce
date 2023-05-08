@@ -50,7 +50,7 @@ const CheckoutProducts = () => {
             </div>
 
             <div className="w-72 ml-4 ship-font">
-              <p className="ship-font">{item.name}</p>
+              <p className="ship-font text-2xl">{item.name}</p>
               <div className="flex justify-between">
                 <p className="ship-font">${item.price.toFixed(2)}</p>
                 <p className="justify-self-end ship-font">

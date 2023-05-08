@@ -22,31 +22,31 @@ const Success = () => {
   return (
     <div className="flex flex-col">
       <div className="self-center w-1/2 sm:w-full">
-        <h1 className="text-center ship-font text-4xl my-12 sm:text-2xl sm:mx-4">
+        <h1 className="text-center   text-4xl my-12 sm:text-2xl sm:mx-4">
           THANKS FOR SHOPPING WITH US!
         </h1>
 
-        <p className="ship-font text-xl text-center sm:text-base sm:mx-4">
+        <p className="  text-xl text-center sm:text-base sm:mx-4">
           We are getting started on your order right now, and you will receive
           an order confirmation email shortly after to{" "}
-          <span className="ship-font purple-link-color">{retrieveInfo()}</span>.
+          <span className="  purple-link-color">{retrieveInfo()}</span>.
           If the email hasn't arrived within two minutes, please check your spam
           folder to see if the email was routed there.
         </p>
       </div>
 
       <div className="h-32 self-center mt-8 ">
-        <p className="ship-font text-3xl font-bold text-center sm:text-2xl">
+        <p className="  text-3xl font-bold text-center sm:text-2xl">
           Order #{randomNumber()}
         </p>
-        <p className="ship-font text-sm bg-white w-96 flex justify-between p-4 rounded mt-4 shadow-inner shadow-grey-50">
+        <p className="  text-sm bg-white w-96 flex justify-between p-4 rounded mt-4 shadow-inner shadow-grey-50">
           EXPECTED DELIVERY:{" "}
-          <span className="ship-font text-sm font-bold">{addSevenDays()}</span>
+          <span className="  text-sm font-bold">{addSevenDays()}</span>
         </p>
       </div>
       <div className="self-center mt-4 mb-16 border-purple">
         <Link
-          className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"
+          className="  text-base font-medium button-class px-6 py-2 rounded-lg"
           to={`/shop`}
         >
           KEEP SHOPPING
@@ -55,13 +55,13 @@ const Success = () => {
 
       <div className="flex flex-col">
         <div className="bg-white mb-24 w-80 self-center rounded-lg p-6 leading-8 shadow-inner shadow-grey-50 sm:p-2 sm:leading-0 ">
-          <p className="ship-font text-xl text-center rounded leading-10 sm:leading-0">
+          <p className="  text-xl text-center rounded leading-10 sm:leading-0">
             CONTACT US
           </p>
-          <p className="ship-font purple-link-color text-center underline">
+          <p className="  purple-link-color text-center underline">
             1-800-123-4567
           </p>
-          <p className="ship-font purple-link-color text-center underline">
+          <p className="  purple-link-color text-center underline">
             customerservice@aviato.com
           </p>
         </div>

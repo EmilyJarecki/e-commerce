@@ -203,7 +203,7 @@ const CheckoutForm = () => {
               values.billingZip = values.shippingZip;
             }
             //takes you to new page
-            // window.location.href = "https://capstone-commerce.herokuapp.com/success";
+            window.location.href = "https://capstone-commerce.herokuapp.com/success";
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
             setSubmitting(false);
@@ -746,8 +746,8 @@ const CheckoutForm = () => {
                 <div>
                   <p className="ship-font text-base mb-4">
                     By clicking the “Place Order” button, you confirm you you
-                    have read, understand, and accept our Terms of Sale, Privacy
-                    Policy, and Return Policy.
+                    have read, understand, and accept our <span className="purple-link-color underline">Terms of Sale</span>, <span className="purple-link-color underline">Privacy
+                    Policy</span>, and <span className="purple-link-color underline">Return Policy</span>.
                   </p>
                   <button
                     className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"

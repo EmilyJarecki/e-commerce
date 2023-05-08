@@ -28,9 +28,9 @@
   align-items: center;
   border-bottom: 1px solid black;
 }
-.detail-price {
-  margin-top: -15px;
-}
+/* .detail-price {
+  margin-top: -5px;
+} */
 
 .purchase-redirect {
   align-items: center;
