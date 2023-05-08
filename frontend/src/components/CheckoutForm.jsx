@@ -20,10 +20,10 @@ const CheckoutForm = () => {
     console.log("cont");
   };
 
-  const contToReview = () =>{
-    setIsPaymentOpen(!isPaymentOpen)
-    setIsReviewOrderOpen(!isReviewOrderOpen)
-  }
+  const contToReview = () => {
+    setIsPaymentOpen(!isPaymentOpen);
+    setIsReviewOrderOpen(!isReviewOrderOpen);
+  };
 
   const togglePayment = () => {
     setIsPaymentOpen(!isPaymentOpen);
@@ -206,7 +206,7 @@ const CheckoutForm = () => {
             window.location.href = "/success";
             const data = JSON.stringify(values);
             localStorage.setItem("formData", data);
-            localStorage.removeItem('cart');
+            localStorage.removeItem("cart");
             setSubmitting(false);
           }, 400);
         }}
@@ -270,7 +270,7 @@ const CheckoutForm = () => {
                     <ErrorMessage name="lastName" />
                   </div>
                 </div>
-                  {/* shipping address */}
+                {/* shipping address */}
                 <div
                   className={classNames(
                     commonLabel,
@@ -367,7 +367,6 @@ const CheckoutForm = () => {
                     />
                     <ErrorMessage name="shippingZip" />
                   </div>
-
                 </div>
                 {/* phone & email*/}
                 <div className="flex justify-between sm:flex-col">
@@ -417,21 +416,15 @@ const CheckoutForm = () => {
                   </div>
                 </div>
 
-                <button 
-                type="submit" 
-                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
-                onClick={contToPay}
+                <button
+                  type="submit"
+                  className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                  onClick={contToPay}
                 >
                   CONTINUE TO PAYMENT
-                  </button>
+                </button>
               </div>
             )}
-
-
-
-
-
-
 
             <h1
               className="ship-font text-2xl mb-4 border-b-2 border-black py-4"
@@ -587,13 +580,13 @@ const CheckoutForm = () => {
                     Billing address same as shipping
                   </label>
                 </div>
-                <button 
-                type="button" 
-                className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
-                onClick={contToReview}
+                <button
+                  type="button"
+                  className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg mt-6"
+                  onClick={contToReview}
                 >
                   CONTINUE TO REVIEW
-                  </button>
+                </button>
 
                 {values.billingSameAsShipping ? null : (
                   <>
@@ -747,8 +740,19 @@ const CheckoutForm = () => {
                 <div>
                   <p className="ship-font text-base mb-4">
                     By clicking the “Place Order” button, you confirm you you
-                    have read, understand, and accept our <span className="purple-link-color underline">Terms of Sale</span>, <span className="purple-link-color underline">Privacy
-                    Policy</span>, and <span className="purple-link-color underline">Return Policy</span>.
+                    have read, understand, and accept our{" "}
+                    <span className="purple-link-color underline">
+                      Terms of Sale
+                    </span>
+                    ,{" "}
+                    <span className="purple-link-color underline">
+                      Privacy Policy
+                    </span>
+                    , and{" "}
+                    <span className="purple-link-color underline">
+                      Return Policy
+                    </span>
+                    .
                   </p>
                   <button
                     className="ship-font text-base font-medium button-class px-6 py-2 rounded-lg"

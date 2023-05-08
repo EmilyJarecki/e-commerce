@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SuccessReview from "../../components/SuccessReview";
 const Success = () => {
   const randomNumber = () => {
     const randomNumber = Math.floor(Math.random() * 900000000) + 100000000;
@@ -44,6 +45,15 @@ const Success = () => {
           <span className="  text-sm font-bold">{addSevenDays()}</span>
         </p>
       </div>
+
+      <SuccessReview />
+
+
+
+
+
+
+
       <div className="self-center mt-4 mb-16 border-purple">
         <Link
           className="  text-base font-medium button-class px-6 py-2 rounded-lg"

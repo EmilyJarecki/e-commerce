@@ -81,19 +81,20 @@ const Cart = () => {
           {cartData && cartData.length !== 0 ? (
             <div className="">
               <Link className="text-lg" to={"/shop"}>
-                <h4 className="   underline text-purple-950">
-                  Keep Shopping
-                </h4>
+                <h4 className="   underline text-purple-950">Keep Shopping</h4>
               </Link>
               {cartData.map((item) => (
                 <div
                   className="border-b-2 border-black w-[500px] flex px-4 my-6 pb-6 sm:w-full"
                   key={item._id}
                 >
-                  <img
-                    className="w-[125px] h-[125px] object-cover"
-                    src={item.image}
-                  />
+                  <div>
+                    <img
+                      className="w-[125px] h-[125px] object-cover"
+                      src={item.image}
+                    />
+                  </div>
+
                   <div className="w-full flex flex-col justify-between">
                     <div className="pl-6">
                       <div className="flex justify-between">
@@ -106,9 +107,7 @@ const Cart = () => {
                         </button>
                       </div>
 
-                      <p className="  text-xs">
-                        ${item.price.toFixed(2)}
-                      </p>
+                      <p className="  text-xs">${item.price.toFixed(2)}</p>
                     </div>
 
                     <div className="flex justify-between pl-6">
@@ -158,7 +157,7 @@ const Cart = () => {
           </div>
 
           {cartData && cartData.length !== 0 ? (
-            <div className="flex mt-4 mb-16 justify-center lg:ml-0">
+            <div className="flex mt-4 mb-16 justify-center ml-16 lg:ml-0">
               <Link
                 className="  text-base font-medium button-class px-6 py-2 rounded-lg"
                 to={`/checkout`}
