@@ -18,3 +18,7 @@
 border-radius: 10px;
 
 }
+.required-field::after {
+    content: "*";
+    color: rgba(74, 0, 61, 1);
+}

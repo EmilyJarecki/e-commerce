@@ -41,7 +41,7 @@ const CheckoutForm = () => {
 
   const commonInput =
     "rounded ship-font shadow-inner shadow-grey-50 h-[30px] px-2 text-black";
-  const commonLabel = "ship-font text-sm mt-2";
+  const commonLabel = "ship-font text-sm mt-2 ";
 
   const states = [
     { name: "Alabama", abbr: "AL" },
@@ -230,7 +230,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="firstName"
                     >
                       First Name
@@ -255,7 +255,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="lastName"
                     >
                       Last Name
@@ -278,7 +278,7 @@ const CheckoutForm = () => {
                   )}
                 >
                   <label
-                    className={classNames(commonLabel, "text-black")}
+                    className={classNames(commonLabel, "text-black required-field")}
                     htmlFor="shippingAddress"
                   >
                     Shipping Address
@@ -301,7 +301,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="shippingCity"
                     >
                       City
@@ -323,7 +323,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="shippingState"
                     >
                       State
@@ -351,7 +351,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="shippingZip"
                     >
                       Zip Code
@@ -377,7 +377,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="phone"
                     >
                       Phone
@@ -400,7 +400,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="shippingZip"
                     >
                       Email
@@ -441,7 +441,7 @@ const CheckoutForm = () => {
                   )}
                 >
                   <label
-                    className={classNames(commonLabel, "text-black")}
+                    className={classNames(commonLabel, "text-black required-field")}
                     htmlFor="cardName"
                   >
                     Cardholder Name
@@ -464,7 +464,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="cardNum"
                     >
                       Card Number
@@ -487,7 +487,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="expMonth"
                     >
                       Exp Month
@@ -514,7 +514,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="cardNum"
                     >
                       Exp Year
@@ -541,7 +541,7 @@ const CheckoutForm = () => {
                     )}
                   >
                     <label
-                      className={classNames(commonLabel, "text-black")}
+                      className={classNames(commonLabel, "text-black required-field")}
                       htmlFor="cvv"
                     >
                       CVV
