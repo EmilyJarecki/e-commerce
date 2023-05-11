@@ -10,16 +10,16 @@ module.exports = {
       // => @media (max-width: 1535px) { ... }
 
       'xl': {'max': '1400px'},
-      // => @media (max-width: 1279px) { ... }
+      // => @media (max-width: 1400px) { ... }
 
       'lg': {'max': '1000px'},
-      // => @media (max-width: 1023px) { ... }
+      // => @media (max-width: 1000px) { ... }
 
       'md': {'max': '730px'},
-      // => @media (max-width: 767px) { ... }
+      // => @media (max-width: 730px) { ... }
 
       'sm': {'max': '500px'},
-      // => @media (max-width: 639px) { ... }
+      // => @media (max-width: 500px) { ... }
     },
 
   },

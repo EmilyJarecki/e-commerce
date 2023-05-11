@@ -132,43 +132,46 @@ const Cart = () => {
               ))}
             </div>
           ) : (
-            <>
-              <h1 className="">No Items in Cart</h1>
-              <Link className="" to={"/shop"}>
-                <h4>Continue Shopping</h4>
-              </Link>
-            </>
+            <div className="flex justify-center flex-col">
+              <h1 className="purple-link-color my-12 flex justify-center">Oh no! Your bag is empty.</h1>
+              <div className="flex mt-4 mb-16 justify-center">
+                <Link className="" to={"/shop"}>
+                  <h4 className="text-base font-medium button-class px-6 py-2 rounded-lg">
+                    LET'S SHOP
+                  </h4>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
-        <div className="w-96">
-          <div className="ml-16 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 lg:ml-0">
-            <p className="flex justify-between  ">
-              SUBTOTAL <span className=" ">${getTotal()}</span>
-            </p>
-            <p className="flex   justify-between">
-              SHIPPING <span className=" ">$4.95</span>
-            </p>
-            <p className="flex   justify-between">
-              ESTIMATED TAX <span className=" ">${getTax()}</span>
-            </p>
-            <p className="flex   justify-between">
-              TOTAL <span className=" ">${getTotalWithTax()}</span>
-            </p>
-          </div>
 
-          {cartData && cartData.length !== 0 ? (
+        {cartData && cartData.length !== 0 ? (
+          <div className="w-96">
+            <div className="ml-16 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 lg:ml-0">
+              <p className="flex justify-between  ">
+                SUBTOTAL <span className=" ">${getTotal()}</span>
+              </p>
+              <p className="flex   justify-between">
+                SHIPPING <span className=" ">$4.95</span>
+              </p>
+              <p className="flex   justify-between">
+                ESTIMATED TAX <span className=" ">${getTax()}</span>
+              </p>
+              <p className="flex   justify-between">
+                TOTAL <span className=" ">${getTotalWithTax()}</span>
+              </p>
+            </div>
+
             <div className="flex mt-4 mb-16 justify-center ml-16 lg:ml-0">
               <Link
-                className="  text-base font-medium button-class px-6 py-2 rounded-lg"
+                className="text-base font-medium button-class px-6 py-2 rounded-lg"
                 to={`/checkout`}
               >
                 CHECKOUT
               </Link>
             </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
+          </div>
+        ) : null}
       </div>
     </>
   );

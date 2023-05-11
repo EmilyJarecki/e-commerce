@@ -8,6 +8,8 @@ const Header = () => {
   const [userName, setUserName] = useState("");
   const [cartData, setCartData] = useState([]);
 
+
+
   useEffect(() => {
     const fetchUserName = async () => {
       const token = getUserToken();
@@ -83,7 +85,6 @@ const Header = () => {
           className="w-[21px]"
           src="https://img.icons8.com/?size=512&id=3686&format=png"
         />
-        {/* {cartData.reduce((total, item) => total + item.quantity, 0)} */}
       </Link>
       <div className="top-menu text-right list-inline header-link">
         <Search />
