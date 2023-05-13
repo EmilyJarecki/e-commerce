@@ -63,7 +63,7 @@ const Header = () => {
           </>
         )}
       </h4>
-      <>
+      {/* <>
         {userName ? (
           <>
             <Link
@@ -76,7 +76,7 @@ const Header = () => {
         ) : (
           ""
         )}
-      </>
+      </> */}
       <Link className="link header-link" to={"/shop"}>
         <h4 className="AVIATO ">AVIATO</h4>
       </Link>
