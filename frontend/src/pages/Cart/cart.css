@@ -29,6 +29,13 @@ transform: translateX(25%);
     width: 150px;
     text-align: center;
 }
+.b-blak{
+    border-bottom: 1px solid black;
+}
+.t-blak{
+    border-top: 1px solid black;
+
+}
 .cart-quant-int{
     margin-right: 10px;
 }

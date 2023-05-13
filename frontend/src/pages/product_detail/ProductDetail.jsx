@@ -7,22 +7,29 @@ import { UserContext } from "../../data";
 import { useContext } from "react";
 import "./productdetail.css";
 import { getUserToken } from "../../utils/authToken";
+import Popup from "reactjs-popup";
 
 const ProductDetail = (props) => {
   const [product, setProduct] = useState(null);
   const [cart, setCart] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const token = getUserToken();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const URL = `https://capstone-commerce.herokuapp.com/products/${id}`;
-  
+
   const addToCart = (product) => {
     const existingItem = cart.find((item) => item._id === product._id);
     if (existingItem) {
-      const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
-      const updatedCart = cart.map((item) => item._id === product._id ? updatedItem : item);
+      const updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity + 1,
+      };
+      const updatedCart = cart.map((item) =>
+        item._id === product._id ? updatedItem : item
+      );
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
@@ -31,6 +38,8 @@ const ProductDetail = (props) => {
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
+    setIsPopupOpen(true);
+    setTimeout(() => setIsPopupOpen(false), 2000);
   };
   // context data
   const { currentUser } = useContext(UserContext);
@@ -47,17 +56,20 @@ const ProductDetail = (props) => {
       console.log(err);
     }
   };
-//TODO this isn't working either
+  //TODO this isn't working either
   const addToWishlist = async (product) => {
     try {
-      const response = await fetch("https://capstone-commerce.herokuapp.com/wishlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(product),
-      });
+      const response = await fetch(
+        "https://capstone-commerce.herokuapp.com/wishlist",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(product),
+        }
+      );
       const data = await response.json();
       console.log(data);
     } catch (err) {
@@ -83,7 +95,6 @@ const ProductDetail = (props) => {
     }
   };
 
-
   useEffect(() => {
     getDetails();
     const data = localStorage.getItem("cart");
@@ -108,21 +119,36 @@ const ProductDetail = (props) => {
             alt={product.name}
           />
           <div className="detail-description-card">
-            <h1 className="detail-name">{product.name}</h1>
-            <p className="detail-price">${product.price}</p>
-            <h4 className="detail-description">{product.description}</h4>
-            <div className="p-redirect-div">
+            <div>
+              <h1 className="detail-name">{product.name}</h1>
+              <p className="detail-price">${product.price.toFixed(2)}</p>
+              <h4 className="detail-description">{product.description}</h4>
+            </div>
+            <div className="">
               <button
-                  className="purchase-redirect"
-                  onClick={() => addToCart(product)}
-                >
-                  Add to Cart
-                </button>
-                {/* <button
-                  onClick={() => addToWishlist(product)}
-                >
-                  Add to Wishlist
-                </button> */}
+                className="purchase-redirect"
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart
+              </button>
+
+              <Popup
+                open={isPopupOpen}
+                onClose={() => setIsPopupOpen(false)}
+                position="top right"
+                contentStyle={{
+                  borderRadius: "6px",
+                  padding: "10px",
+                  border: "none",
+                }}
+                overlayStyle={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+              >
+                <div className="">
+                  <div className="text-base flex font-medium button-class px-6 py-2 rounded-lg">
+                    <p> Added to your bag!</p>
+                  </div>
+                </div>
+              </Popup>
             </div>
           </div>
         </section>
@@ -152,8 +178,6 @@ const ProductDetail = (props) => {
       </section>
     );
   };
-
-
 
   return product ? loaded() : loading();
 };

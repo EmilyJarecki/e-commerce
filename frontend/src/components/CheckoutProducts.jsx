@@ -50,28 +50,28 @@ const CheckoutProducts = () => {
             </div>
 
             <div className="w-72 ml-4 ship-font">
-              <p className="ship-font text-2xl">{item.name}</p>
+              <p className="text-xl">{item.name}</p>
               <div className="flex justify-between">
-                <p className="ship-font">${item.price.toFixed(2)}</p>
-                <p className="justify-self-end ship-font">
+                <p className="text-xs">${item.price.toFixed(2)}</p>
+                <p className="justify-self-end">
                   ${getItemTotal(item.quantity, item.price).toFixed(2)}
                 </p>
               </div>
-              <p className="ship-font">QTY: {item.quantity}</p>
+              <p className="text-xs">qty: {item.quantity}</p>
             </div>
           </div>
         ))}
       </div>
-      <div className="mx-8 pt-4 pb-8 border-t-2 mt-4 border-black">
-        <p className="flex justify-between ship-font">SUBTOTAL <span className="ship-font">${getTotal()}</span></p>
-        <p className="flex ship-font justify-between">
+      <div className="mx-8 pt-4 pb-8 t-blak mt-4">
+        <p className="flex justify-between ">SUBTOTAL <span className="">${getTotal()}</span></p>
+        <p className="flex  justify-between">
           SHIPPING <span className="ship-font">$4.95</span>
         </p>
-        <p className="flex ship-font justify-between">
-          ESTIMATED TAX <span className="ship-font">${getTax()}</span>
+        <p className="flex b-blak justify-between pb-4">
+          ESTIMATED TAX <span className="">${getTax()}</span>
         </p>
-        <p className="flex ship-font justify-between">
-          TOTAL <span className="ship-font">${getTotalWithTax()}</span>
+        <p className="flex justify-between pt-4">
+          TOTAL <span className="">${getTotalWithTax()}</span>
         </p>
       </div>
     </div>
