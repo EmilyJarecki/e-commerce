@@ -34,7 +34,7 @@
 
 .purchase-redirect {
   align-items: center;
-  margin-top: 10%;
+  /* margin-top: 10%; */
   color: white;
   padding: 10px 15px;
   background-color: rgb(0, 0, 0);
@@ -186,11 +186,11 @@
   display: flex;
   align-self: center;
 }
-.detail-description-card{
+/* .detail-description-card{
   display: flex;
   align-self: center;
   flex-direction: column;
-}
+} */
 .purchase-redirect{
   padding: 5px;
   font-size: 13px;

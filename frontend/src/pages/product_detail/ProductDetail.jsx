@@ -119,10 +119,12 @@ const ProductDetail = (props) => {
             alt={product.name}
           />
           <div className="detail-description-card">
-            <h1 className="detail-name">{product.name}</h1>
-            <p className="detail-price">${product.price.toFixed(2)}</p>
-            <h4 className="detail-description">{product.description}</h4>
-            <div className="p-redirect-div">
+            <div>
+              <h1 className="detail-name">{product.name}</h1>
+              <p className="detail-price">${product.price.toFixed(2)}</p>
+              <h4 className="detail-description">{product.description}</h4>
+            </div>
+            <div className="">
               <button
                 className="purchase-redirect"
                 onClick={() => addToCart(product)}
