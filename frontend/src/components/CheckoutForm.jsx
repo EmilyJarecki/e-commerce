@@ -590,7 +590,7 @@ const CheckoutForm = () => {
 
                 {values.billingSameAsShipping ? null : (
                   <>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between sm:flex-col sm:w-full">
                       <div
                         className={classNames(
                           commonLabel,
@@ -604,7 +604,7 @@ const CheckoutForm = () => {
                           First Name
                         </label>
                         <Field
-                          className={classNames(commonInput, "w-60")}
+                          className={classNames(commonInput, "w-60  sm:w-full")}
                           type="text"
                           name="billingFirstName"
                           value={values.billingFirstName}
@@ -628,7 +628,7 @@ const CheckoutForm = () => {
                           Last Name
                         </label>
                         <Field
-                          className={classNames(commonInput, "w-60")}
+                          className={classNames(commonInput, "w-60  sm:w-full")}
                           type="text"
                           name="billingLastName"
                           value={values.billingLastName}
@@ -678,7 +678,11 @@ const CheckoutForm = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div
+
+<div className="flex justify-between">
+
+  
+                      <div
                       className={classNames(
                         commonLabel,
                         "flex flex-col  text-red-500"
@@ -699,7 +703,7 @@ const CheckoutForm = () => {
                         <option value=""></option>
                         {states.map((state, index) => (
                           <option key={index} value={state.name}>
-                            {state.name}
+                            {state.abbr}
                           </option>
                         ))}
                       </Field>
@@ -725,6 +729,12 @@ const CheckoutForm = () => {
                         onKeyPress={(e) => checkValue(e)}
                       />
                     </div>
+</div>
+
+
+
+
+
                   </>
                 )}
               </div>

@@ -73,14 +73,14 @@ const Cart = () => {
 
   return (
     <div className="mb-32">
-      <h1 className="  text-4xl my-12 text-center sm:text-2xl">
+      <h1 className="  text-4xl my-12 text-center sm:text-2xl lg:mb-0">
         YOUR BAG({cartData.reduce((total, item) => total + item.quantity, 0)})
       </h1>
-      <div className="flex justify-center lg:flex-col lg:flex lg:items-center">
+      <div className="flex justify-center lg:flex-col-reverse lg:flex lg:items-center">
         <div className="sm:w-full">
           {cartData && cartData.length !== 0 ? (
             <div className="">
-              <Link className="text-lg sm:ml-4" to={"/shop"}>
+              <Link className="text-lg sm:ml-4 lg:text-sm" to={"/shop"}>
                 <h4 className="   underline text-purple-950">Keep Shopping</h4>
               </Link>
               {cartData.map((item) => (
@@ -148,7 +148,7 @@ const Cart = () => {
         </div>
 
         {cartData && cartData.length !== 0 ? (
-          <div className="w-96 lg:mt-8">
+          <div className="w-96 lg:mt-0">
             <div className="fixed lg:static">
               <div className=" w-96 ml-16 mt-8 pt-4 pb-8 bg-white rounded-lg leading-8 shadow-inner shadow-grey-50 px-4 lg:ml-0">
                 <p className="flex justify-between ">
@@ -165,7 +165,7 @@ const Cart = () => {
                 </p>
               </div>
 
-              <div className=" flex mt-4 mb-16 justify-center ml-16 lg:ml-0">
+              <div className=" flex mt-4 mb-16 justify-center ml-16 lg:ml-0 lg:mb-4">
                 <Link
                   className="text-base font-medium button-class px-6 py-2 rounded-lg"
                   to={`/checkout`}
