@@ -13,18 +13,22 @@ Aviato leverages the understanding that smaller businesses might not have as big
             <summary>View here:</summary>
 <div>
 <h3> Home Page
-<img src="https://i.imgur.com/BTZg2ck.jpg" alt="Home Page" />
-<h3> Product Listings
-<img src="https://i.imgur.com/V9QDV9K.jpg" alt="Product Listing" />
-<h3> Product Detail Page
-<img src="https://i.imgur.com/gx8oocD.png" alt="Detail Page" />
-<h3> Cart
-<img src="https://i.imgur.com/k5eTPCE.png" alt="Cart Page" />
-<h3> Login Page
-<img src="https://i.imgur.com/DolZ81b.jpg" alt="Login" />     
-            </div>
-            </details>
+<img src="https://i.imgur.com/Fx8WW3s.jpg" alt="Home Page" />
             
+<h3> Product Listings
+<img src="https://i.imgur.com/fo3wlPo.jpg" alt="Product Listing" />
+<h3> Product Detail Page
+<img src="https://i.imgur.com/v994VQx.png" alt="Detail Page" />
+<h3> Cart
+<img src="" alt="Cart Page" />
+<h3> Checkout & Payment
+<img src="" alt="Cart Page" />
+<h3> Purchase Success
+<img src="" alt="Cart Page" />
+<h3> Login Page
+<img src="" alt="Login" />     
+</div>
+</details>
             
             
 ### <a href="https://github.com/EmilyJarecki/e-commerce/blob/master/planning.md#user-flow">User Stories</a>
