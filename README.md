@@ -13,20 +13,26 @@ Aviato leverages the understanding that smaller businesses might not have as big
             <summary>View here:</summary>
 <div>
 <h3> Home Page
-<img src="https://i.imgur.com/Fx8WW3s.jpg" alt="Home Page" />
-            
+            <img width="1215" alt="Home Page" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/24c937ef-be1b-49d6-839b-aaee6cda0d28">
+
 <h3> Product Listings
-<img src="https://i.imgur.com/fo3wlPo.jpg" alt="Product Listing" />
+            <img width="1217" alt="Product Listing" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/69f4d451-f587-4b60-a757-bec2169f4209">
+
 <h3> Product Detail Page
-<img src="https://i.imgur.com/v994VQx.png" alt="Detail Page" />
+            <img width="1215" alt="Product Detail" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/1b78444c-55b8-4650-8b04-a55bd119a43f">
+
 <h3> Cart
-<img src="" alt="Cart Page" />
+            <img width="1215" alt="Cart" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/983d9361-b6a6-4c4b-b109-810deb3b0e6c">
+
 <h3> Checkout & Payment
-<img src="" alt="Cart Page" />
-<h3> Purchase Success
-<img src="" alt="Cart Page" />
+            <img width="1217" alt="Checkout & Payment" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/f38e58bb-f3a2-4d6d-8b9f-dca05ecddaac">
+
+<h3> Order Success
+            <img width="1216" alt="Order Success" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/0ed3cf49-f503-4b92-8355-5f5e64e041bf">
+
 <h3> Login Page
-<img src="" alt="Login" />     
+            <img width="1214" alt="Login/Register Page" src="https://github.com/EmilyJarecki/e-commerce/assets/107048020/39aec371-f0c1-4821-a7c1-d3859ecfc313">
+
 </div>
 </details>
             
